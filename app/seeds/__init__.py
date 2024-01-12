@@ -24,7 +24,7 @@ def seed():
         undo_users() 
     seed_users()
     seed_roles()
-    seed_user_roles(user_roles)
+    seed_user_roles()
     # Add other seed functions here
 
 

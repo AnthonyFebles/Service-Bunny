@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_user_roles(user_roles):
+def seed_user_roles():
     manager = user_roles.insert().values(user_id ="1", roles_id= "1")
     technician = user_roles.insert().values(user_id="2", roles_id="2")
     customer = user_roles.insert().values(user_id="3", roles_id="3")
