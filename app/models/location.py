@@ -1,7 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
-from datetime import datetime, date
+from datetime import datetime
 
 
 class Location(db.Model):
@@ -19,8 +17,19 @@ class Location(db.Model):
     notes = db.Column(db.String(500), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
-
-    
+  
     users = db.relationship("User", back_populates="locations")
     jobs = db.relationship("Job", back_populates="locations")
-    # parts = db.relationship("Part", back_populates="locations")
+    parts = db.relationship("Part", back_populates="locations", cascade='all, delete-orphan')
+
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'address': self.address,
+            'latitude': self.lat,
+            'longitude': self.lng,
+            'notes': self.notes,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+            'user_id': self.user_id
+        }

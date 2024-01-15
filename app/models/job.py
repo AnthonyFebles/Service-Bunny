@@ -1,7 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
-from datetime import datetime, date
+from datetime import datetime
 from .user import User
 
 user_jobs = db.Table(
@@ -38,6 +36,8 @@ class Job(db.Model):
     
     locations = db.relationship('Location', back_populates='jobs')
     users = db.relationship('User', back_populates= 'jobs')
+    reviews = db.relationship("Review", back_populates="jobs", cascade='all, delete-orphan')
+    job_images = db.relationship('Job_Image', back_populates='jobs', cascade='all, delete-orphan')
     
     def to_dict(self):
         return {

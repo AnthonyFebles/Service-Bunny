@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from datetime import datetime, date
+from datetime import datetime
 
 user_roles = db.Table(
     "user_roles",
@@ -51,7 +51,16 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name' : self.last_name,
+            'date_of_birth': self.dob,
+            'profile_image': self.profile_image,
+            'color': self.schedule_color,
+            'manager': self.manager,
+            'company': self.company,
+            'phone_number': self.phone_number,
+            
         }
 
 class Role(db.Model):
@@ -70,5 +79,9 @@ class Role(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'description': self.description
+            'description': self.description,
         }
+        
+    
+    
+    
