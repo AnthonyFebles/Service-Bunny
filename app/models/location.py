@@ -22,5 +22,5 @@ class Location(db.Model):
 
     
     users = db.relationship("User", back_populates="locations")
-    jobs = db.relationship("Jobs", back_populates="locations")
+    jobs = db.relationship("Job", back_populates="locations")
     # parts = db.relationship("Part", back_populates="locations")
