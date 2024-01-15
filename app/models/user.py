@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from datetime import datetime, date
+from datetime import datetime
 
 user_roles = db.Table(
     "user_roles",
@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
+        
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
@@ -27,11 +28,14 @@ class User(db.Model, UserMixin):
     schedule_color = db.Column(db.String(50), nullable=False)
     manager = db.Column(db.String(5), nullable=False, default=1)
     company = db.Column(db.String(50), nullable=True)
+    phone_number = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     
     roles = db.relationship("Role", secondary=user_roles, back_populates="users")
-    
+    jobs = db.relationship("Job", back_populates="users")
+    locations = db.relationship("Location", back_populates='users', cascade='all, delete-orphan')
+     
     @property
     def password(self):
         return self.hashed_password
@@ -47,7 +51,16 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name' : self.last_name,
+            'date_of_birth': self.dob,
+            'profile_image': self.profile_image,
+            'color': self.schedule_color,
+            'manager': self.manager,
+            'company': self.company,
+            'phone_number': self.phone_number,
+            
         }
 
 class Role(db.Model):
@@ -66,5 +79,9 @@ class Role(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'description': self.description
+            'description': self.description,
         }
+        
+    
+    
+    
