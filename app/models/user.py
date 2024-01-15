@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
+        
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
@@ -27,11 +28,14 @@ class User(db.Model, UserMixin):
     schedule_color = db.Column(db.String(50), nullable=False)
     manager = db.Column(db.String(5), nullable=False, default=1)
     company = db.Column(db.String(50), nullable=True)
+    phone_number = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     
     roles = db.relationship("Role", secondary=user_roles, back_populates="users")
-    
+    jobs = db.relationship("Job", back_populates="users")
+    locations = db.relationship("Location", back_populates='users', cascade='all, delete-orphan')
+     
     @property
     def password(self):
         return self.hashed_password
