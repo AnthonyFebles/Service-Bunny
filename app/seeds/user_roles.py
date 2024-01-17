@@ -6,11 +6,11 @@ from sqlalchemy.sql import text
 def seed_user_roles():
     if environment == "production":
         db.session.execute(
-            f"INSERT INTO user_roles(user_id, roles_id) VALUES(1, 1)")
+            f"INSERT INTO {SCHEMA}.user_roles(user_id, roles_id) VALUES(1, 1)")
         db.session.execute(
-            f"INSERT INTO user_roles(user_id, roles_id) VALUES(2, 2)")
+            f"INSERT INTO {SCHEMA}.user_roles(user_id, roles_id) VALUES(2, 2)")
         db.session.execute(
-            f"INSERT INTO user_roles(user_id, roles_id) VALUES(3, 3)")
+            f"INSERT INTO {SCHEMA}.user_roles(user_id, roles_id) VALUES(3, 3)")
         
         db.session.commit()
         
