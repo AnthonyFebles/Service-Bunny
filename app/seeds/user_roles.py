@@ -4,14 +4,26 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_user_roles():
-    manager = user_roles.insert().values(user_id ="1", roles_id= "1")
-    technician = user_roles.insert().values(user_id="2", roles_id="2")
-    customer = user_roles.insert().values(user_id="3", roles_id="3")
+    if environment == "production":
+        db.session.execute(
+            f"INSERT INTO user_roles(user_id, roles_id) VALUES(1, 1)")
+        db.session.execute(
+            f"INSERT INTO user_roles(user_id, roles_id) VALUES(2, 2)")
+        db.session.execute(
+            f"INSERT INTO user_roles(user_id, roles_id) VALUES(3, 3)")
+        
+        db.session.commit()
+        
+    
+    else:
+        manager = user_roles.insert().values(user_id ="1", roles_id= "1")
+        technician = user_roles.insert().values(user_id="2", roles_id="2")
+        customer = user_roles.insert().values(user_id="3", roles_id="3")
 
-    db.session.execute(manager)
-    db.session.execute(technician)
-    db.session.execute(customer)
-    db.session.commit()
+        db.session.execute(manager)
+        db.session.execute(technician)
+        db.session.execute(customer)
+        db.session.commit()
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
