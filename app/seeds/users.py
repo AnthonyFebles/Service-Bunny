@@ -7,13 +7,29 @@ def seed_users():
     demo = User(
         username='Demo', email='demo@aa.io', password='password', first_name="Joe", last_name="Schmoe",  schedule_color="Blue", role="Manager")
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', first_name="Joel", last_name="Schmoel",  schedule_color="Red", role="Customer")
+        username='marnie', email='marnie@aa.io', password='password', first_name="Marnie", last_name="Schmoel",  schedule_color="Red", role="Customer")
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', first_name="Joesay", last_name="Schmoesay", schedule_color="Green", role="Technician")
-
+        username='bobbie', email='bobbie@aa.io', password='password', first_name="Bobbie", last_name="Schmoe", schedule_color="Green", role="Technician", manager=1)
+    steve = User(
+        username='steve', email='steve@aa.io', password='password', first_name="Steve", last_name="Schmoe", schedule_color="Yellow", role="Technician", manager=1)
+    juan = User(
+        username='juan', email='juan@aa.io', password='password', first_name="Juan", last_name="Schmoe", schedule_color="Purple", role="Technician", manager=1)
+    shmake = User(
+        username='shmake', email='shmake@aa.io', password='password', first_name="Shmake", last_name="Yake", schedule_color="Green", role="Technician")
+    anthony = User(
+        username='anthony', email='anthony@aa.io', password='password', first_name="Anthony", last_name="Febles",  schedule_color="Red", role="Customer")
+    martha = User(
+        username='martha', email='martha@aa.io', password='password', first_name="Martha", last_name="Old",  schedule_color="Red", role="Customer")
+    
+    
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(steve)
+    db.session.add(juan)
+    db.session.add(shmake)
+    db.session.add(anthony)
+    db.session.add(martha)
     db.session.commit()
 
 
