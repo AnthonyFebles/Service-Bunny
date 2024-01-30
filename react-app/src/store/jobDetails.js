@@ -87,7 +87,7 @@ const JobReducer = (state = {}, action) => {
 		case GET_ONE:
 			// console.log(action, "action inside get one job reducer");
 			const newGet = {};
-			return { ... action.job };
+			return { ...action.job };
 
 		case DELETE_SPOT:
 			//console.log(action, "action when deleting");

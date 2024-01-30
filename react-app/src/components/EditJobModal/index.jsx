@@ -43,19 +43,17 @@ function EditJobModal({ currJob }) {
 	// console.log(worker_id, "worker Id")
 	console.log(payload);
 
-	
-
-    const handleEdit = async (e) => {
-			e.preventDefault();
-			try {
-				await dispatch(updateJob(payload, currJob.id))
-					.then(() => dispatch(getOne(currJob.id)))
-					.then(() => dispatch(getALocation(currJob.location_id)));
-                    closeModal()
-			} catch (error) {
-				setErrors(error.errors);
-			}
-		};
+	const handleEdit = async (e) => {
+		e.preventDefault();
+		try {
+			await dispatch(updateJob(payload, currJob.id))
+				.then(() => dispatch(getOne(currJob.id)))
+				.then(() => dispatch(getALocation(currJob.location_id)));
+			closeModal();
+		} catch (error) {
+			setErrors(error.errors);
+		}
+	};
 
 	// console.log(errors, "errors")
 

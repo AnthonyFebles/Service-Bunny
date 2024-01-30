@@ -1,7 +1,7 @@
- import { csrfFetch } from "./csrf";
+import { csrfFetch } from "./csrf";
 
 const LOAD = "jobs/LOAD";
-const LOAD_ONE = 'jobs/LOAD_ONE'
+const LOAD_ONE = "jobs/LOAD_ONE";
 const CREATE = "jobs/CREATE";
 const UPDATE = "jobs/UPDATE";
 const DELETE = "job/DELETE";
@@ -10,7 +10,6 @@ const load = (list) => ({
 	type: LOAD,
 	list,
 });
-
 
 const create = (jobPayLoad) => ({
 	type: CREATE,
@@ -147,10 +146,6 @@ const JobsReducer = (state = initialState, action) => {
 			delete newState[action.jobId];
 			// console.log(newState, "new state after del");
 			return newState;
-
-	
-			
-			
 
 		default:
 			return state;

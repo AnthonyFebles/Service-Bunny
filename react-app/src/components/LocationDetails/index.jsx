@@ -38,14 +38,14 @@ const LocationDetails = () => {
 	}, [dispatch, locationId]);
 
 	// console.log(currJobs, "curr Jobs")
-    const handleDelete = async () => {
-			try {
-				await dispatch(deleteLocation(location.id));
-				navigate("/home");
-			} catch (error) {
-				setErrors(error.errors);
-			}
-		};
+	const handleDelete = async () => {
+		try {
+			await dispatch(deleteLocation(location.id));
+			navigate("/home");
+		} catch (error) {
+			setErrors(error.errors);
+		}
+	};
 
 	if (!sessionUser) return <>{navigate("/")}</>;
 

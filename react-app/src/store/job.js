@@ -3,11 +3,9 @@ import { csrfFetch } from "./csrf";
 const LOAD_ONE = "job/LOAD_ONE";
 const DELETE = "job/DELETE";
 
-
-
 const loadOne = (list) => ({
 	type: LOAD_ONE,
-	list
+	list,
 });
 
 const remove = (jobId) => ({
@@ -45,12 +43,7 @@ export const getJob = () => async (dispatch) => {
 	}
 
 	return res;
-
 };
-
-
-
-
 
 const initialState = {
 	list: [],

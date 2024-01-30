@@ -83,8 +83,7 @@ function TechInfoModal({ tech, job }) {
 			} finally {
 				dispatch(getJobs()).then(() => dispatch(getJob));
 			}
-		}
-		else setErrors(["Confirmed password does not match"])
+		} else setErrors(["Confirmed password does not match"]);
 	};
 
 	return (

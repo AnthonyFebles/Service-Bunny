@@ -69,13 +69,7 @@ const ManagerHome = () => {
 								<OpenModalButton
 									className={"assign_tech_button"}
 									buttonText={job.title}
-									modalComponent={
-										<AcceptJobModal
-											job={job}
-											techs={manager}
-											
-										/>
-									}
+									modalComponent={<AcceptJobModal job={job} techs={manager} />}
 								/>
 							</div>
 						);
@@ -95,8 +89,7 @@ const ManagerHome = () => {
 								<OpenModalButton
 									className={"techs_button"}
 									buttonText={tech.first_name + " " + tech.last_name}
-									modalComponent={<TechInfoModal tech={tech} job={currJobs}
-									 />}
+									modalComponent={<TechInfoModal tech={tech} job={currJobs} />}
 								/>
 							</div>
 						);

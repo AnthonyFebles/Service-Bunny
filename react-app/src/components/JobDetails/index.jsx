@@ -185,8 +185,9 @@ const JobDetails = () => {
 									</>
 								)}
 								{job.employee_check && !job.customer_check && (
-									<><div>Technicians Solution: {job.solution}</div>
-									<button  onClick={handleComplete} >Mark As Completed</button>
+									<>
+										<div>Technicians Solution: {job.solution}</div>
+										<button onClick={handleComplete}>Mark As Completed</button>
 									</>
 								)}
 								{job.customer_check && (

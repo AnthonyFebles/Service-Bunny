@@ -79,7 +79,7 @@ export const updateBooking = (bookingPayLoad) => async (dispatch) => {
 			return updatedBooking;
 		}
 	} catch (error) {
-		console.log(error, "error")
+		console.log(error, "error");
 		const res = await error.json();
 		throw res;
 	}

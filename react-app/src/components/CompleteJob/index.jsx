@@ -7,35 +7,24 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { getJob, deleteJob } from "../../store/job";
 import { createNewBooking } from "../../store/bookings";
-import "./CompleteJob.css"
+import "./CompleteJob.css";
 
-function CompleteJobModal({job}) {
-
-
+function CompleteJobModal({ job }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
-
-	
 	// console.log(worker_id, "worker Id")
 
 	const handleComplete = async () => {
-        try {
-            await dispatch(deleteJob(job.id)).then(()=> dispatch(getJob()))
-            closeModal()
-        }catch(error){
-            setErrors(error.errors)
-        }
-    }
-
-
-	
-
-
-
-	
+		try {
+			await dispatch(deleteJob(job.id)).then(() => dispatch(getJob()));
+			closeModal();
+		} catch (error) {
+			setErrors(error.errors);
+		}
+	};
 
 	// console.log(errors, "errors")
 
@@ -47,7 +36,7 @@ function CompleteJobModal({job}) {
 				))}
 			</ul>
 			<h1 className="complete_job-title">Mark Job As Completed?</h1>
-			<div className="complete_job-buttons" >
+			<div className="complete_job-buttons">
 				<button onClick={handleComplete} className="complete_job_modal-yes">
 					Yes
 				</button>

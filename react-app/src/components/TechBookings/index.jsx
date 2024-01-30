@@ -113,7 +113,7 @@ const TechBookings = ({ booking, job }) => {
 			title: job.title,
 			price: job.price,
 			category: job.category,
-			employee_check: true
+			employee_check: true,
 		};
 
 		try {
@@ -158,7 +158,9 @@ const TechBookings = ({ booking, job }) => {
 					End Job
 				</button>
 				{!solution && isStarted && (
-					<p className="tech_no_solution-message">A Solution is Required to End the Job</p>
+					<p className="tech_no_solution-message">
+						A Solution is Required to End the Job
+					</p>
 				)}
 				<button
 					className="job_details-cancel_button"

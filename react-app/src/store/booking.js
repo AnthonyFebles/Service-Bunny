@@ -36,9 +36,9 @@ const BookingReducer = (state = initialState, action) => {
 		case LOAD_ONE:
 			const allBookings = {};
 			// console.log(action)
-			if (action.booking){
-                return { ... action.booking}
-            }  else
+			if (action.booking) {
+				return { ...action.booking };
+			} else
 				return {
 					...allBookings,
 					...state,

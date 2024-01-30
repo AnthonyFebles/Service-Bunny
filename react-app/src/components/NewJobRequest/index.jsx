@@ -41,12 +41,14 @@ function NewJobRequest({ currLocation }) {
 	};
 
 	// console.log(worker_id, "worker Id")
-    console.log(payload)
+	console.log(payload);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await dispatch(createNewJob(payload)).then(() => dispatch(getALocation(currLocation.id)));
+			await dispatch(createNewJob(payload)).then(() =>
+				dispatch(getALocation(currLocation.id))
+			);
 			closeModal();
 		} catch (data) {
 			setErrors(data.errors);
@@ -83,7 +85,7 @@ function NewJobRequest({ currLocation }) {
 					></input>
 				</label>
 				<select
-					onChange={(e) => setCategory((e.target.value))}
+					onChange={(e) => setCategory(e.target.value)}
 					className="new_job-select"
 				>
 					Categories

@@ -93,23 +93,23 @@ const CustomerHome = () => {
 					{jobs.toReversed().map((job) => {
 						if (job)
 							if (job.bookings[0])
-								if(job.employee_check)
-									if(!job.customer_check)
-								return (
-									<div key={job.id} className="tech_homepage-jobs">
-										<NavLink to={`/jobs/${job.id}`}>
-											<div>
-												<img
-													src={`/Images/${job.category}.jpg`}
-													alt="Job Link"
-													className="job_image"
-													title={`${job.title}`}
-												/>
+								if (job.employee_check)
+									if (!job.customer_check)
+										return (
+											<div key={job.id} className="tech_homepage-jobs">
+												<NavLink to={`/jobs/${job.id}`}>
+													<div>
+														<img
+															src={`/Images/${job.category}.jpg`}
+															alt="Job Link"
+															className="job_image"
+															title={`${job.title}`}
+														/>
+													</div>
+												</NavLink>
+												<p className="job__title">{`${job.title}`}</p>
 											</div>
-										</NavLink>
-										<p className="job__title">{`${job.title}`}</p>
-									</div>
-								);
+										);
 					})}
 					<h2 className="location_details-is_booked_header">
 						Technician Assigned:

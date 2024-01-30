@@ -4,17 +4,25 @@ import { useModal } from "../../context/Modal";
 import { signTechUp } from "../../store/session";
 import "./SignupForm.css";
 import { getManagers } from "../../store/manager";
-const color_options = ["Blue", "Green", "Red", "Yellow", "Purple", "Gray", "Orange"];
+const color_options = [
+	"Blue",
+	"Green",
+	"Red",
+	"Yellow",
+	"Purple",
+	"Gray",
+	"Orange",
+];
 
-function SignupFormModal({manager}) {
+function SignupFormModal({ manager }) {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
-	const [role, setRole] = useState("Technician")
-	const [first_name, setFirst_Name] = useState('')
-	const [last_name, setLast_Name] = useState('')
-	const [scheduleColor, setScheduleColor] = useState("")
-	const [phoneNumber, setPhoneNumber] = useState('')
+	const [role, setRole] = useState("Technician");
+	const [first_name, setFirst_Name] = useState("");
+	const [last_name, setLast_Name] = useState("");
+	const [scheduleColor, setScheduleColor] = useState("");
+	const [phoneNumber, setPhoneNumber] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
@@ -23,8 +31,8 @@ function SignupFormModal({manager}) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signTechUp(payload))
-			dispatch(getManagers())
+			const data = await dispatch(signTechUp(payload));
+			dispatch(getManagers());
 			if (data) {
 				setErrors(data);
 			} else {
@@ -45,10 +53,9 @@ function SignupFormModal({manager}) {
 		first_name,
 		last_name,
 		schedule_color: scheduleColor,
-		phone_number:phoneNumber,
-		manager: manager
-	}
-
+		phone_number: phoneNumber,
+		manager: manager,
+	};
 
 	return (
 		<>

@@ -8,7 +8,6 @@ import { getJob } from "../../store/job";
 import { getLocations } from "../../store/locations";
 import { getBookings } from "../../store/bookings";
 
-
 const TechnicianHome = () => {
 	const dispatch = useDispatch();
 
@@ -55,25 +54,25 @@ const TechnicianHome = () => {
 
 	return (
 		<div className="tech_homepage-job_container">
-            <h1 className="tech_homepage-job_header">Your Jobs</h1>
+			<h1 className="tech_homepage-job_header">Your Jobs</h1>
 			<nav>
 				{jobs.toReversed().map((job) => {
-                    if (job)
-					return (
-						<div key={job.id} className="tech_homepage-jobs">
-							<NavLink to={`/jobs/${job.id}`}>
-								<div>
-									<img
-										src={`/Images/${job.category}.jpg`}
-										alt="Job Link"
-										className="job_image"
-										title={`${job.title}`}
-									/>
-								</div>
-							</NavLink>
-							<p className="job__title">{`${job.title}`}</p>
-						</div>
-					);
+					if (job)
+						return (
+							<div key={job.id} className="tech_homepage-jobs">
+								<NavLink to={`/jobs/${job.id}`}>
+									<div>
+										<img
+											src={`/Images/${job.category}.jpg`}
+											alt="Job Link"
+											className="job_image"
+											title={`${job.title}`}
+										/>
+									</div>
+								</NavLink>
+								<p className="job__title">{`${job.title}`}</p>
+							</div>
+						);
 				})}
 			</nav>
 		</div>

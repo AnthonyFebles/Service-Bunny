@@ -2,13 +2,10 @@ import { csrfFetch } from "./csrf";
 
 const GET_WORKER = "worker/GET_ONE";
 
-
-
 const getWorker = (worker) => ({
 	type: GET_WORKER,
-	worker
+	worker,
 });
-
 
 export const getOneWorker = (workerId) => async (dispatch) => {
 	const response = await csrfFetch(`/api/users/${workerId}`);
@@ -23,17 +20,13 @@ export const getOneWorker = (workerId) => async (dispatch) => {
 	return response;
 };
 
-
-
-
 const WorkerReducer = (state = {}, action) => {
 	switch (action.type) {
 		case GET_WORKER:
 			// console.log(action, "action inside get one job reducer");
 			const newGet = {};
-            if (action.worker)
-			return { ...action.worker };
-            else return { ...newGet}
+			if (action.worker) return { ...action.worker };
+			else return { ...newGet };
 
 		default:
 			return state;

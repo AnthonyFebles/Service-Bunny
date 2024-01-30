@@ -32,42 +32,42 @@ function ProfileButton({ user }) {
 		return () => document.removeEventListener("click", closeMenu);
 	}, [showMenu]);
 
-		const handleManagerLogin = () => {
-			const demoCredentials = {
-				email: "demo@aa.io",
-				password: "password",
-			};
-
-			dispatch(login(demoCredentials.email, demoCredentials.password)).then(
-				() => {
-					navigate("/home");
-				}
-			);
+	const handleManagerLogin = () => {
+		const demoCredentials = {
+			email: "demo@aa.io",
+			password: "password",
 		};
-			const handleTechnicianLogin = () => {
-				const demoCredentials = {
-					email: "steve@aa.io",
-					password: "password",
-				};
 
-				dispatch(login(demoCredentials.email, demoCredentials.password)).then(
-					() => {
-						navigate("/home");
-					}
-				);
-			};
-			const handleCustomerLogin = () => {
-				const demoCredentials = {
-					email: "marnie@aa.io",
-					password: "password",
-				};
+		dispatch(login(demoCredentials.email, demoCredentials.password)).then(
+			() => {
+				navigate("/home");
+			}
+		);
+	};
+	const handleTechnicianLogin = () => {
+		const demoCredentials = {
+			email: "steve@aa.io",
+			password: "password",
+		};
 
-				dispatch(login(demoCredentials.email, demoCredentials.password)).then(
-					() => {
-						navigate("/home");
-					}
-				);
-			};
+		dispatch(login(demoCredentials.email, demoCredentials.password)).then(
+			() => {
+				navigate("/home");
+			}
+		);
+	};
+	const handleCustomerLogin = () => {
+		const demoCredentials = {
+			email: "marnie@aa.io",
+			password: "password",
+		};
+
+		dispatch(login(demoCredentials.email, demoCredentials.password)).then(
+			() => {
+				navigate("/home");
+			}
+		);
+	};
 
 	const handleLogout = (e) => {
 		e.preventDefault();
