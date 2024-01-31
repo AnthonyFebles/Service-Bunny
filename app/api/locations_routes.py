@@ -26,6 +26,11 @@ def create_location():
             lng= form.lng.data,
             notes= form.notes.data
         )
+        
+        db.session.add(new_location)
+        db.session.commit()
+        
+        
         return jsonify(new_location.to_dict()), 201
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
@@ -43,7 +48,7 @@ def read_locations():
     return jsonify(location_details), 200
 
 #Update Routes
-@location_routes.route("/locations/<int:locationId>")
+@location_routes.route("/locations/<int:locationId>", methods=["PUT"])
 @login_required
 def update_location(locationId):
     
@@ -51,6 +56,21 @@ def update_location(locationId):
     
     if not location:
         return {'errors': 'Location not found'}, 404
+    
+    form = LocationForm()
+    
+    if form.validate_on_submit():
+        address =form.address.data,
+        lat= form.lat.data,
+        lng= form.lng.data,
+        notes= form.notes.data
+        
+        location.address = address
+        location.lat = lat
+        location.lng = lng
+        location.notes = notes
+        
+        db.session.commit()
     
     return jsonify(location.to_dict()), 200
 
