@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import AllJobs from "./components/StoreTester";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
 				<Routes>
 					<Route path="/login" element={<LoginFormPage />}></Route>
 					<Route path="/signup" element={<SignupFormPage />}></Route>
+					<Route path="/jobs" element={<AllJobs />}></Route>
 				</Routes>
 			)}
 		</>
