@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
+from datetime import datetime
 
 from app.models.booking import Booking, db
 from ..forms.bookings_form import BookingForm
@@ -11,11 +12,12 @@ booking_routes = Blueprint('bookings', __name__)
 # Logged in User should be able to create a booking
 
 
-@booking_routes.route("/bookings", methods=["POST"])
+@booking_routes.route("/", methods=["POST"])
 @login_required
 def create_booking():
 
     form = BookingForm()
+    
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -35,7 +37,7 @@ def create_booking():
 
 
 # Read Routes
-@booking_routes.route("/bookings")
+@booking_routes.route("/")
 @login_required
 def read_bookings():
 
@@ -50,7 +52,7 @@ def read_bookings():
 # Update Routes
 
 
-@booking_routes.route("/bookings/<int:bookingId>")
+@booking_routes.route("/<int:bookingId>", methods=["PUT"])
 @login_required
 def update_booking(bookingId):
 
@@ -60,14 +62,15 @@ def update_booking(bookingId):
         return {'errors': 'Booking not found'}, 404
     
     form=BookingForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        scheduled_start=form.scheduled_start.data
+        scheduled_start = form.scheduled_start.data
         scheduled_end = form.scheduled_end.data
         started_at = form.started_at.data
         stopped_at = form.stopped_at.data
         
-        booking.scheduled_start=scheduled_start
+        booking.scheduled_start = scheduled_start
         booking.scheduled_end = scheduled_end
         booking.started_at = started_at
         booking.stopped_at = stopped_at
@@ -81,7 +84,7 @@ def update_booking(bookingId):
 # Delete Routes
 
 
-@booking_routes.route("/bookings/<int:bookingId>")
+@booking_routes.route("/<int:bookingId>", methods=["DELETE"])
 @login_required
 def delete_booking(bookingId):
 
@@ -95,4 +98,4 @@ def delete_booking(bookingId):
     db.session.commit()
      
 
-    return jsonify({"message": "Board has been Deleted successfully"}), 200
+    return jsonify({"message": "Booking has been Deleted successfully"}), 200

@@ -11,7 +11,7 @@ job_routes = Blueprint('jobs', __name__)
 # Logged in User should be able to create a job
 
 
-@job_routes.route("/jobs", methods=["POST"])
+@job_routes.route("/", methods=["POST"])
 @login_required
 def create_job():
 
@@ -35,7 +35,7 @@ def create_job():
 
 
 # Read Routes
-@job_routes.route("/jobs")
+@job_routes.route("/")
 @login_required
 def read_jobs():
 
@@ -56,7 +56,7 @@ def read_jobs():
 # Update Routes
 
 
-@job_routes.route("/jobs/<int:jobId>")
+@job_routes.route("/<int:jobId>", methods=["PUT"])
 @login_required
 def update_job(jobId):
 
@@ -66,22 +66,25 @@ def update_job(jobId):
         return {'errors': 'Job not found'}, 404
 
     form = JobForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         
-        location_id=form.location_id.data,
-        worker_id=form.worker_id.data,
-        description=form.description.data,
-        solution=form.solution.data,
-        customer_check = form.customer_check.data,
-        employee_check = form.employee_check.data
         
-        job.location_id = location_id,
-        job.worker_id = worker_id,
-        job.description = description,
-        job.solution = solution,
-        job.customer_check = customer_check,
-        job.employee_check = employee_check
+        worker_id=form.worker_id.data
+        description=form.description.data
+        solution=form.solution.data
+        customer_check=form.customer_check.data
+        employee_check=form.employee_check.data
+        
+        print(type(form.customer_check.data), "TESINTG FORM DATA")
+        
+        job.location_id=job.location_id
+        job.worker_id=worker_id
+        job.description=description
+        job.solution=solution
+        job.customer_check=customer_check 
+        job.employee_check=employee_check
         
 
         db.session.commit()
@@ -92,7 +95,7 @@ def update_job(jobId):
 # Delete Routes
 
 
-@job_routes.route("/jobs/<int:jobId>")
+@job_routes.route("/<int:jobId>", methods=["DELETE"])
 @login_required
 def delete_job(jobId):
 
@@ -106,4 +109,4 @@ def delete_job(jobId):
         db.session.delete(job)
         db.session.commit()
 
-    return jsonify({"message": "Board has been Deleted successfully"}), 200
+    return jsonify({"message": "Job has been Deleted successfully"}), 200

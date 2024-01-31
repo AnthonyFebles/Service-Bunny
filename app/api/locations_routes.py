@@ -10,7 +10,7 @@ location_routes = Blueprint('locations', __name__)
 #Create Route
 #Logged in User should be able to create a location
 
-@location_routes.route("/locations", methods=["POST"])
+@location_routes.route("/", methods=["POST"])
 @login_required
 def create_location():
     
@@ -37,7 +37,7 @@ def create_location():
 
 
 #Read Routes
-@location_routes.route("/locations")
+@location_routes.route("/")
 @login_required
 def read_locations():
     
@@ -48,7 +48,7 @@ def read_locations():
     return jsonify(location_details), 200
 
 #Update Routes
-@location_routes.route("/locations/<int:locationId>", methods=["PUT"])
+@location_routes.route("/<int:locationId>", methods=["PUT"])
 @login_required
 def update_location(locationId):
     
@@ -58,11 +58,12 @@ def update_location(locationId):
         return {'errors': 'Location not found'}, 404
     
     form = LocationForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     
     if form.validate_on_submit():
-        address =form.address.data,
-        lat= form.lat.data,
-        lng= form.lng.data,
+        address =form.address.data
+        lat= form.lat.data
+        lng= form.lng.data
         notes= form.notes.data
         
         location.address = address
@@ -75,7 +76,9 @@ def update_location(locationId):
     return jsonify(location.to_dict()), 200
 
 #Delete Routes
-@location_routes.route("/locations/<int:locationId>")
+
+
+@location_routes.route("/<int:locationId>", methods=["DELETE"])
 @login_required
 def delete_location(locationId):
     
@@ -89,7 +92,7 @@ def delete_location(locationId):
         db.session.delete(location)
         db.session.commit()
         
-    return jsonify({"message": "Board has been Deleted successfully" }), 200
+    return jsonify({"message": "Location has been Deleted successfully" }), 200
 
 
 
