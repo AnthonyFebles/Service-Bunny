@@ -42,7 +42,7 @@ def read_jobs():
     if current_user.role == "Manager" :
         
         all_jobs = Job.query.filter(Job.worker_id == None).all()
-        all_job_details = [job.to_dict() for job in all_jobs]
+        all_job_details = [job.to_dict_no_bookings() for job in all_jobs]
         
         return jsonify(all_job_details), 200
 
@@ -50,7 +50,7 @@ def read_jobs():
     if current_user.role == "Technician" :
         
         worker_jobs = Job.query.filter(Job.worker_id == current_user.id).all()
-        work_job_details = [job.to_dict() for job in worker_jobs]
+        work_job_details = [job.to_dict_no_bookings() for job in worker_jobs]
         
         return jsonify(work_job_details), 200
     

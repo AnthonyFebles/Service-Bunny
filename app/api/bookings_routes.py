@@ -48,6 +48,9 @@ def read_bookings():
         manager_bookings = [{technician['first_name']: technician["bookings"]} for technician in technician_details]
         
         return jsonify({'bookings':manager_bookings}), 200
+    
+    # if current_user.role == 'Customer':
+        
 
     user_bookings = Booking.query.filter(
         Booking.user_id == current_user.id).all()

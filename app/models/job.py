@@ -39,6 +39,21 @@ class Job(db.Model):
             'solution': self.solution,
             'customer_check': self.customer_check,
             'employee_check': self.employee_check,
+            'bookings': [booking.to_dict() for booking in self.bookings],
             'created_at' : self.created_at,
             'updated_at' : self.updated_at
+        }
+
+    def to_dict_no_bookings(self):
+        return {
+            'id': self.id,
+            'location_id': self.location_id,
+            'user_id': self.user_id,
+            'worker_id': self.worker_id,
+            'description': self.description,
+            'solution': self.solution,
+            'customer_check': self.customer_check,
+            'employee_check': self.employee_check,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
         }
