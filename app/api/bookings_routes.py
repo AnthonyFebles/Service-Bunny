@@ -22,8 +22,13 @@ def create_booking():
     if form.validate_on_submit():
         new_booking = Booking(
             user_id=current_user.id,
-            scheduled_start=form.scheduled_start.data
+            scheduled_start=form.scheduled_start.data,
+            job_id=form.job_id
         )
+        
+        db.session.add(new_booking)
+        db.session.commit()
+        
         return jsonify(new_booking.to_dict()), 201
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
@@ -41,6 +46,7 @@ def read_bookings():
 
     return jsonify(booking_details), 200
 
+
 # Update Routes
 
 
@@ -52,8 +58,25 @@ def update_booking(bookingId):
 
     if not booking:
         return {'errors': 'Booking not found'}, 404
+    
+    form=BookingForm
 
-    return jsonify(booking.to_dict()), 200
+    if form.validate_on_submit():
+        scheduled_start=form.scheduled_start.data
+        scheduled_end = form.scheduled_end.data
+        started_at = form.started_at.data
+        stopped_at = form.stopped_at.data
+        
+        booking.scheduled_start=scheduled_start
+        booking.scheduled_end = scheduled_end
+        booking.started_at = started_at
+        booking.stopped_at = stopped_at
+        
+        db.session.commit()
+    
+    
+        return jsonify(booking.to_dict()), 200
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400 
 
 # Delete Routes
 
@@ -67,9 +90,9 @@ def delete_booking(bookingId):
     if not booking:
         return {'errors': 'Booking not found'}, 404
 
-    if booking.user_id == current_user.id:
 
-        db.session.delete(booking)
-        db.session.commit()
+    db.session.delete(booking)
+    db.session.commit()
+     
 
     return jsonify({"message": "Board has been Deleted successfully"}), 200
