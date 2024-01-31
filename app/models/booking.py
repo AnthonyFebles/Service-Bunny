@@ -28,7 +28,7 @@ class Booking(db.Model):
         return {
             'id': self.id,
             'job_id': self.job_id,
-            'user_id': self.user.id,
+            'user_id': self.user_id,
             'started_at': self.started_at,
             'stopped_at': self.stopped_at,
             'scheduled_start': self.scheduled_start,

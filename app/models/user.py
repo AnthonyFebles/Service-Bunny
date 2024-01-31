@@ -56,9 +56,9 @@ class User(db.Model, UserMixin):
             'schedule_color': self.schedule_color,
             'manager': self.manager,
             'phone_number': self.phone_number,
-            'jobs': [jobs.to_dict_no_user() for jobs in self.jobs],
+            'jobs': [jobs.to_dict() for jobs in self.jobs],
             'reviews': [reviews.to_dict() for reviews in self.reviews],
-            'bookings': [bookings.to_dict_no_user() for bookings in self.bookings],
+            'bookings': [bookings.to_dict() for bookings in self.bookings],
             'profiles': [profiles.to_dict() for profiles in self.profiles],
 
         }
