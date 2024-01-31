@@ -11,7 +11,7 @@ class Location(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
     id = db.Column(db.Integer, primary_key=True)
-    address = db.Column(db.String(200), nullable=False, unique=True)
+    address = db.Column(db.String(50), nullable=False, unique=True)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
     notes = db.Column(db.String(500), nullable=True)
