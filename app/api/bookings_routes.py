@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from datetime import datetime
 
 from app.models.booking import Booking, db
+from app.models.user import User
 from ..forms.bookings_form import BookingForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -40,6 +41,13 @@ def create_booking():
 @booking_routes.route("/")
 @login_required
 def read_bookings():
+    
+    if current_user.role == 'Manager':
+        technicians = User.query.filter(User.manager == current_user.id)
+        technician_details = [technician.to_dict() for technician in technicians]
+        manager_bookings = [{technician['first_name']: technician["bookings"]} for technician in technician_details]
+        
+        return jsonify({'bookings':manager_bookings}), 200
 
     user_bookings = Booking.query.filter(
         Booking.user_id == current_user.id).all()

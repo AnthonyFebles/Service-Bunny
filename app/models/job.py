@@ -34,6 +34,7 @@ class Job(db.Model):
             'id': self.id,
             'location_id': self.location_id,
             'user_id': self.user_id,
+            'worker_id': self.worker_id,
             'description': self.description,
             'solution': self.solution,
             'customer_check': self.customer_check,

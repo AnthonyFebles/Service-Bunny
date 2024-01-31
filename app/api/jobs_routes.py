@@ -38,6 +38,13 @@ def create_job():
 @job_routes.route("/")
 @login_required
 def read_jobs():
+    
+    if current_user.role == "Manager" :
+        
+        all_jobs = Job.query.filter(Job.worker_id == None).all()
+        all_job_details = [job.to_dict() for job in all_jobs]
+        
+        return jsonify(all_job_details), 200
 
     
     if current_user.role == "Technician" :
