@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired, Length
 
 
 class JobForm(FlaskForm):
+    location_id = IntegerField("Location", validators=[DataRequired()])
     worker_id = IntegerField("Worker Id")
     description = StringField("Description", validators=[DataRequired(), Length(max=500)])
     solution = StringField("Solution", validators=[Length(max=500)])

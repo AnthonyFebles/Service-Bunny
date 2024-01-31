@@ -23,7 +23,7 @@ def create_booking():
         new_booking = Booking(
             user_id=current_user.id,
             scheduled_start=form.scheduled_start.data,
-            job_id=form.job_id
+            job_id=form.job_id.data
         )
         
         db.session.add(new_booking)
@@ -59,7 +59,7 @@ def update_booking(bookingId):
     if not booking:
         return {'errors': 'Booking not found'}, 404
     
-    form=BookingForm
+    form=BookingForm()
 
     if form.validate_on_submit():
         scheduled_start=form.scheduled_start.data

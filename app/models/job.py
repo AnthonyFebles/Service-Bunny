@@ -12,7 +12,7 @@ class Job(db.Model):
 
     
     location_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('locations.id')),  nullable=False)
-    user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
+    user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     
     id = db.Column(db.Integer, primary_key=True)
     worker_id = db.Column(db.Integer, nullable=True)
