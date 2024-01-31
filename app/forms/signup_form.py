@@ -32,14 +32,14 @@ def colors(form, field):
     
 def numbers(form, field):
     number = field.data
-    if len(str(number)) is not 10:
+    if len(str(number)) != 10:
         raise ValidationError('Invalid Phone Number')
 
 
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), Email, Length(max=40), user_exists])
+    email = StringField('email', validators=[DataRequired(), Email('Not a valid Email'), Length(max=40), user_exists])
     password = StringField('password', validators=[DataRequired()])
     role = StringField('role', validators=[DataRequired(), three_roles, Length(max=10)] )
     first_name = StringField('first_name', validators=[
