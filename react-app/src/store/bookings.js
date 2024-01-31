@@ -1,32 +1,32 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD = "jobs/LOAD";
-const CREATE = "jobs/CREATE";
-const UPDATE = "jobs/UPDATE";
-const DELETE = "job/DELETE";
+const LOAD = "bookings/LOAD";
+const CREATE = "bookings/CREATE";
+const UPDATE = "bookings/UPDATE";
+const DELETE = "booking/DELETE";
 
 const load = (list) => ({
 	type: LOAD,
 	list,
 });
 
-const create = (jobPayLoad) => ({
+const create = (bookingPayLoad) => ({
 	type: CREATE,
-	jobPayLoad,
+	bookingPayLoad,
 });
 
-const update = (jobPayLoad) => ({
+const update = (bookingPayLoad) => ({
 	type: UPDATE,
-	jobPayLoad,
+	bookingPayLoad,
 });
 
-const remove = (jobId) => ({
+const remove = (bookingId) => ({
 	type: DELETE,
-	jobId,
+	bookingId,
 });
 
-export const getJobs = () => async (dispatch) => {
-	const res = await fetch("/api/jobs/");
+export const getBookings = () => async (dispatch) => {
+	const res = await fetch("/api/bookings/");
 
 	if (res.ok) {
 		const list = await res.json();
@@ -37,21 +37,21 @@ export const getJobs = () => async (dispatch) => {
 	return res;
 };
 
-export const createNewJob = (jobPayload) => async (dispatch) => {
+export const createNewBooking = (bookingPayload) => async (dispatch) => {
 	try {
-		const response = await csrfFetch(`/api/jobs/`, {
+		const response = await csrfFetch(`/api/bookings/`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(jobPayload),
+			body: JSON.stringify(bookingPayload),
 		});
 
 		if (response.ok) {
 			// console.log("res is ok?", response)
-			const newJob = await response.json();
-			dispatch(create(newJob));
-			return newJob;
+			const newBooking = await response.json();
+			dispatch(create(newBooking));
+			return newBooking;
 		}
 	} catch (error) {
 		const res = await error.json();
@@ -62,21 +62,21 @@ export const createNewJob = (jobPayload) => async (dispatch) => {
 	}
 };
 
-export const updateJob = (jobPayLoad) => async (dispatch) => {
+export const updateBooking = (bookingPayLoad) => async (dispatch) => {
 	try {
-		const response = await csrfFetch(`/api/jobs/${jobPayLoad.id}`, {
+		const response = await csrfFetch(`/api/bookings/${bookingPayLoad.id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(jobPayLoad),
+			body: JSON.stringify(bookingPayLoad),
 		});
 
 		if (response.ok) {
 			//console.log("res is ok?")
-			const updatedJob = await response.json();
-			dispatch(update(jobPayLoad));
-			return updatedJob;
+			const updatedBooking = await response.json();
+			dispatch(update(bookingPayLoad));
+			return updatedBooking;
 		}
 	} catch (error) {
 		const res = await error.json();
@@ -85,16 +85,16 @@ export const updateJob = (jobPayLoad) => async (dispatch) => {
 	}
 };
 
-export const deleteJob = (jobId) => async (dispatch) => {
+export const deleteBooking = (bookingId) => async (dispatch) => {
 	try {
-		const res = await csrfFetch(`api/jobs/${jobId}`, {
+		const res = await csrfFetch(`api/bookings/${bookingId}`, {
 			method: "DELETE",
 		});
 
 		if (res.ok) {
-			const job = await res.json();
-			dispatch(remove(jobId));
-			return job;
+			const booking = await res.json();
+			dispatch(remove(bookingId));
+			return booking;
 		}
 		return res;
 	} catch (error) {
@@ -111,38 +111,38 @@ const initialState = {
 
 const sortList = (list) => {
 	return list
-		.sort((JobA, JobB) => {
-			return JobA.id - JobB.id;
+		.sort((BookingA, BookingB) => {
+			return BookingA.id - BookingB.id;
 		})
-		.map((Job) => Job.id);
+		.map((Booking) => Booking.id);
 };
 
-const JobsReducer = (state = initialState, action) => {
+const BookingsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case LOAD:
 			//console.log(action, "console log the action")
-			const allJobs = {};
+			const allBookings = {};
 			if (action.list) {
-				action.list.forEach((job) => {
-					allJobs[job.id] = job;
+				action.list.forEach((booking) => {
+					allBookings[booking.id] = booking;
 				});
 				//console.log(action, "load action");
 
 				return {
-					...allJobs,
+					...allBookings,
 
 					list: sortList(action.list),
 				};
 			} else
 				return {
-					...allJobs,
+					...allBookings,
 					...state,
 				};
 		case DELETE:
 			const newState = { ...state };
 			// console.log(newState, "new state")
 			// console.log(action, "action")
-			delete newState[action.jobId];
+			delete newState[action.bookingId];
 			// console.log(newState, "new state after del");
 			return newState;
 
@@ -151,4 +151,4 @@ const JobsReducer = (state = initialState, action) => {
 	}
 };
 
-export default JobsReducer;
+export default BookingsReducer;

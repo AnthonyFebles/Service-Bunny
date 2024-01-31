@@ -2,10 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import {thunk} from 'redux-thunk';
 import session from './session'
 import jobs from './jobs'
+import locations from './locations'
+import bookings from './bookings'
 
 const rootReducer = combineReducers({
   session,
-  jobs
+  jobs,
+  bookings,
+  locations
 });
 
 

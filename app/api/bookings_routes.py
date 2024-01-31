@@ -42,12 +42,12 @@ def create_booking():
 @login_required
 def read_bookings():
     
-    if current_user.role == 'Manager':
-        technicians = User.query.filter(User.manager == current_user.id)
-        technician_details = [technician.to_dict() for technician in technicians]
-        manager_bookings = [{technician['first_name']: technician["bookings"]} for technician in technician_details]
+    # if current_user.role == 'Manager':
+    #     technicians = User.query.filter(User.manager == current_user.id)
+    #     technician_details = [technician.to_dict() for technician in technicians]
+    #     manager_bookings = [{technician['first_name']: technician["bookings"]} for technician in technician_details]
         
-        return jsonify({'bookings':manager_bookings}), 200
+    #     return jsonify({'bookings':manager_bookings}), 200
     
     # if current_user.role == 'Customer':
         
