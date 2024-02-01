@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllStores from "./components/StoreTester";
 import HomePage from "./components/HomePage"
+import TechInfoModal from "./components/TechInfoModal";
 
 function App() {
   const dispatch = useDispatch();

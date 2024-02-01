@@ -117,3 +117,10 @@ def delete_job(jobId):
         db.session.commit()
 
     return jsonify({"message": "Job has been Deleted successfully"}), 200
+
+@job_routes.route("/<int:jobId>")
+@login_required
+def one_job(jobId):
+    job = Job.query.get(jobId)
+    
+    return jsonify(job.to_dict_no_bookings()), 200

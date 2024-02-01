@@ -5,9 +5,11 @@ import OpenModalButton from "../OpenModalButton";
 import { getManagers } from "../../store/manager";
 import { useNavigate } from "react-router-dom";
 import { getJobs } from "../../store/jobs";
+import { getJob } from "../../store/job";
 import { getLocations } from "../../store/locations";
 import { getBookings } from "../../store/bookings";
 import AcceptJobModal from "../AcceptJobModal";
+import TechInfoModal from "../TechInfoModal";
 
 const ManagerHome = () => {
 	const dispatch = useDispatch();
@@ -20,6 +22,10 @@ const ManagerHome = () => {
 	const jobs = useSelector((state) => {
 		return state.jobs.list.map((jobId) => state.jobs[jobId]);
 	});
+
+	const currJobs = useSelector((state) => {
+		return state.job.list.map((jobId) => state.job[jobId]);
+	})
 
 	const manager = useSelector((state) => {
 		return state.manager.list.map((id) => state.manager[id]);
@@ -38,11 +44,13 @@ const ManagerHome = () => {
 	useEffect(() => {
 		dispatch(getJobs())
 			.then(() => dispatch(getLocations()))
-			.then(() => dispatch(getJobs()))
 			.then(() => dispatch(getBookings()))
 			.then(() => dispatch(getManagers()))
+			.then(() => dispatch(getJob()))
 			.then(() => setIsLoading(false));
 	}, [dispatch]);
+
+	// console.log(currJobs, "curr Jobs")
 
 	if (!sessionUser) return <>{navigate("/")}</>;
 
@@ -65,6 +73,25 @@ const ManagerHome = () => {
 		</div>)
 	}
 
+	//! WORKING ON TECH MODAL BUTTON WHICH WILL JUST SHOW ALL OF THE TECHS INFO INCLUDING BOOKINGS
+	function loadTechs(manager) {
+		return (<div className="techs">
+			{manager.map((tech) => {
+				if (tech) {
+					return (
+						<div className="tech" key={tech.id}>
+							<OpenModalButton
+							className={"techs_button"}
+							buttonText={tech.first_name + " " + tech.last_name}
+							modalComponent={<TechInfoModal tech={tech} job={currJobs} />}
+							 />
+						</div>
+					)
+				}
+			})}
+		</div>)
+	}
+
 	return (
 		<div className="manager_container">
 			<div className="manager_schedule">Schedule</div>
@@ -72,6 +99,11 @@ const ManagerHome = () => {
 				<div className="jobs_title">Available Jobs :
                     {jobs.length > 0 ? loadJobs(jobs) : <div>No Available Jobs, Check Back Later</div>}
                 </div>
+			</div>
+			<div className="techs_container">
+				<div className="techs_title">Your Technicians :
+				{manager.length > 0 && 
+				 loadTechs(manager)}</div>
 			</div>
 		</div>
 	);

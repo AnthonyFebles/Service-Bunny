@@ -55,5 +55,5 @@ class Job(db.Model):
             'customer_check': self.customer_check,
             'employee_check': self.employee_check,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
         }

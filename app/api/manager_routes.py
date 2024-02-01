@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Job
 from app.forms import SignUpForm
 from app.forms import EditUserForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -43,7 +43,19 @@ def manager():
 
     return jsonify(technician_details), 200
 
-
+@manager_routes.route('/currentjobs')
+@login_required
+def current_jobs():
+    technicians = User.query.filter(User.manager == current_user.id)
+    technician_ids = [technician.id for technician in technicians]
+    
+    jobs = Job.query.filter(Job.worker_id.in_(technician_ids)).all()
+    job_details = [job.to_dict() for job in jobs]
+    
+    
+    
+    return jsonify(job_details), 200
+    
 
 @manager_routes.route('/<int:userId>', methods=["PUT"])
 @login_required
