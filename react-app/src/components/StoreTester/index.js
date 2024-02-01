@@ -5,6 +5,7 @@ import { getLocations } from "../../store/locations";
 import { NavLink } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import { getBookings } from "../../store/bookings";
+import { getManagers } from "../../store/manager";
 
 const AllStores = () => {
 	const dispatch = useDispatch();
@@ -19,7 +20,10 @@ const AllStores = () => {
 		return state.jobs.list.map((jobId) => state.jobs[jobId]);
 	});
 
-
+	const manager = useSelector((state) => {
+		return state.manager.list.map((id) => state.manager[id]);
+	});
+	
 	const locations = useSelector((state) => {
 		return state.locations.locations.map(
 			(locationId) => state.locations[locationId]
@@ -27,21 +31,22 @@ const AllStores = () => {
 	});
 
 	const bookings = useSelector((state) => {
-		return state.bookings
-        // .bookings.map((bookingId) => state.bookings[bookingId]);
+		return state.bookings;
+		// .bookings.map((bookingId) => state.bookings[bookingId]);
 	});
 
 	console.log(jobs, "jobs");
 	console.log(sessionUser, "user");
 	console.log(locations, "locations");
 	console.log(bookings, "bookings");
+    console.log(manager, "manager");
 
 	useEffect(() => {
 		dispatch(getJobs())
 			.then(() => dispatch(getLocations()))
 			.then(() => dispatch(getBookings()))
-			.then(() => dispatch(getBookings()));
-
+			.then(() => dispatch(getBookings()))
+			.then(() => dispatch(getManagers()));
 	}, [dispatch]);
 
 	return <></>;

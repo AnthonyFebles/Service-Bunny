@@ -26,7 +26,7 @@ const remove = (managerId) => ({
 });
 
 export const getManagers = () => async (dispatch) => {
-	const res = await fetch("/api/users/manager/");
+	const res = await fetch("/api/manager/");
 
 	if (res.ok) {
 		const list = await res.json();
@@ -39,7 +39,7 @@ export const getManagers = () => async (dispatch) => {
 
 export const createNewManager = (managerPayload) => async (dispatch) => {
 	try {
-		const response = await csrfFetch(`/api/users/manager/`, {
+		const response = await csrfFetch(`/api/manager/`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -64,7 +64,7 @@ export const createNewManager = (managerPayload) => async (dispatch) => {
 
 export const updateManager = (managerPayLoad) => async (dispatch) => {
 	try {
-		const response = await csrfFetch(`/api/users/manager/${managerPayLoad.id}`, {
+		const response = await csrfFetch(`/api/manager/${managerPayLoad.id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
