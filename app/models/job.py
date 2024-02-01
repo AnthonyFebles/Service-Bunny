@@ -16,10 +16,13 @@ class Job(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     worker_id = db.Column(db.Integer, nullable=True)
+    title = db.Column(db.String(25), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     solution = db.Column(db.String(500), nullable=True)
     customer_check = db.Column(db.Boolean, nullable=False, default=False)
     employee_check = db.Column(db.Boolean, nullable=False, default=False)
+    price = db.Column(db.Integer, nullable=False)
+    category= db.Column(db.String(30), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     
@@ -37,6 +40,9 @@ class Job(db.Model):
             'worker_id': self.worker_id,
             'description': self.description,
             'solution': self.solution,
+            'title': self.title,
+            'price' : self.price,
+            'category': self.category,
             'customer_check': self.customer_check,
             'employee_check': self.employee_check,
             'bookings': [booking.to_dict() for booking in self.bookings],
@@ -56,4 +62,7 @@ class Job(db.Model):
             'employee_check': self.employee_check,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+            'title': self.title,
+            'price': self.price,
+            'category': self.category,
         }

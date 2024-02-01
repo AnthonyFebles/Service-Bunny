@@ -15,21 +15,6 @@ function TechInfoModal({ tech, job }) {
 	console.log(job[0].worker_id, "worker-id");
 	console.log(tech.id, "tech-id");
 
-	const findMatches = (tech, job) => {
-		for (let i = 0; i < tech.length; i++) {
-			let currTech = tech[i];
-			console.log(currTech);
-			for (let j = 0; j < job.length; j++) {
-				let currJob = job[j];
-				if (currTech.id == currJob.worker_id) {
-					console.log("match");
-				}
-			}
-		}
-		return "done";
-	};
-
-	findMatches(tech, job);
 
 	return (
 		<>

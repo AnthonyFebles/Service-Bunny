@@ -4,13 +4,13 @@ from sqlalchemy.sql import text
 
 def seed_locations():
     location1 = Location(
-        user_id=2, address="123 Address St.", lat=41.40338, lng=2.17403, notes="The very first users location. This guy is a pain."
+        user_id=2, address="123 Address St.", lat=41.40338, lng=2.17403, notes="The very first users first location.", name='Mi Casa'
     )
     location2 = Location(
-        user_id=7, address="333 Spring Ln.", lat=41.40338, lng=2.17403, notes="Beware of dog. Please call before arrival."
+        user_id=7, address="333 Spring Ln.", lat=41.40338, lng=2.17403, notes="Beware of dog. Please call before arrival.", name= "Old House"
     )
     location3 = Location(
-        user_id=8, address="12-B Address Blvd.", lat=41.40338, lng=2.17403, notes="Knock loudly, resident is old and hard of hearing."
+        user_id=8, address="12-B Address Blvd.", lat=41.40338, lng=2.17403, notes="Knock loudly, resident is old and hard of hearing.", name ="Sunshine Hospital "
     )
     
     db.session.add(location1)

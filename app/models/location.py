@@ -11,6 +11,7 @@ class Location(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
     address = db.Column(db.String(50), nullable=False, unique=True)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
@@ -25,6 +26,7 @@ class Location(db.Model):
     def to_dict(self):
         return{
             'id': self.id,
+            'name': self.name,
             'address': self.address,
             'latitude': self.lat,
             'longitude': self.lng,
@@ -33,3 +35,4 @@ class Location(db.Model):
             'updated_at': self.updated_at,
             'user_id': self.user_id
         }
+    
