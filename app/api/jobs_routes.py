@@ -84,7 +84,7 @@ def update_job(jobId):
         customer_check=form.customer_check.data
         employee_check=form.employee_check.data
         
-        print(type(form.customer_check.data), "TESINTG FORM DATA")
+        #print(type(form.customer_check.data), "TESINTG FORM DATA")
         
         job.location_id=job.location_id
         job.worker_id=worker_id

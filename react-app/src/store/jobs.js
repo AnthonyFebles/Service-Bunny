@@ -1,4 +1,4 @@
-import { csrfFetch } from "./csrf";
+ import { csrfFetch } from "./csrf";
 
 const LOAD = "jobs/LOAD";
 const CREATE = "jobs/CREATE";

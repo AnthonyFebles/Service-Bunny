@@ -7,6 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import { getBookings } from "../../store/bookings";
 import { getManagers } from "../../store/manager";
 import { useNavigate } from "react-router-dom";
+import ManagerHome from "../ManagerHome";
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const HomePage = () => {
 
     switch(sessionUser.role){
         case "Manager" :
-            return (<div>Manager</div>)
+            return (<div><ManagerHome/></div>)
         case "Technician" :
             return (<div>Technician</div>)
         case "Customer" :

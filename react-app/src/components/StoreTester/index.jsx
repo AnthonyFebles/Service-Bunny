@@ -45,8 +45,9 @@ const AllStores = () => {
 		dispatch(getJobs())
 			.then(() => dispatch(getLocations()))
 			.then(() => dispatch(getBookings()))
-			.then(() => dispatch(getBookings()))
-			.then(() => dispatch(getManagers()));
+			.then(() => dispatch(getJobs()))
+			.then(() => dispatch(getManagers()))
+			.then(() => setIsLoading(false));
 	}, [dispatch]);
 
 	return <></>;
