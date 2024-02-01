@@ -16,7 +16,7 @@ class Job(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     worker_id = db.Column(db.Integer, nullable=True)
-    title = db.Column(db.String(25), nullable=False)
+    title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     solution = db.Column(db.String(500), nullable=True)
     customer_check = db.Column(db.Boolean, nullable=False, default=False)

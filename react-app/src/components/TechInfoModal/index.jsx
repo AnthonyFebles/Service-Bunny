@@ -10,11 +10,14 @@ function TechInfoModal({ tech, job }) {
 	const dispatch = useDispatch();
 	const { closeModal } = useModal();
 
-	const [data, setData] = useState("");
 
 	console.log(job[0].worker_id, "worker-id");
 	console.log(tech.id, "tech-id");
-
+    
+    useEffect(() => {
+			dispatch(getJobs())
+				.then(() => dispatch(getJob()))
+		}, [dispatch]);
 
 	return (
 		<>

@@ -63,7 +63,7 @@ const ManagerHome = () => {
 					return (
 						<div className="job" key={job.id}><OpenModalButton 
 						className={"assign_tech_button"}
-						buttonText={job.description}
+						buttonText={job.title}
 						modalComponent={<AcceptJobModal
 						job={job}
 						techs={manager}/>}/></div>
