@@ -24,10 +24,3 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/manager')
-@login_required
-def manager():
-    technicians = User.query.filter(User.manager == current_user.id)
-    technician_details = [technician.to_dict() for technician in technicians]
-    
-    return jsonify(technician_details), 200
