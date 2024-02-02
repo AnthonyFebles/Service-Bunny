@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import { useNavigate, NavLink } from "react-router-dom";
 import { getJobs, updateJob } from "../../store/jobs";
 import { getJob } from "../../store/job";
-import { getManagers, updateManager } from "../../store/manager";
+import { deleteManager, getManagers, updateManager } from "../../store/manager";
 
 function TechInfoModal({ tech, job }) {
 	const navigate = useNavigate();
@@ -25,7 +25,7 @@ function TechInfoModal({ tech, job }) {
 		last_name,
 		username,
 		password,
-        phone_number : phoneNumber
+		phone_number: phoneNumber,
 	};
 
 	console.log(job[0].worker_id, "worker-id");
@@ -58,19 +58,28 @@ function TechInfoModal({ tech, job }) {
 		}
 	};
 
-	const handleEditUser = async (techId) => {
-        
+	const handleDeleteUser = async (techId) => {
 		try {
-			const data = await dispatch(updateManager(editPayload, techId));
+			const data = await dispatch(deleteManager(techId));
 			dispatch(getManagers());
-            closeModal();
+			closeModal();
 		} catch (error) {
 			setErrors(error.errors);
 		} finally {
 			dispatch(getJobs()).then(() => dispatch(getJob));
 		}
+	};
 
-
+	const handleEditUser = async (techId) => {
+		try {
+			const data = await dispatch(updateManager(editPayload, techId));
+			dispatch(getManagers());
+			closeModal();
+		} catch (error) {
+			setErrors(error.errors);
+		} finally {
+			dispatch(getJobs()).then(() => dispatch(getJob));
+		}
 	};
 
 	return (
@@ -81,6 +90,7 @@ function TechInfoModal({ tech, job }) {
 			<button className="techs_edit_button-modal" onClick={handleEditMenu}>
 				Edit
 			</button>
+            <button className="techs_delete_button-modal" onClick={(e) => (e.preventDefault(), handleDeleteUser(tech.id))} > Delete Tech </button>
 			{showEdit && (
 				<form
 					onSubmit={(e) => (e.preventDefault(), handleEditUser(tech.id))}
