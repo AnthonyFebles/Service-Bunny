@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import AllStores from "./components/StoreTester";
 import HomePage from "./components/HomePage"
 import TechInfoModal from "./components/TechInfoModal";
+import JobDetails from "./components/JobDetails";
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +26,9 @@ function App() {
 					<Route path="/login" element={<LoginFormPage />}></Route>
 					<Route path="/signup" element={<SignupFormPage />}></Route>
 					<Route path="/stores" element={<AllStores />}></Route>
-					<Route path ="/home" element={<HomePage />}></Route>
+					<Route path="/home" element={<HomePage />}></Route>
+					<Route path="/jobs/:jobId" element={<JobDetails />}></Route>
+					<Route path="*" element={<NotFound />}></Route>
 				</Routes>
 			)}
 		</>

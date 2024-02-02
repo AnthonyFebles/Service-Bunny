@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { getJobs, updateJob } from "../../store/jobs";
 import { getJob } from "../../store/job";
+
 
 
 function TechInfoModal({ tech, job }) {
@@ -52,7 +53,7 @@ function TechInfoModal({ tech, job }) {
 						if (job.worker_id == tech.id) {
 							return (
 								<div className="tech_job-modal">
-									<div>{job.title}</div>
+									<NavLink to={`/jobs/${job.id}` } className={"tech_job-title_link"} >{job.title}</NavLink>
 									<p>{errors}</p>
 									<button
 										onClick={() =>

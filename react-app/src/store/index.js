@@ -6,6 +6,7 @@ import locations from './locations'
 import bookings from './bookings'
 import manager from './manager'
 import job from './job'
+import jobDetails from './jobDetails';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   bookings,
   locations,
   manager,
-  job
+  job,
+  jobDetails
 });
 
 
