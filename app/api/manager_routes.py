@@ -63,7 +63,7 @@ def edit_user(userId):
     user = User.query.get(userId)
     
     if not user:
-        return {'errors': 'Location not found'}, 404
+        return {'errors': 'User not found'}, 404
     
     if user.manager != current_user.id :
         return {'errors': ['Unauthorized']}, 401
@@ -84,7 +84,7 @@ def edit_user(userId):
             user.last_name = last_name or user.last_name
             user.username = username or user.username
             user.password = password or user.password
-            user.schedule_color = schedule_color or user.schedule_color
+            # user.schedule_color = user.schedule_color
             user.phone_number = phone_number or user.phone_number
             
             db.session.commit()

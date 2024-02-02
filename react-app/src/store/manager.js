@@ -62,9 +62,9 @@ export const createNewManager = (managerPayload) => async (dispatch) => {
 	}
 };
 
-export const updateManager = (managerPayLoad) => async (dispatch) => {
+export const updateManager = (managerPayLoad, id) => async (dispatch) => {
 	try {
-		const response = await csrfFetch(`/api/manager/${managerPayLoad.id}`, {
+		const response = await fetch(`/api/manager/${id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

@@ -22,7 +22,7 @@ def colors(form, field):
 
 def numbers(form, field):
     number = field.data
-    if len(str(number)) != 10:
+    if number and len(str(number)) != 10:
         raise ValidationError('Invalid Phone Number')
 
 
@@ -34,5 +34,5 @@ class EditUserForm(FlaskForm):
         Length(max=20)])
     last_name = StringField('last_name', validators=[
         Length(max=20)])
-    schedule_color = StringField('color', validators=[colors])
+    schedule_color = StringField('color')
     phone_number = IntegerField('number', validators=[numbers])

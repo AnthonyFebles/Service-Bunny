@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 
-function NotFound({ isLoaded }) {
+function NotFound() {
 	const sessionUser = useSelector((state) => state.session.user);
 
 	return (
