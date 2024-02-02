@@ -15,7 +15,7 @@ class Job(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     
     id = db.Column(db.Integer, primary_key=True)
-    worker_id = db.Column(db.Integer, nullable=True)
+    worker_id = db.Column(db.Integer, nullable=False, default=0)
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     solution = db.Column(db.String(500), nullable=True)

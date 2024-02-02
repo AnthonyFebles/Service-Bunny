@@ -64,9 +64,9 @@ export const createNewJob = (jobPayload) => async (dispatch) => {
 	}
 };
 
-export const updateJob = (jobPayLoad) => async (dispatch) => {
+export const updateJob = (jobPayLoad, id) => async (dispatch) => {
 	try {
-		const response = await csrfFetch(`/api/jobs/${jobPayLoad.id}`, {
+		const response = await csrfFetch(`/api/jobs/${id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

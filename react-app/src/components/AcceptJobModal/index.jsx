@@ -28,7 +28,7 @@ function AcceptJobModal({job, techs}) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try {const data = await dispatch(updateJob(payload));
+		try {const data = await dispatch(updateJob(payload, job.id));
 		navigate("/home");
         dispatch(getJob());
         closeModal()
