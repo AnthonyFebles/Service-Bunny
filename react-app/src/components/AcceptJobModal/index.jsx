@@ -41,7 +41,7 @@ function AcceptJobModal({job, techs}) {
     }
     // console.log(worker_id, "worker Id")
 
-    //! Date Format = (year, month, day, hour, minute)
+    //! Date Format = (year-month-day  hour:minute:second)
     const schedulePayload = {
 			scheduled_start:`${currDate.getFullYear()}-${currDate.getMonth()}-${currDate.getDate()} ${currHour}:00:00`,
 			user_id: worker_id,
