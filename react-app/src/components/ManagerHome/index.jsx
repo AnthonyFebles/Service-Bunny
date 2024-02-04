@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import OpenModalButton from "../OpenModalButton";
@@ -25,7 +25,7 @@ const ManagerHome = () => {
 
 	const currJobs = useSelector((state) => {
 		return state.job.list.map((jobId) => state.job[jobId]);
-	})
+	});
 
 	const manager = useSelector((state) => {
 		return state.manager.list.map((id) => state.manager[id]);
@@ -57,53 +57,62 @@ const ManagerHome = () => {
 	if (isLoading) return <>Loading...</>;
 
 	function loadJobs(jobs) {
-		return (<div className="jobs">
-			{jobs.toReversed().map((job) => {
-				if (job) {
-					return (
-						<div className="job" key={job.id}><OpenModalButton 
-						className={"assign_tech_button"}
-						buttonText={job.title}
-						modalComponent={<AcceptJobModal
-						job={job}
-						techs={manager}/>}/></div>
-					)
-				}
-			})}
-		</div>)
+		return (
+			<div className="jobs">
+				{jobs.toReversed().map((job) => {
+					if (job) {
+						return (
+							<div className="job" key={job.id}>
+								<OpenModalButton
+									className={"assign_tech_button"}
+									buttonText={job.title}
+									modalComponent={<AcceptJobModal job={job} techs={manager} />}
+								/>
+							</div>
+						);
+					}
+				})}
+			</div>
+		);
 	}
 
-	
 	function loadTechs(manager) {
-		return (<div className="techs">
-			{manager.map((tech) => {
-				if (tech) {
-					return (
-						<div className="tech" key={tech.id}>
-							<OpenModalButton
-							className={"techs_button"}
-							buttonText={tech.first_name + " " + tech.last_name}
-							modalComponent={<TechInfoModal tech={tech} job={currJobs} />}
-							 />
-						</div>
-					)
-				}
-			})}
-		</div>)
+		return (
+			<div className="techs">
+				{manager.map((tech) => {
+					if (tech) {
+						return (
+							<div className="tech" key={tech.id}>
+								<OpenModalButton
+									className={"techs_button"}
+									buttonText={tech.first_name + " " + tech.last_name}
+									modalComponent={<TechInfoModal tech={tech} job={currJobs} />}
+								/>
+							</div>
+						);
+					}
+				})}
+			</div>
+		);
 	}
 
 	return (
 		<div className="manager_container">
 			<div className="manager_schedule">Schedule</div>
 			<div className="jobs_container">
-				<div className="jobs_title">Available Jobs :
-                    {jobs.length > 0 ? loadJobs(jobs) : <div>No Available Jobs, Check Back Later</div>}
-                </div>
+				<div className="jobs_title">
+					Available Jobs :
+					{jobs.length > 0 ? (
+						loadJobs(jobs)
+					) : (
+						<div>No Available Jobs, Check Back Later</div>
+					)}
+				</div>
 			</div>
 			<div className="techs_container">
-				<div className="techs_title">Your Technicians :
-				{manager.length > 0 && 
-				 loadTechs(manager)}</div>
+				<div className="techs_title">
+					Your Technicians :{manager.length > 0 && loadTechs(manager)}
+				</div>
 			</div>
 		</div>
 	);

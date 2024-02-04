@@ -90,7 +90,13 @@ function TechInfoModal({ tech, job }) {
 			<button className="techs_edit_button-modal" onClick={handleEditMenu}>
 				Edit
 			</button>
-            <button className="techs_delete_button-modal" onClick={(e) => (e.preventDefault(), handleDeleteUser(tech.id))} > Delete Tech </button>
+			<button
+				className="techs_delete_button-modal"
+				onClick={(e) => (e.preventDefault(), handleDeleteUser(tech.id))}
+			>
+				{" "}
+				Delete Tech{" "}
+			</button>
 			{showEdit && (
 				<form
 					onSubmit={(e) => (e.preventDefault(), handleEditUser(tech.id))}

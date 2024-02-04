@@ -1,14 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
 
+import { useSelector } from "react-redux";
 
 function NotFound() {
 	const sessionUser = useSelector((state) => state.session.user);
 
-	return (
-		<div>404 There's nothing here</div>
-	);
+	return <div>404 There's nothing here</div>;
 }
 
 export default NotFound;

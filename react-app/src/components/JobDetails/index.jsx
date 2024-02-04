@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getOne } from "../../store/jobDetails";
 
@@ -10,7 +10,7 @@ const JobDetails = () => {
 	const { jobId } = useParams();
 
 	const [isLoading, setIsLoading] = useState(true);
-    const [errors, setErrors] = useState('')
+	const [errors, setErrors] = useState("");
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const navigate = useNavigate();
@@ -20,21 +20,21 @@ const JobDetails = () => {
 	console.log(job, "job");
 
 	useEffect(() => {
-        const fetchAssets = async () => {
-            try {
-                setErrors('')
-                await dispatch(getOne(jobId)).then(() => setIsLoading(false));
-            }catch(error) {
-                setIsLoading(false);
-                setErrors(error)
-            }
-        }
-		fetchAssets()
+		const fetchAssets = async () => {
+			try {
+				setErrors("");
+				await dispatch(getOne(jobId)).then(() => setIsLoading(false));
+			} catch (error) {
+				setIsLoading(false);
+				setErrors(error);
+			}
+		};
+		fetchAssets();
 	}, [dispatch, jobId]);
 
-    if (!job.price) {
-        return <div>You are unauthorized to view this job</div>
-    }
+	if (!job.price) {
+		return <div>You are unauthorized to view this job</div>;
+	}
 
 	// console.log(currJobs, "curr Jobs")
 
@@ -56,18 +56,15 @@ const JobDetails = () => {
 							<div>Hourly Rate : $ {job.price}</div>
 							<div className="job_details-title">Created: {job.created_at}</div>
 						</div>
-						{job.bookings &&
-							job.bookings[0] &&(
-								<div className="job_details-schedule_container">
-									<div className="job_details-scheduled_for">
-										Scheduled To Start On: {job.bookings[0].scheduled_start}
-									</div>
-									<div>
-										Actually Started On : {job.bookings[0].actual_start}
-									</div>
-									<div>Completed On : {job.bookings[0].stopped_at}</div>
+						{job.bookings && job.bookings[0] && (
+							<div className="job_details-schedule_container">
+								<div className="job_details-scheduled_for">
+									Scheduled To Start On: {job.bookings[0].scheduled_start}
 								</div>
-							)}
+								<div>Actually Started On : {job.bookings[0].actual_start}</div>
+								<div>Completed On : {job.bookings[0].stopped_at}</div>
+							</div>
+						)}
 					</>
 				) : (
 					<div className="no_job">No Job Details Here</div>

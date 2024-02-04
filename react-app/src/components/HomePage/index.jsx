@@ -10,24 +10,27 @@ import { useNavigate } from "react-router-dom";
 import ManagerHome from "../ManagerHome";
 
 const HomePage = () => {
-    const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
-    const sessionUser = useSelector((state) => state.session.user)
-    const navigate = useNavigate();
+	const sessionUser = useSelector((state) => state.session.user);
+	const navigate = useNavigate();
 
-    if (!sessionUser) return <>{navigate("/")}</>;
+	if (!sessionUser) return <>{navigate("/")}</>;
 
-    switch(sessionUser.role){
-        case "Manager" :
-            return (<div><ManagerHome/></div>)
-        case "Technician" :
-            return (<div>Technician</div>)
-        case "Customer" :
-            return (<div>Customer</div>)
-    }
+	switch (sessionUser.role) {
+		case "Manager":
+			return (
+				<div>
+					<ManagerHome />
+				</div>
+			);
+		case "Technician":
+			return <div>Technician</div>;
+		case "Customer":
+			return <div>Customer</div>;
+	}
 
-    return (<div>Loading...</div>)
+	return <div>Loading...</div>;
+};
 
-}
-
-export default HomePage
+export default HomePage;
