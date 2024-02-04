@@ -10,6 +10,7 @@ import { getLocations } from "../../store/locations";
 import { getBookings } from "../../store/bookings";
 import AcceptJobModal from "../AcceptJobModal";
 import TechInfoModal from "../TechInfoModal";
+import SignupFormModal from "../SignupFormModal";
 
 const ManagerHome = () => {
 	const dispatch = useDispatch();
@@ -113,6 +114,11 @@ const ManagerHome = () => {
 				<div className="techs_title">
 					Your Technicians :{manager.length > 0 && loadTechs(manager)}
 				</div>
+			</div>
+			<div>
+				<OpenModalButton
+				buttonText={'Create A New Tech Account'}
+				modalComponent={<SignupFormModal manager={sessionUser.id}/>}/>
 			</div>
 		</div>
 	);

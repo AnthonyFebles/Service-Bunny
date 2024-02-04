@@ -28,7 +28,7 @@ function TechInfoModal({ tech, job }) {
 		phone_number: phoneNumber,
 	};
 
-	console.log(job[0].worker_id, "worker-id");
+	// console.log(job[0].worker_id, "worker-id");
 	console.log(tech.id, "tech-id");
 
 	useEffect(() => {
