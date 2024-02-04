@@ -5,7 +5,7 @@ from datetime import datetime
 
 def seed_bookings():
     
-    date = datetime(2024, 2, 2, 10, 10, 10)
+    date = datetime(2024, 2, 2, 10)
     booking1 = Booking(
         user_id=3, job_id=1, scheduled_start=date
     )

@@ -24,8 +24,8 @@ def create_booking():
 
     if form.validate_on_submit():
         new_booking = Booking(
-            user_id=current_user.id,
             scheduled_start=form.scheduled_start.data,
+            user_id= form.user_id.data or current_user.id,
             job_id=form.job_id.data
         )
         
