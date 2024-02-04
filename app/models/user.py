@@ -3,39 +3,37 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
-user_roles = db.Table(
-    "user_roles",
-    db.Column("user_id", db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
-    db.Column("roles_id", db.ForeignKey(add_prefix_for_prod("roles.id")), primary_key=True)
-)
-
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-        
 
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    role = db.Column(db.String(10), nullable=False)
+    email = db.Column(db.String(40), nullable=False, unique=True)
+    username = db.Column(db.String(30), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
-    dob = db.Column(db.Date, nullable=False)
-    profile_image = db.Column(db.String(100), nullable=True)
-    schedule_color = db.Column(db.String(50), nullable=False)
-    manager = db.Column(db.String(5), nullable=False, default=1)
-    company = db.Column(db.String(50), nullable=True)
+    first_name = db.Column(db.String(20), nullable=False)
+    last_name = db.Column(db.String(20), nullable=False)
+    schedule_color = db.Column(db.String(15), nullable=False)
+    manager = db.Column(db.Integer, nullable=True)
     phone_number = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.now)
-    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
-    
-    roles = db.relationship("Role", secondary=user_roles, back_populates="users")
+    updated_at = db.Column(
+        db.DateTime, default=datetime.now, onupdate=datetime.now)
+
     jobs = db.relationship("Job", back_populates="users")
-    locations = db.relationship("Location", back_populates='users', cascade='all, delete-orphan')
-     
+    locations = db.relationship(
+        "Location", back_populates='users', cascade='all, delete-orphan')
+    reviews = db.relationship(
+        "Review", back_populates='users', cascade='all, delete-orphan')
+    bookings = db.relationship(
+        "Booking", back_populates='users', cascade='all, delete-orphan')
+    profiles = db.relationship(
+        "Profile", back_populates='users', cascade='all, delete-orphan')
+
     @property
     def password(self):
         return self.hashed_password
@@ -50,38 +48,19 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
+            'role': self.role,
             'email': self.email,
+            'username': self.username,
             'first_name': self.first_name,
-            'last_name' : self.last_name,
-            'date_of_birth': self.dob,
-            'profile_image': self.profile_image,
-            'color': self.schedule_color,
+            'last_name': self.last_name,
+            'schedule_color': self.schedule_color,
             'manager': self.manager,
-            'company': self.company,
             'phone_number': self.phone_number,
-            
+            'jobs': [jobs.to_dict() for jobs in self.jobs],
+            'reviews': [reviews.to_dict() for reviews in self.reviews],
+            'bookings': [bookings.to_dict() for bookings in self.bookings],
+            'profiles': [profiles.to_dict() for profiles in self.profiles],
+
         }
 
-class Role(db.Model):
-    __tablename__ = 'roles'
 
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
-        
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(40), nullable=False, unique=True)
-    description = db.Column(db.String(255), nullable=False, unique=True)
-    
-    users = db.relationship("User", secondary=user_roles,back_populates="roles")
-
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'description': self.description,
-        }
-        
-    
-    
-    

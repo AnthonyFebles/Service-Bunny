@@ -26,9 +26,9 @@ python-editor = "*"
 greenlet = "*"
 Mako = "*"
 pylint = "*"
+email-validator = "*"
 
 [dev-packages]
-
 
 [requires]
 python_version = "3.9"
