@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+
 import OpenModalButton from "../OpenModalButton";
 import { getManagers } from "../../store/manager";
 import { useNavigate } from "react-router-dom";
@@ -73,7 +73,7 @@ const ManagerHome = () => {
 		</div>)
 	}
 
-	//! WORKING ON TECH MODAL BUTTON WHICH WILL JUST SHOW ALL OF THE TECHS INFO INCLUDING BOOKINGS
+	
 	function loadTechs(manager) {
 		return (<div className="techs">
 			{manager.map((tech) => {
