@@ -1,12 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
-import OpenModalButton from "../OpenModalButton";
+import {  useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { getJobs } from "../../store/jobs";
-import { getJob } from "../../store/job";
-import { getLocations } from "../../store/locations";
-import { getBookings } from "../../store/bookings";
 import { getOne } from "../../store/jobDetails";
 
 const JobDetails = () => {

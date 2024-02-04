@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login } from "../../store/session";
+
 import { updateJob } from "../../store/jobs";
 import { getJobs } from "../../store/jobs";
 import { useDispatch } from "react-redux";
