@@ -8,6 +8,7 @@ import { getBookings } from "../../store/bookings";
 import { getManagers } from "../../store/manager";
 import { useNavigate } from "react-router-dom";
 import ManagerHome from "../ManagerHome";
+import TechnicianHome from "../TechnicianHome";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const HomePage = () => {
 				</div>
 			);
 		case "Technician":
-			return <div>Technician</div>;
+			return <div> <TechnicianHome /> </div>;
 		case "Customer":
 			return <div>Customer</div>;
 	}
