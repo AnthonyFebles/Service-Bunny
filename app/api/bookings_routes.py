@@ -91,10 +91,10 @@ def update_booking(bookingId):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        scheduled_start = form.scheduled_start.data
-        scheduled_end = form.scheduled_end.data
-        started_at = form.started_at.data
-        stopped_at = form.stopped_at.data
+        scheduled_start = form.scheduled_start.data or booking.scheduled_start
+        scheduled_end = form.scheduled_end.data or booking.scheduled_end
+        started_at = form.started_at.data or booking.started_at
+        stopped_at = form.stopped_at.data or booking.stopped_at
         
         booking.scheduled_start = scheduled_start
         booking.scheduled_end = scheduled_end

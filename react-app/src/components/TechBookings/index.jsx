@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getBookings } from "../../store/bookings";
+import { getBookings, updateBooking } from "../../store/bookings";
 import { getBooking } from "../../store/booking";
+import { getOne } from "../../store/jobDetails";
 
 const TechBookings = ({booking}) => {
 	const dispatch = useDispatch();
@@ -38,12 +39,29 @@ const TechBookings = ({booking}) => {
 
 	if (isLoading) return <>Loading...</>;
 
+    const handleStart = async () =>  {
+        const currDate = new Date()
+        const payload = {
+					id: booking.id,
+                    job_id: booking.job_id,
+                    user_id: sessionUser.id,
+					started_at: `${currDate.getFullYear()}-${currDate.getMonth()}-${currDate.getDate()} ${currDate.getHours()}:${currDate.getMinutes()}:${currDate.getSeconds()}`,
+				};
+    try{
+        await dispatch(updateBooking(payload))
+        dispatch(getBooking(booking.id))
+        dispatch(getOne(booking.job_id))
+    }catch(error){
+        console.log(error)
+    }
+    }
+
 	return (
 		<div className="manager_container">
 			<div>Actually Started On : {booking.started_at}</div>
 			<div>Completed On : {booking.stopped_at}</div>
 			<div className="job_details-button_container">
-				<button className="job_details-start_button">Start Job</button>
+				<button className="job_details-start_button" onClick={handleStart}>Start Job</button>
 				<button className="job_details-end_button">End Job</button>
 				<button className="job_details-cancel_button">Cancel Job</button>
 			</div>
