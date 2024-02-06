@@ -60,6 +60,21 @@ def read_bookings():
     return jsonify(booking_details), 200
 
 
+@booking_routes.route("/<int:bookingId>")
+@login_required
+def get_booking(bookingId):
+    
+    booking = Booking.query.get(bookingId)
+    
+    if not booking:
+        return {'errors': 'Booking not found'}, 404
+    
+    if booking.user_id == current_user.id :
+        return jsonify(booking.to_dict()), 200
+    
+    return {'errors': ['Unauthorized']}, 401
+
+
 # Update Routes
 
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getOne } from "../../store/jobDetails";
+import TechBookings from "../TechBookings";
 
 const JobDetails = () => {
 	const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const JobDetails = () => {
 	const navigate = useNavigate();
 
 	const job = useSelector((state) => state.jobDetails);
+
 
 	console.log(job, "job");
 
@@ -78,7 +80,7 @@ const JobDetails = () => {
 			<>
 				{job ? (
 					<>
-						<div className="job_details-container">
+						<div className="job_details-container-tech">
 							<div className="job_details-title">Title: {job.title}</div>
 							<div className="job_details-title">Category: {job.category}</div>
 							<div className="job_details-title">
@@ -87,12 +89,13 @@ const JobDetails = () => {
 							<div className="job_details-title">Created: {job.created_at}</div>
 						</div>
 						{job.bookings && job.bookings[0] && (
-							<div className="job_details-schedule_container">
+							<div className="job_details-schedule_container-tech">
 								<div className="job_details-scheduled_for">
 									Scheduled To Start On: {job.bookings[0].scheduled_start}
 								</div>
-								<div>Actually Started On : {job.bookings[0].actual_start}</div>
-								<div>Completed On : {job.bookings[0].stopped_at}</div>
+								<div className="tech_booking-container">
+									<TechBookings booking={job.bookings[0]}/>
+								</div>
 							</div>
 						)}
 					</>
