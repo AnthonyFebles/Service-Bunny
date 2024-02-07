@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { deleteBooking, getBookings, updateBooking } from "../../store/bookings";
 import { getBooking } from "../../store/booking";
 import { getOne } from "../../store/jobDetails";
-import { updateJob } from "../../store/jobs";
+import { getJobs, updateJob } from "../../store/jobs";
+import { getJob } from "../../store/job";
 
 const TechBookings = ({ booking, job }) => {
 	const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const TechBookings = ({ booking, job }) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [isStarted, setIsStarted] = useState(false);
 	const [isDone, setIsDone] = useState(false);
+	const [solution, setSolution] = useState(job.solution)
 	const [customerApproval, setCustomerApproval] = useState("");
 
 	const sessionUser = useSelector((state) => state.session.user);
@@ -97,10 +99,24 @@ const TechBookings = ({ booking, job }) => {
 			user_id: sessionUser.id,
 			stopped_at: `${currDate.getFullYear()}-${currDate.getMonth()}-${currDate.getDate()} ${currDate.getHours()}:${currDate.getMinutes()}:${currDate.getSeconds()}`,
 		};
+
+		const jobPayload = {
+			location_id: job.location_id,
+			id: job.id,
+			worker_id: job.worker_id,
+			description: job.description,
+			solution,
+			title: job.title,
+			price: job.price,
+			category: job.category,
+		};
+
 		try {
 			await dispatch(updateBooking(payload))
 				.then(() => dispatch(getBooking(booking.id)))
-				.then(() => dispatch(getOne(booking.job_id)));
+				.then(() => dispatch(getOne(booking.job_id)))
+				.then(() => dispatch(updateJob(jobPayload, job.id)));
+				dispatch(getJob());
 			setIsDone(true);
 			setCustomerApproval("Awaiting Customer Approval");
 		} catch (error) {
@@ -109,7 +125,16 @@ const TechBookings = ({ booking, job }) => {
 	};
 
 	return (
-		<div className="manager_container">
+		<div className="technician_container">
+			<div className="job_details-solution">
+				<input
+					type="textarea"
+					name="solution"
+					onChange={(e) => setSolution(e.target.value)}
+					value={solution}
+					disabled={isDone}
+				/>
+			</div>
 			<div>Actually Started On : {booking.started_at}</div>
 			<div>Completed On : {booking.stopped_at}</div>
 			<div className="job_details-button_container">
@@ -122,12 +147,16 @@ const TechBookings = ({ booking, job }) => {
 				</button>
 				<button
 					className="job_details-end_button"
-					disabled={isDone}
+					disabled={!isStarted || isDone || !solution}
 					onClick={handleEnd}
 				>
 					End Job
 				</button>
-				<button className="job_details-cancel_button" onClick={handleCancel} disabled={isStarted}>
+				<button
+					className="job_details-cancel_button"
+					onClick={handleCancel}
+					disabled={isStarted}
+				>
 					Cancel Job
 				</button>
 				<p>{customerApproval}</p>
