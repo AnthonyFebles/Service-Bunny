@@ -94,5 +94,14 @@ def delete_location(locationId):
         
     return jsonify({"message": "Location has been Deleted successfully" }), 200
 
+@location_routes.route("/<int:locationId>")
+@login_required
+def location_details(locationId):
+    
+    location = Location.query.get(locationId)
 
+    if not location:
+        return {'errors': 'Location not found'}, 404
+    
+    return jsonify(location.to_dict()), 200
 

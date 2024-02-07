@@ -53,7 +53,7 @@ function AcceptJobModal({job, techs}) {
 
     const futureHours = []
 
-    for (let i = currDate.getHours() + 1 ; i < 23; i++){
+    for (let i = currDate.getHours() + 1 ; i < 24; i++){
         futureHours.push(i)
     }
 
