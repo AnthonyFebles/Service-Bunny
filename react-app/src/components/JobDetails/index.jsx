@@ -94,7 +94,7 @@ const JobDetails = () => {
 									Scheduled To Start On: {job.bookings[0].scheduled_start}
 								</div>
 								<div className="tech_booking-container">
-									<TechBookings booking={job.bookings[0]}/>
+									<TechBookings booking={job.bookings[0]} job={job}/>
 								</div>
 							</div>
 						)}

@@ -87,7 +87,7 @@ export const updateBooking = (bookingPayLoad) => async (dispatch) => {
 
 export const deleteBooking = (bookingId) => async (dispatch) => {
 	try {
-		const res = await csrfFetch(`api/bookings/${bookingId}`, {
+		const res = await csrfFetch(`/api/bookings/${bookingId}`, {
 			method: "DELETE",
 		});
 

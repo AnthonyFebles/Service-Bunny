@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getBookings, updateBooking } from "../../store/bookings";
+import { deleteBooking, getBookings, updateBooking } from "../../store/bookings";
 import { getBooking } from "../../store/booking";
 import { getOne } from "../../store/jobDetails";
+import { updateJob } from "../../store/jobs";
 
-const TechBookings = ({ booking }) => {
+const TechBookings = ({ booking, job }) => {
 	const dispatch = useDispatch();
 
 	const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +50,27 @@ const TechBookings = ({ booking }) => {
 
 	if (isLoading) return <>Loading...</>;
 
+	//! Psuedo Code for cancel button
+	// Update the job using the job_id from the booking
+	// Update the job to have a worker_id of 0 .then =>
+	// Delete the current booking using booking.id and .then => navigate to "/home"
+
+	const handleCancel = async () => {
+		let payload = {
+			location_id: job.location_id,
+			id: job.id,
+			worker_id: 0,
+			description: job.description,
+			title: job.title,
+			price: job.price,
+			category: job.category,
+		};
+
+        await dispatch(updateJob(payload, job.id))
+        .then(() => dispatch(deleteBooking(booking.id)))
+        .then(() => navigate("/home"))
+	};
+
 	const handleStart = async () => {
 		const currDate = new Date();
 		const payload = {
@@ -80,7 +102,7 @@ const TechBookings = ({ booking }) => {
 				.then(() => dispatch(getBooking(booking.id)))
 				.then(() => dispatch(getOne(booking.job_id)));
 			setIsDone(true);
-            setCustomerApproval("Awaiting Customer Approval");
+			setCustomerApproval("Awaiting Customer Approval");
 		} catch (error) {
 			console.log(error);
 		}
@@ -105,7 +127,7 @@ const TechBookings = ({ booking }) => {
 				>
 					End Job
 				</button>
-				<button className="job_details-cancel_button" disabled={isStarted}>
+				<button className="job_details-cancel_button" onClick={handleCancel} disabled={isStarted}>
 					Cancel Job
 				</button>
 				<p>{customerApproval}</p>
