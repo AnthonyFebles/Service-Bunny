@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { getOne } from "../../store/jobDetails";
 import TechBookings from "../TechBookings";
 import { getLocations } from "../../store/locations";
 import { getALocation } from "../../store/locationDetails";
+
 
 const JobDetails = () => {
 	const dispatch = useDispatch();
@@ -118,23 +119,25 @@ const JobDetails = () => {
 			<>
 				{job ? (
 					<>
-						<div className="job_details-container-tech">
+						<div className="job_details-container-customer">
 							<div className="job_details-title">Title: {job.title}</div>
-							<div className="job_details-title">Category: {job.category}</div>
-							<div className="job_details-title">
+							<div className="job_details-category">
+								Category: {job.category}
+							</div>
+							<div className="job_details-description">
 								Details: {job.description}
 							</div>
-							<div>Location: {locations.address}</div>
-							<div className="job_details-title">Created: {job.created_at}</div>
+							<div className="job_details-address">
+								Location: {locations.address}
+							</div>
+							<div className="job_details-Created">Created: {job.created_at}</div>
 						</div>
 						{job.bookings && job.bookings[0] && (
-							<div className="job_details-schedule_container-tech">
+							<div className="job_details-schedule_container-customer">
 								<div className="job_details-scheduled_for">
 									Scheduled To Start On: {job.bookings[0].scheduled_start}
 								</div>
-								<div className="tech_booking-container">
-									<TechBookings booking={job.bookings[0]} job={job} />
-								</div>
+								<div className="customer_booking-container"></div>
 							</div>
 						)}
 					</>
