@@ -9,6 +9,7 @@ import { getManagers } from "../../store/manager";
 import { useNavigate } from "react-router-dom";
 import ManagerHome from "../ManagerHome";
 import TechnicianHome from "../TechnicianHome";
+import CustomerHome from "../CustomerHome"
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const HomePage = () => {
 		case "Technician":
 			return <div> <TechnicianHome /> </div>;
 		case "Customer":
-			return <div>Customer</div>;
+			return <div> <CustomerHome /> </div>;
 	}
 
 	return <div>Loading...</div>;
