@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getOne } from "../../store/jobDetails";
 import TechBookings from "../TechBookings";
+import { getLocations } from "../../store/locations";
+import { getALocation } from "../../store/locationDetails";
 
 const JobDetails = () => {
 	const dispatch = useDispatch();
@@ -17,15 +19,18 @@ const JobDetails = () => {
 	const navigate = useNavigate();
 
 	const job = useSelector((state) => state.jobDetails);
-
+	const locations = useSelector((state) => state.locationDetails)
 
 	console.log(job, "job");
+	console.log(locations, "location")
 
 	useEffect(() => {
 		const fetchAssets = async () => {
 			try {
 				setErrors("");
-				await dispatch(getOne(jobId)).then(() => setIsLoading(false));
+				await dispatch(getOne(jobId))
+					.then(() => dispatch(getALocation(job.location_id)))
+					.then(() => setIsLoading(false));
 			} catch (error) {
 				setIsLoading(false);
 				setErrors(error);
@@ -55,6 +60,7 @@ const JobDetails = () => {
 							<div className="job_details-title">
 								Details: {job.description}
 							</div>
+							<div>Location: {locations.address}</div>
 							<div>Hourly Rate : $ {job.price}</div>
 							<div className="job_details-title">Created: {job.created_at}</div>
 						</div>
@@ -86,6 +92,7 @@ const JobDetails = () => {
 							<div className="job_details-title">
 								Details: {job.description}
 							</div>
+							<div>Location: {locations.address}</div>
 							<div className="job_details-title">Created: {job.created_at}</div>
 						</div>
 						{job.bookings && job.bookings[0] && (
@@ -94,7 +101,7 @@ const JobDetails = () => {
 									Scheduled To Start On: {job.bookings[0].scheduled_start}
 								</div>
 								<div className="tech_booking-container">
-									<TechBookings booking={job.bookings[0]} job={job}/>
+									<TechBookings booking={job.bookings[0]} job={job} />
 								</div>
 							</div>
 						)}
@@ -107,7 +114,35 @@ const JobDetails = () => {
 	}
 
 	if (sessionUser.role == "Customer") {
-		return <></>;
+		return (
+			<>
+				{job ? (
+					<>
+						<div className="job_details-container-tech">
+							<div className="job_details-title">Title: {job.title}</div>
+							<div className="job_details-title">Category: {job.category}</div>
+							<div className="job_details-title">
+								Details: {job.description}
+							</div>
+							<div>Location: {locations.address}</div>
+							<div className="job_details-title">Created: {job.created_at}</div>
+						</div>
+						{job.bookings && job.bookings[0] && (
+							<div className="job_details-schedule_container-tech">
+								<div className="job_details-scheduled_for">
+									Scheduled To Start On: {job.bookings[0].scheduled_start}
+								</div>
+								<div className="tech_booking-container">
+									<TechBookings booking={job.bookings[0]} job={job} />
+								</div>
+							</div>
+						)}
+					</>
+				) : (
+					<div className="no_job">No Job Details Here</div>
+				)}
+			</>
+		);
 	}
 };
 
