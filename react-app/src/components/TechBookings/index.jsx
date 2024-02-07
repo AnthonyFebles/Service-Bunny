@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteBooking, getBookings, updateBooking } from "../../store/bookings";
+import {
+	deleteBooking,
+	getBookings,
+	updateBooking,
+} from "../../store/bookings";
 import { getBooking } from "../../store/booking";
 import { getOne } from "../../store/jobDetails";
 import { getJobs, updateJob } from "../../store/jobs";
@@ -13,7 +17,7 @@ const TechBookings = ({ booking, job }) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [isStarted, setIsStarted] = useState(false);
 	const [isDone, setIsDone] = useState(false);
-	const [solution, setSolution] = useState(job.solution)
+	const [solution, setSolution] = useState(job.solution);
 	const [customerApproval, setCustomerApproval] = useState("");
 
 	const sessionUser = useSelector((state) => state.session.user);
@@ -68,9 +72,9 @@ const TechBookings = ({ booking, job }) => {
 			category: job.category,
 		};
 
-        await dispatch(updateJob(payload, job.id))
-        .then(() => dispatch(deleteBooking(booking.id)))
-        .then(() => navigate("/home"))
+		await dispatch(updateJob(payload, job.id))
+			.then(() => dispatch(deleteBooking(booking.id)))
+			.then(() => navigate("/home"));
 	};
 
 	const handleStart = async () => {
@@ -116,7 +120,7 @@ const TechBookings = ({ booking, job }) => {
 				.then(() => dispatch(getBooking(booking.id)))
 				.then(() => dispatch(getOne(booking.job_id)))
 				.then(() => dispatch(updateJob(jobPayload, job.id)));
-				dispatch(getJob());
+			dispatch(getJob());
 			setIsDone(true);
 			setCustomerApproval("Awaiting Customer Approval");
 		} catch (error) {
@@ -152,6 +156,9 @@ const TechBookings = ({ booking, job }) => {
 				>
 					End Job
 				</button>
+				{!solution && isStarted && (
+					<p className="tech_no_solution-message">A Solution is Required to End the Job</p>
+				)}
 				<button
 					className="job_details-cancel_button"
 					onClick={handleCancel}
