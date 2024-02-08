@@ -62,9 +62,9 @@ export const createNewLocation = (locationPayload) => async (dispatch) => {
 	}
 };
 
-export const updateLocation = (locationPayLoad) => async (dispatch) => {
+export const updateLocation = (locationPayLoad, id) => async (dispatch) => {
 	try {
-		const response = await csrfFetch(`/api/locations/${locationPayLoad.id}`, {
+		const response = await csrfFetch(`/api/locations/${id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

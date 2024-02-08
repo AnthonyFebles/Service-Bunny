@@ -6,7 +6,8 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { getJob } from "../../store/job";
 import { createNewBooking } from "../../store/bookings";
-import { createNewLocation, getLocations } from "../../store/locations";
+import { createNewLocation, getLocations, updateLocation } from "../../store/locations";
+import { getALocation } from "../../store/locationDetails";
 import {
 	setKey,
 	setDefaults,
@@ -20,35 +21,39 @@ import {
 	RequestType,
 } from "react-geocode";
 
-function NewLocationModal() {
+function EditLocationModal({currLocation}) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const [notes, setNotes] = useState("");
-	const [address, setAddress] = useState("");
-	const [lat, setLat] = useState("");
-	const [lng, setLng] = useState("");
-    const [name, setName] = useState("")
+	const [notes, setNotes] = useState(currLocation.notes);
+	const [address, setAddress] = useState(currLocation.address);
+	const [lat, setLat] = useState(currLocation.latitude);
+	const [lng, setLng] = useState(currLocation.longitude);
+	const [name, setName] = useState(currLocation.name);
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
 	const sessionUser = useSelector((state) => state.session.user);
 
+	const location = useSelector((state) => state.locationDetails);
+	
 	const payload = {
-		user_id: sessionUser.id,
-        name,
+		name,
 		address,
 		lat,
 		lng,
 		notes,
 	};
+    console.log(payload);
+
 
 	// console.log(worker_id, "worker Id")
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			dispatch(createNewLocation(payload)).then(() => dispatch(getLocations()));
-            closeModal()
+			await dispatch(updateLocation(payload, location.id)).then(() => dispatch(getALocation(location.id))
+			);
+			closeModal();
 		} catch (data) {
 			setErrors(data.errors);
 		}
@@ -59,6 +64,7 @@ function NewLocationModal() {
 		language: "en",
 	});
 
+	
 	const handleLocation = async (e) => {
 		e.preventDefault();
 		try {
@@ -76,7 +82,6 @@ function NewLocationModal() {
 					})
 					.catch(console.error);
 			});
-			
 		} catch (error) {
 			console.log(error);
 			setErrors(["Couldn't automatically retrieve your location"]);
@@ -94,8 +99,13 @@ function NewLocationModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<button onClick={handleLocation} className="new_location-current_location">Use Current Location</button>
-				<label className="new_location-address">
+				<button
+					onClick={handleLocation}
+					className="new_location-current_location"
+				>
+					Use Current Location
+				</button>
+				<label className="new_location-name">
 					Name
 					<input
 						type="text"
@@ -140,10 +150,12 @@ function NewLocationModal() {
 					></input>
 				</label>
 
-				<button type="submit" className="new_location-submit">Create Location</button>
+				<button type="submit" className="new_location-submit">
+					Update Location
+				</button>
 			</form>
 		</div>
 	);
 }
 
-export default NewLocationModal;
+export default EditLocationModal;

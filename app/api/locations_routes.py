@@ -62,19 +62,24 @@ def update_location(locationId):
     form['csrf_token'].data = request.cookies['csrf_token']
     
     if form.validate_on_submit():
+        name= form.name.data
         address =form.address.data
         lat= form.lat.data
         lng= form.lng.data
         notes= form.notes.data
         
-        location.address = address
-        location.lat = lat
-        location.lng = lng
-        location.notes = notes
+        location.name = name or location.name
+        location.address = address  or location.address
+        location.lat = lat or location.lat
+        location.lng = lng or location.lng
+        location.notes = notes or location.notes
         
         db.session.commit()
     
-    return jsonify(location.to_dict()), 200
+        return jsonify(location.to_dict()), 200
+    
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
 
 #Delete Routes
 
