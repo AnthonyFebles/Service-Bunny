@@ -9,9 +9,11 @@ def address_exists(form, field):
     # Checking if username is already in use
     address = field.data
     loco = Location.query.filter(Location.address == address).first()
-    if loco.user_id == current_user.id:
-        return
+    
+    
     if loco:
+        if loco.user_id == current_user.id:
+            return
         raise ValidationError('Address is already in use.')
 
 class LocationForm(FlaskForm):
