@@ -4,6 +4,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { getALocation } from "../../store/locationDetails";
 import OpenModalButton from "../OpenModalButton";
 import EditLocationModal from "../EditLocationModal";
+import NewJobRequest from "../NewJobRequest";
 
 const LocationDetails = () => {
 	const dispatch = useDispatch();
@@ -44,6 +45,9 @@ const LocationDetails = () => {
 	if (sessionUser.role == "Customer") {
 		return (
 			<>
+            <OpenModalButton
+            buttonText={"Create A Job For This Location"}
+            modalComponent={<NewJobRequest currLocation={location}/>}></OpenModalButton>
 				{location ? (
 					<>
 						<div className="job_details-container-customer">

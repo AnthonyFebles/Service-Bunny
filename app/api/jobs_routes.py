@@ -23,7 +23,13 @@ def create_job():
         new_job = Job(
             user_id=current_user.id,
             location_id=form.location_id.data,
-            description=form.description.data
+            worker_id=form.worker_id.data,
+            title=form.title.data,
+            price=form.price.data,
+            category=form.category.data,
+            description=form.description.data,
+            
+            
         )
 
         db.session.add(new_job)
