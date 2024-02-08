@@ -94,7 +94,7 @@ function NewLocationModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<button onClick={handleLocation}>Use Current Location</button>
+				<button onClick={handleLocation} className="new_location-current_location">Use Current Location</button>
 				<label className="new_location-address">
 					Name
 					<input
@@ -140,7 +140,7 @@ function NewLocationModal() {
 					></input>
 				</label>
 
-				<button type="submit">Create Location</button>
+				<button type="submit" className="new_location-submit">Create Location</button>
 			</form>
 		</div>
 	);
