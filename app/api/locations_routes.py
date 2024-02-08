@@ -21,6 +21,7 @@ def create_location():
     if form.validate_on_submit():
         new_location = Location(
             user_id = current_user.id,
+            name =form.name.data,
             address =form.address.data,
             lat= form.lat.data,
             lng= form.lng.data,

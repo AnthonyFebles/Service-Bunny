@@ -12,7 +12,8 @@ def address_exists(form, field):
         raise ValidationError('Address is already in use.')
 
 class LocationForm(FlaskForm):
-    address = StringField("Address", validators=[DataRequired(), Length(max=50), address_exists])
+    address = StringField("Address", validators=[DataRequired(), Length(max=100), address_exists])
+    name = StringField("Name", validators=[DataRequired(), Length(max=20)])
     lat = FloatField("Latitude", validators=[DataRequired()])
     lng = FloatField("Longitude", validators=[DataRequired()])
     notes = StringField("Notes", validators=[Length(max=500)])
