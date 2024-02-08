@@ -7,18 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { getJob } from "../../store/job";
 import { createNewBooking } from "../../store/bookings";
 import { createNewLocation, getLocations } from "../../store/locations";
-import {
-	setKey,
-	setDefaults,
-	setLanguage,
-	setRegion,
-	fromAddress,
-	fromLatLng,
-	fromPlaceId,
-	setLocationType,
-	geocode,
-	RequestType,
-} from "react-geocode";
+import { setDefaults, fromLatLng } from "react-geocode";
 
 function NewLocationModal() {
 	const navigate = useNavigate();
@@ -27,7 +16,7 @@ function NewLocationModal() {
 	const [address, setAddress] = useState("");
 	const [lat, setLat] = useState("");
 	const [lng, setLng] = useState("");
-    const [name, setName] = useState("")
+	const [name, setName] = useState("");
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
@@ -35,7 +24,7 @@ function NewLocationModal() {
 
 	const payload = {
 		user_id: sessionUser.id,
-        name,
+		name,
 		address,
 		lat,
 		lng,
@@ -48,7 +37,7 @@ function NewLocationModal() {
 		e.preventDefault();
 		try {
 			dispatch(createNewLocation(payload)).then(() => dispatch(getLocations()));
-            closeModal()
+			closeModal();
 		} catch (data) {
 			setErrors(data.errors);
 		}
@@ -76,7 +65,6 @@ function NewLocationModal() {
 					})
 					.catch(console.error);
 			});
-			
 		} catch (error) {
 			console.log(error);
 			setErrors(["Couldn't automatically retrieve your location"]);
@@ -94,7 +82,12 @@ function NewLocationModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<button onClick={handleLocation} className="new_location-current_location">Use Current Location</button>
+				<button
+					onClick={handleLocation}
+					className="new_location-current_location"
+				>
+					Use Current Location
+				</button>
 				<label className="new_location-address">
 					Name
 					<input
@@ -140,7 +133,9 @@ function NewLocationModal() {
 					></input>
 				</label>
 
-				<button type="submit" className="new_location-submit">Create Location</button>
+				<button type="submit" className="new_location-submit">
+					Create Location
+				</button>
 			</form>
 		</div>
 	);

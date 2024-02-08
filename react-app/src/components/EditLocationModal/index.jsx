@@ -6,22 +6,15 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { getJob } from "../../store/job";
 import { createNewBooking } from "../../store/bookings";
-import { createNewLocation, getLocations, updateLocation } from "../../store/locations";
-import { getALocation } from "../../store/locationDetails";
 import {
-	setKey,
-	setDefaults,
-	setLanguage,
-	setRegion,
-	fromAddress,
-	fromLatLng,
-	fromPlaceId,
-	setLocationType,
-	geocode,
-	RequestType,
-} from "react-geocode";
+	createNewLocation,
+	getLocations,
+	updateLocation,
+} from "../../store/locations";
+import { getALocation } from "../../store/locationDetails";
+import { setDefaults, fromLatLng } from "react-geocode";
 
-function EditLocationModal({currLocation}) {
+function EditLocationModal({ currLocation }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [notes, setNotes] = useState(currLocation.notes);
@@ -35,7 +28,7 @@ function EditLocationModal({currLocation}) {
 	const sessionUser = useSelector((state) => state.session.user);
 
 	const location = useSelector((state) => state.locationDetails);
-	
+
 	const payload = {
 		name,
 		address,
@@ -43,15 +36,15 @@ function EditLocationModal({currLocation}) {
 		lng,
 		notes,
 	};
-    console.log(payload);
-
+	console.log(payload);
 
 	// console.log(worker_id, "worker Id")
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await dispatch(updateLocation(payload, location.id)).then(() => dispatch(getALocation(location.id))
+			await dispatch(updateLocation(payload, location.id)).then(() =>
+				dispatch(getALocation(location.id))
 			);
 			closeModal();
 		} catch (data) {
@@ -64,7 +57,6 @@ function EditLocationModal({currLocation}) {
 		language: "en",
 	});
 
-	
 	const handleLocation = async (e) => {
 		e.preventDefault();
 		try {
