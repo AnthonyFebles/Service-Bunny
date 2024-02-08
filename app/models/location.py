@@ -12,7 +12,7 @@ class Location(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    address = db.Column(db.String(50), nullable=False, unique=True)
+    address = db.Column(db.String(100), nullable=False, unique=True)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
     notes = db.Column(db.String(500), nullable=True)

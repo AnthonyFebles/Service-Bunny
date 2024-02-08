@@ -7,6 +7,7 @@ import { getJobs } from "../../store/jobs";
 import { getJob } from "../../store/job";
 import { getLocations } from "../../store/locations";
 import { getBookings } from "../../store/bookings";
+import NewLocationModal from "../NewLocationModal";
 
 const CustomerHome = () => {
 	const dispatch = useDispatch();
@@ -58,6 +59,10 @@ const CustomerHome = () => {
 		<>
 			<div className="customer_homepage-location_container">
 				<h1 className="customer_homepage-location_header">Your Locations</h1>
+				<OpenModalButton 
+				buttonText={'Create A New Location'}
+				modalComponent={<NewLocationModal/>}
+				></OpenModalButton>
 				<nav>
 					{locations.toReversed().map((location) => {
 						if (location)
