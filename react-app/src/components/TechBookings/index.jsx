@@ -113,6 +113,7 @@ const TechBookings = ({ booking, job }) => {
 			title: job.title,
 			price: job.price,
 			category: job.category,
+			employee_check: true
 		};
 
 		try {

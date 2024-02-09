@@ -2,16 +2,21 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { NavLink, useNavigate } from "react-router-dom";
-import { getOne } from "../../store/jobDetails";
+import { getOne, updateJob } from "../../store/jobDetails";
 import TechBookings from "../TechBookings";
 import { getLocations } from "../../store/locations";
 import { getALocation } from "../../store/locationDetails";
-
+import OpenModalButton from "../OpenModalButton";
+import EditJobModal from "../EditJobModal";
+import { deleteJob } from "../../store/jobs";
+import { getOneWorker } from "../../store/worker";
 
 const JobDetails = () => {
 	const dispatch = useDispatch();
 
 	const { jobId } = useParams();
+
+	const job = useSelector((state) => state.jobDetails);
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [errors, setErrors] = useState("");
@@ -19,11 +24,12 @@ const JobDetails = () => {
 	const sessionUser = useSelector((state) => state.session.user);
 	const navigate = useNavigate();
 
-	const job = useSelector((state) => state.jobDetails);
-	const locations = useSelector((state) => state.locationDetails)
+	const locations = useSelector((state) => state.locationDetails);
+	const worker = useSelector((state) => state.worker);
 
 	console.log(job, "job");
-	console.log(locations, "location")
+	console.log(locations, "location");
+	console.log(worker, "worker");
 
 	useEffect(() => {
 		const fetchAssets = async () => {
@@ -31,20 +37,56 @@ const JobDetails = () => {
 				setErrors("");
 				await dispatch(getOne(jobId))
 					.then(() => dispatch(getALocation(job.location_id)))
+					.then(() => dispatch(getOneWorker(job.worker_id)))
 					.then(() => setIsLoading(false));
 			} catch (error) {
 				setIsLoading(false);
-				setErrors(error);
+				setErrors(error.errors);
 			}
 		};
 		fetchAssets();
-	}, [dispatch, jobId]);
+	}, [dispatch, jobId, job.worker_id, job.location_id]);
 
 	if (!job.price) {
 		return <div>You are unauthorized to view this job</div>;
 	}
 
-	// console.log(currJobs, "curr Jobs")
+	// if (job) {
+	// 	if (job.worker_id) {
+	// 		dispatch(getOneWorker(job.worker_id))
+	// 	}
+	// }
+
+	const handleDelete = async () => {
+		try {
+			await dispatch(deleteJob(job.id));
+			navigate("/home");
+		} catch (error) {
+			setErrors(error.errors);
+		}
+	};
+
+	const handleComplete = async () => {
+		let payload = {
+			location_id: job.location_id,
+			id: job.id,
+			worker_id: job.worker_id,
+			description: job.description,
+			title: job.title,
+			price: job.price,
+			category: job.category,
+			employee_check: job.employee_check,
+			customer_check: true,
+		};
+
+		try {
+			await dispatch(updateJob(payload, job.id)).then(() =>
+				dispatch(getOne(jobId))
+			);
+		} catch (error) {
+			setErrors(error.errors);
+		}
+	};
 
 	if (!sessionUser) return <>{navigate("/")}</>;
 
@@ -62,7 +104,7 @@ const JobDetails = () => {
 								Details: {job.description}
 							</div>
 							<div>Location: {locations.address}</div>
-							<div>Hourly Rate : $ {job.price}</div>
+							<div>Hourly Rate : ${job.price}</div>
 							<div className="job_details-title">Created: {job.created_at}</div>
 						</div>
 						{job.bookings && job.bookings[0] && (
@@ -119,6 +161,47 @@ const JobDetails = () => {
 			<>
 				{job ? (
 					<>
+						{job.bookings.length ? (
+							<>
+								<div>
+									This Job Has A Current Booking And Can Not Be Edited Or
+									Deleted
+								</div>
+								<button disabled={true}>Edit This Job</button>
+								<button disabled={true}>Delete This Job</button>
+								{worker && worker.phone_number && (
+									<>
+										<div>Contact The Assigned Technician</div>
+										<div>
+											{worker.first_name} {worker.last_name}
+										</div>
+										<div>{`(${worker.phone_number
+											.toString()
+											.slice(0, 3)})-${worker.phone_number
+											.toString()
+											.slice(3, 6)}-${worker.phone_number
+											.toString()
+											.slice(6)}`}</div>
+									</>
+								)}
+								{job.employee_check && !job.customer_check && (
+									<><div>Technicians Solution: {job.solution}</div>
+									<button  onClick={handleComplete} >Mark As Completed</button>
+									</>
+								)}
+								{job.customer_check && (
+									<div>Awaiting Manager Acknowledgement</div>
+								)}
+							</>
+						) : (
+							<>
+								<OpenModalButton
+									buttonText={"Edit This Job"}
+									modalComponent={<EditJobModal currJob={job} />}
+								></OpenModalButton>
+								<button onClick={handleDelete}>Delete This Job</button>
+							</>
+						)}
 						<div className="job_details-container-customer">
 							<div className="job_details-title">Title: {job.title}</div>
 							<div className="job_details-category">
@@ -127,10 +210,13 @@ const JobDetails = () => {
 							<div className="job_details-description">
 								Details: {job.description}
 							</div>
+							<div>Hourly Rate : ${job.price}</div>
 							<div className="job_details-address">
 								Location: {locations.address}
 							</div>
-							<div className="job_details-Created">Created: {job.created_at}</div>
+							<div className="job_details-Created">
+								Created: {job.created_at}
+							</div>
 						</div>
 						{job.bookings && job.bookings[0] && (
 							<div className="job_details-schedule_container-customer">

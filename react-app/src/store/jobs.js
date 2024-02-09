@@ -89,7 +89,7 @@ export const updateJob = (jobPayLoad, id) => async (dispatch) => {
 
 export const deleteJob = (jobId) => async (dispatch) => {
 	try {
-		const res = await csrfFetch(`api/jobs/${jobId}`, {
+		const res = await csrfFetch(`/api/jobs/${jobId}`, {
 			method: "DELETE",
 		});
 

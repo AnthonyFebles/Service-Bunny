@@ -59,9 +59,9 @@ const CustomerHome = () => {
 		<>
 			<div className="customer_homepage-location_container">
 				<h1 className="customer_homepage-location_header">Your Locations</h1>
-				<OpenModalButton 
-				buttonText={'Create A New Location'}
-				modalComponent={<NewLocationModal/>}
+				<OpenModalButton
+					buttonText={"Create A New Location"}
+					modalComponent={<NewLocationModal />}
 				></OpenModalButton>
 				<nav>
 					{locations.toReversed().map((location) => {
@@ -87,23 +87,75 @@ const CustomerHome = () => {
 			<div className="customer_homepage-job_container">
 				<h1 className="customer_homepage-job_header">Your Jobs</h1>
 				<nav>
+					<h2 className="location_details-is_booked_header">
+						Waiting On Approval:
+					</h2>
 					{jobs.toReversed().map((job) => {
 						if (job)
-							return (
-								<div key={job.id} className="customer_homepage-jobs">
-									<NavLink to={`/jobs/${job.id}`}>
-										<div>
-											<img
-												src={`/Images/${job.category}.jpg`}
-												alt="Job Link"
-												className="job_image"
-												title={`${job.title}`}
-											/>
-										</div>
-									</NavLink>
-									<p className="job__title">{`${job.title}`}</p>
-								</div>
-							);
+							if (job.bookings[0])
+								if(job.employee_check)
+									if(!job.customer_check)
+								return (
+									<div key={job.id} className="tech_homepage-jobs">
+										<NavLink to={`/jobs/${job.id}`}>
+											<div>
+												<img
+													src={`/Images/${job.category}.jpg`}
+													alt="Job Link"
+													className="job_image"
+													title={`${job.title}`}
+												/>
+											</div>
+										</NavLink>
+										<p className="job__title">{`${job.title}`}</p>
+									</div>
+								);
+					})}
+					<h2 className="location_details-is_booked_header">
+						Technician Assigned:
+					</h2>
+					{jobs.toReversed().map((job) => {
+						if (job)
+							if (job.bookings[0])
+								if (!job.employee_check)
+									if (!job.customer_check)
+										return (
+											<div key={job.id} className="tech_homepage-jobs">
+												<NavLink to={`/jobs/${job.id}`}>
+													<div>
+														<img
+															src={`/Images/${job.category}.jpg`}
+															alt="Job Link"
+															className="job_image"
+															title={`${job.title}`}
+														/>
+													</div>
+												</NavLink>
+												<p className="job__title">{`${job.title}`}</p>
+											</div>
+										);
+					})}
+					<h2 className="location_details-is_booked_header">
+						Not Booked Yet:{" "}
+					</h2>
+					{jobs.toReversed().map((job) => {
+						if (job)
+							if (!job.bookings[0])
+								return (
+									<div key={job.id} className="tech_homepage-jobs">
+										<NavLink to={`/jobs/${job.id}`}>
+											<div>
+												<img
+													src={`/Images/${job.category}.jpg`}
+													alt="Job Link"
+													className="job_image"
+													title={`${job.title}`}
+												/>
+											</div>
+										</NavLink>
+										<p className="job__title">{`${job.title}`}</p>
+									</div>
+								);
 					})}
 				</nav>
 			</div>

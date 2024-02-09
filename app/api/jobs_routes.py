@@ -23,7 +23,13 @@ def create_job():
         new_job = Job(
             user_id=current_user.id,
             location_id=form.location_id.data,
-            description=form.description.data
+            worker_id=form.worker_id.data,
+            title=form.title.data,
+            price=form.price.data,
+            category=form.category.data,
+            description=form.description.data,
+            
+            
         )
 
         db.session.add(new_job)
@@ -114,8 +120,13 @@ def delete_job(jobId):
 
         db.session.delete(job)
         db.session.commit()
+        return jsonify({"message": "Job has been Deleted successfully"}), 200
+    if current_user.role == "Manager":
+        db.session.delete(job)
+        db.session.commit()
 
-    return jsonify({"message": "Job has been Deleted successfully"}), 200
+        return jsonify({"message": "Job has been Deleted successfully"}), 200
+    return jsonify({"errors": "Not authorized to terminate this job"})
 
 
 # @job_routes.route("/<int:jobId>")

@@ -10,9 +10,10 @@ def price_range(form, field):
     # Checking if username is already in use
     price = field.data
     if price < 15:
-        raise ValidationError('Price is too low.')
+        raise ValidationError("You'll have trouble finding somebody to book your job if the hourly rate is too low")
     if price > 9999:
-        raise ValidationError('Price is too high')
+        raise ValidationError(
+            "You'll have trouble finding somebody to book your job if the hourly rate is too high")
 
 def category_check(form, field):
     cat = field.data
