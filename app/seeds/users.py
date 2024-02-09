@@ -9,11 +9,11 @@ def seed_users():
     marnie = User(
         username='marnie', email='marnie@aa.io', password='password', first_name="Marnie", last_name="Schmoel",  schedule_color="Red", role="Customer")
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', first_name="Bobbie", last_name="Schmoe", schedule_color="Green", role="Technician", manager=1)
+        username='bobbie', email='bobbie@aa.io', password='password', first_name="Bobbie", last_name="Schmoe", schedule_color="Green", role="Technician", manager=1, phone_number=1231231234)
     steve = User(
-        username='steve', email='steve@aa.io', password='password', first_name="Steve", last_name="Schmoe", schedule_color="Yellow", role="Technician", manager=1)
+        username='steve', email='steve@aa.io', password='password', first_name="Steve", last_name="Schmoe", schedule_color="Yellow", role="Technician", manager=1, phone_number=1231231234)
     juan = User(
-        username='juan', email='juan@aa.io', password='password', first_name="Juan", last_name="Schmoe", schedule_color="Purple", role="Technician", manager=1)
+        username='juan', email='juan@aa.io', password='password', first_name="Juan", last_name="Schmoe", schedule_color="Purple", role="Technician", manager=1, phone_number=1231231234)
     shmake = User(
         username='shmake', email='shmake@aa.io', password='password', first_name="Shmake", last_name="Yake", schedule_color="Green", role="Technician")
     anthony = User(

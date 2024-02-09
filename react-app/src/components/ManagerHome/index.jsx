@@ -51,7 +51,7 @@ const ManagerHome = () => {
 			.then(() => setIsLoading(false));
 	}, [dispatch]);
 
-	// console.log(currJobs, "curr Jobs")
+	console.log(currJobs, "curr Jobs")
 
 	if (!sessionUser) return <>{navigate("/")}</>;
 
@@ -101,6 +101,18 @@ const ManagerHome = () => {
 		<div className="manager_container">
 			<div className="manager_schedule">Schedule</div>
 			<div className="jobs_container">
+				<div className="jobs_done">
+					Ready For Billing: 
+					{currJobs.length > 0 && currJobs.toReversed().map((job) => {
+						if (job) 
+						if(job.customer_check)
+							return (
+								<div>
+									<OpenModalButton buttonText={job.title}></OpenModalButton>
+								</div>
+							);
+					})}
+				</div>
 				<div className="jobs_title">
 					Available Jobs :
 					{jobs.length > 0 ? (

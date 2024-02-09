@@ -87,7 +87,7 @@ export const updateLocation = (locationPayLoad, id) => async (dispatch) => {
 
 export const deleteLocation = (locationId) => async (dispatch) => {
 	try {
-		const res = await csrfFetch(`api/locations/${locationId}`, {
+		const res = await csrfFetch(`/api/locations/${locationId}`, {
 			method: "DELETE",
 		});
 
