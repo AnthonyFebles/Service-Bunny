@@ -11,6 +11,7 @@ import { getBookings } from "../../store/bookings";
 import AcceptJobModal from "../AcceptJobModal";
 import TechInfoModal from "../TechInfoModal";
 import SignupFormModal from "../SignupFormModal";
+import CompleteJobModal from "../CompleteJob";
 
 const ManagerHome = () => {
 	const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const ManagerHome = () => {
 			.then(() => setIsLoading(false));
 	}, [dispatch]);
 
-	console.log(currJobs, "curr Jobs")
+	console.log(currJobs, "curr Jobs");
 
 	if (!sessionUser) return <>{navigate("/")}</>;
 
@@ -102,16 +103,20 @@ const ManagerHome = () => {
 			<div className="manager_schedule">Schedule</div>
 			<div className="jobs_container">
 				<div className="jobs_done">
-					Ready For Billing: 
-					{currJobs.length > 0 && currJobs.toReversed().map((job) => {
-						if (job) 
-						if(job.customer_check)
-							return (
-								<div>
-									<OpenModalButton buttonText={job.title}></OpenModalButton>
-								</div>
-							);
-					})}
+					Ready For Billing:
+					{currJobs.length > 0 &&
+						currJobs.toReversed().map((job) => {
+							if (job)
+								if (job.customer_check)
+									return (
+										<div>
+											<OpenModalButton
+												buttonText={job.title}
+												modalComponent={<CompleteJobModal job={job} />}
+											></OpenModalButton>
+										</div>
+									);
+						})}
 				</div>
 				<div className="jobs_title">
 					Available Jobs :
@@ -129,8 +134,9 @@ const ManagerHome = () => {
 			</div>
 			<div>
 				<OpenModalButton
-				buttonText={'Create A New Tech Account'}
-				modalComponent={<SignupFormModal manager={sessionUser.id}/>}/>
+					buttonText={"Create A New Tech Account"}
+					modalComponent={<SignupFormModal manager={sessionUser.id} />}
+				/>
 			</div>
 		</div>
 	);

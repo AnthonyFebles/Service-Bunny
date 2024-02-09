@@ -120,8 +120,13 @@ def delete_job(jobId):
 
         db.session.delete(job)
         db.session.commit()
+        return jsonify({"message": "Job has been Deleted successfully"}), 200
+    if current_user.role == "Manager":
+        db.session.delete(job)
+        db.session.commit()
 
-    return jsonify({"message": "Job has been Deleted successfully"}), 200
+        return jsonify({"message": "Job has been Deleted successfully"}), 200
+    return jsonify({"errors": "Not authorized to terminate this job"})
 
 
 # @job_routes.route("/<int:jobId>")
