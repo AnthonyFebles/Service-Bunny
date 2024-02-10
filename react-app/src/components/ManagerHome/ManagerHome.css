@@ -21,6 +21,7 @@
 	justify-content: space-evenly;
 	flex-wrap: wrap;
     background-color: rgba(183, 182, 212, 0.207);
+    box-shadow: 0px 0px 10px  #d3eef9;
 }
 
 .jobs_container,
@@ -30,7 +31,7 @@
 }
 
 .new_tech-button {
-   
+   box-shadow: 0px 0px 8px  #a4d9a7;
 	border: none;
 	background-color: transparent;
 	padding: 5px;
@@ -67,6 +68,7 @@
 	padding: 10%;
 	margin: 10px;
 	background-color: #d3eef9;
+    box-shadow: 0px 0px 20px  #a4cad9;
 	border-radius: 7px;
 }
 
@@ -81,6 +83,7 @@
 	padding: 10%;
 	margin: 10px;
 	background-color: #ffafaf;
+    box-shadow: 0px 0px 20px  #d9a4a4;
 	border-radius: 7px;
 }
 
