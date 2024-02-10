@@ -81,28 +81,32 @@ function ProfileButton({ user }) {
 
 	return (
 		<>
-			<button onClick={openMenu}>
-				<i className="fas fa-user-circle" />
-			</button>
+			<i onClick={openMenu} className="fas fa-user-circle fa-2x user-icon" />
 			<ul className={ulClassName} ref={ulRef}>
 				{user ? (
 					<>
-						<li>{user.username}</li>
-						<li>{user.email}</li>
-						<li>
-							<button onClick={handleLogout}>Log Out</button>
+						<p className="account-text">Account</p>
+						<div className="user-info">
+							<i
+								onClick={openMenu}
+								className="fas fa-user-circle fa-3x"
+								style={{ color: "white" }}
+							/>
+							<div className="name-email">
+								<p>{user.username}</p>
+								<p>{user.email}</p>
+							</div>
+						</div>
+						<li onClick={handleLogout} className="logout-li">Log Out</li>
+						<li className="manager-login" onClick={handleManagerLogin}>
+							Manager Demo Login
 						</li>
-						<div className="manager-login">
-							<button onClick={handleManagerLogin}>Manager-Demo-Login</button>
-						</div>
-						<div className="technician-login">
-							<button onClick={handleTechnicianLogin}>
-								Technician-Demo-Login
-							</button>
-						</div>
-						<div className="customer-login">
-							<button onClick={handleCustomerLogin}>Customer-Demo-Login</button>
-						</div>
+						<li className="technician-login" onClick={handleTechnicianLogin}>
+							Technician Demo Login
+						</li>
+						<li className="customer-login" onClick={handleCustomerLogin}>
+							Customer Demo Login
+						</li>
 					</>
 				) : (
 					<>

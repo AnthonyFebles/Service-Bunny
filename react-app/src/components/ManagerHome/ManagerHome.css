@@ -1,0 +1,44 @@
+.jobs_done-title, .jobs_title, .techs_title {
+    margin: 0 auto;
+    display: flex;
+    padding-left: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.jobs_done, .jobs, .techs {
+    border: 1px solid black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 8%;
+    margin-right: 8%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.jobs_container, .techs_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.assign_tech_button, .techs_button {
+    min-width: none;
+    max-width: 320px;
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    font-size: 17px;
+	border: 2px solid #a0c1ce9b;;
+    padding: 10%;
+    margin: 10px;
+    background-color: #d3eef9;
+    border-radius: 7px;
+
+}
+
+.assign_tech_button:hover, .techs_button:hover {
+    cursor: pointer;
+    background-color: #45a6cc7a;
+}
