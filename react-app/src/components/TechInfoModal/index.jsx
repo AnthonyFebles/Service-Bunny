@@ -108,7 +108,9 @@ function TechInfoModal({ tech, job }) {
 					onSubmit={(e) => (e.preventDefault(), handleEditUser(tech.id))}
 					className="techs_edit_form-modal"
 				>
-					<div className='edit_tech_modal-name_title'>Edit {tech.first_name} </div>
+					<div className="edit_tech_modal-name_title">
+						Edit {tech.first_name}{" "}
+					</div>
 					<ul>
 						{errors.map((error, idx) => (
 							<li className={"edit_errors"} key={idx}>
@@ -119,6 +121,7 @@ function TechInfoModal({ tech, job }) {
 					<div className="form-row">
 						<label className="form-group">
 							First Name:
+							<span> </span>
 							<input
 								type="text"
 								value={first_name}
@@ -128,6 +131,7 @@ function TechInfoModal({ tech, job }) {
 
 						<label className="form-group">
 							Last Name:
+							<span> </span>
 							<input
 								type="text"
 								value={last_name}
@@ -138,6 +142,7 @@ function TechInfoModal({ tech, job }) {
 					<div className="form-row-2">
 						<label className="form-group-2">
 							Username:
+							<span> </span>
 							<input
 								type="text"
 								value={username}
@@ -146,6 +151,7 @@ function TechInfoModal({ tech, job }) {
 						</label>
 						<label className="form-group-2">
 							Contact:
+							<span> </span>
 							<input
 								type="text"
 								value={phoneNumber}
@@ -156,6 +162,7 @@ function TechInfoModal({ tech, job }) {
 					<div className="form-row-3">
 						<label className="form-group-3">
 							New Pass
+							<span> </span>
 							<input
 								type="password"
 								value={password}
@@ -164,6 +171,7 @@ function TechInfoModal({ tech, job }) {
 						</label>
 						<label className="form-group-3">
 							Confirm
+							<span> </span>
 							<input
 								type="password"
 								value={confirmPassword}
