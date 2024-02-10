@@ -81,7 +81,11 @@ function ProfileButton({ user }) {
 
 	return (
 		<>
-			<i onClick={openMenu} className="fas fa-user-circle fa-2x user-icon" />
+			<i
+				onClick={openMenu}
+				className="fas fa-user-circle fa-2x user-icon"
+				style={{ color: "#06345a" }}
+			/>
 			<ul className={ulClassName} ref={ulRef}>
 				{user ? (
 					<>
@@ -97,7 +101,9 @@ function ProfileButton({ user }) {
 								<p>{user.email}</p>
 							</div>
 						</div>
-						<li onClick={handleLogout} className="logout-li">Log Out</li>
+						<li onClick={handleLogout} className="logout-li">
+							Log Out
+						</li>
 						<li className="manager-login" onClick={handleManagerLogin}>
 							Manager Demo Login
 						</li>
