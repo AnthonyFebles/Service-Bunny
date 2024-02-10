@@ -9,3 +9,9 @@
 body {
     margin: 0 auto;
 }
+
+html {
+    background: linear-gradient(90deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0.9)), url("https://i.imgur.com/6H6dkkv.png");
+    background-attachment: absolute;
+	background-size: cover;
+}

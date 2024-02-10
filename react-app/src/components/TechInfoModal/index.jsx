@@ -5,6 +5,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { getJobs, updateJob } from "../../store/jobs";
 import { getJob } from "../../store/job";
 import { deleteManager, getManagers, updateManager } from "../../store/manager";
+import "./TechInfoModal.css";
 
 function TechInfoModal({ tech, job }) {
 	const navigate = useNavigate();
@@ -87,16 +88,17 @@ function TechInfoModal({ tech, job }) {
 			<div className="techs_name-modal">
 				{tech.first_name} {tech.last_name}{" "}
 			</div>
-			<button className="techs_edit_button-modal" onClick={handleEditMenu}>
-				Edit
-			</button>
-			<button
-				className="techs_delete_button-modal"
-				onClick={(e) => (e.preventDefault(), handleDeleteUser(tech.id))}
-			>
-				{" "}
-				Delete Tech{" "}
-			</button>
+			<div className="techs_info_button_container">
+				<button className="techs_edit_button-modal" onClick={handleEditMenu}>
+					Edit Technician Details
+				</button>
+				<button
+					className="techs_delete_button-modal"
+					onClick={(e) => (e.preventDefault(), handleDeleteUser(tech.id))}
+				>
+					Permanently Delete This Tech
+				</button>
+			</div>
 			{showEdit && (
 				<form
 					onSubmit={(e) => (e.preventDefault(), handleEditUser(tech.id))}
@@ -150,9 +152,14 @@ function TechInfoModal({ tech, job }) {
 				</form>
 			)}
 			<div className="techs_email-modal">{tech.email}</div>
-			<div className="techs_number-modal">{tech.phone_number}</div>
+			<div className="techs_number-modal">{`(${tech.phone_number
+				.toString()
+				.slice(0, 3)})-${tech.phone_number
+				.toString()
+				.slice(3, 6)}-${tech.phone_number.toString().slice(6)}`}</div>
+				<div className="techs_jobs-modal_title">Assigned Jobs: </div>
 			<div className="techs_jobs-modal">
-				Assigned Jobs :
+
 				{job.map((job) => {
 					if (job) {
 						if (job.worker_id == tech.id) {
@@ -166,6 +173,7 @@ function TechInfoModal({ tech, job }) {
 									</NavLink>
 									<p>{errors}</p>
 									<button
+									className={"tech_modal-unassign_button"}
 										onClick={() =>
 											handleUnassign(
 												{

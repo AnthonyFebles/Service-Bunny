@@ -1,0 +1,40 @@
+.complete_job_modal-no {
+    border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	border: 2px solid #cea0a09b;
+    padding: 10px;
+	background-color: #ffafaf;
+	border-radius: 7px;
+    width: 40%;
+    margin: 8px
+    
+}
+
+.complete_job_modal-no:hover {
+	cursor: pointer;
+	background-color: #cc45457a;
+}
+
+.complete_job_modal-yes {
+    border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	border: 2px solid #a0cea89b;
+    padding: 10px;
+	background-color: #d3f9df;
+	border-radius: 7px;
+    width: 40%;
+    margin: 8px
+}
+
+.complete_job_modal-yes:hover {
+	cursor: pointer;
+	background-color: #45cc607a;
+}
+
+.complete_job-buttons {
+    text-align: center;
+}

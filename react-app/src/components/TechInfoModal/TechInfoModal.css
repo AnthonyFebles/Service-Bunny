@@ -1,0 +1,86 @@
+.techs_name-modal,
+.techs_email-modal,
+.techs_number-modal,
+.techs_jobs-modal_title {
+	padding: 5px;
+	font-size: 20px;
+}
+
+.techs_info_button_container {
+	justify-content: center;
+	text-align: center;
+}
+
+.techs_edit_button-modal,
+.techs_delete_button-modal {
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	padding: 10px;
+	border-radius: 7px;
+	width: 40%;
+	margin: 8px;
+}
+
+.techs_edit_button-modal {
+	background-color: #d3ecf9;
+	border: 2px solid #a0bcce9b;
+}
+
+.techs_edit_button-modal:hover {
+	cursor: pointer;
+	background-color: #45a8cc7a;
+}
+
+.techs_delete_button-modal {
+	background-color: #ffafaf;
+	border: 2px solid #cea0a09b;
+}
+
+.techs_delete_button-modal:hover {
+	cursor: pointer;
+	background-color: #cc45457a;
+}
+
+.techs_jobs-modal {
+	text-align: center;
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+.tech_job-modal {
+	margin-top: 5px ;
+    margin-bottom: 10px ;
+	
+    border-radius: 5px;
+    background-color: rgba(183, 182, 212, 0.14);
+}
+
+.tech_job-title_link {
+	margin: 10px;
+	font-size: 20px;
+}
+
+.tech_job-title_link:hover {
+	color: #5dc3fa;
+}
+
+.tech_modal-unassign_button {
+	margin-top: 10px;
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	padding: 10px;
+	border-radius: 7px;
+	width: 80%;
+	margin: 8px;
+	background-color: #ffafaf;
+	border: 2px solid #cea0a09b;
+}
+
+.tech_modal-unassign_button:hover {
+	cursor: pointer;
+	background-color: #cc45457a;
+}

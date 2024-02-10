@@ -7,6 +7,7 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { getJob } from "../../store/job";
 import { createNewBooking } from "../../store/bookings";
+import "./AcceptJobModal.css"
 
 function AcceptJobModal({job, techs}) {
 
@@ -83,12 +84,19 @@ function AcceptJobModal({job, techs}) {
 			<h1 className="assign_job_modal-title">
 				Assign A Technician To This Job
 			</h1>
-			<div className="assign_job_modal-title"> Job: {job.title}</div>
-			<div className="assign_job_modal-description">
-				Details: {job.description}
+			<div className="assign_job_modal-job">
+				{" "}
+				<b>Job:</b> {job.title}
 			</div>
-			<div className="assign_job_modal-price">Rate: ${job.price} /hr</div>
-			<div className="assign_job_modal-category">Type: {job.category} </div>
+			<div className="assign_job_modal-description">
+				<b>Details:</b> {job.description}
+			</div>
+			<div className="assign_job_modal-price">
+				<b>Rate:</b> ${job.price} /hr
+			</div>
+			<div className="assign_job_modal-category">
+				<b>Type:</b> {job.category}{" "}
+			</div>
 			<form onSubmit={handleSubmit} className="assign_tech_form">
 				<ul>
 					{errors.map((error, idx) => (
@@ -124,7 +132,11 @@ function AcceptJobModal({job, techs}) {
 						);
 					})}
 				</select>
-				<button type="submit">Assign</button>
+				<div className="accept_job-assign_container">
+					<button type="submit" className="accept_job-assign_button">
+						Assign
+					</button>
+				</div>
 			</form>
 		</div>
 	);

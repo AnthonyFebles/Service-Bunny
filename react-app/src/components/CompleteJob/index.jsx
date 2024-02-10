@@ -7,6 +7,7 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { getJob, deleteJob } from "../../store/job";
 import { createNewBooking } from "../../store/bookings";
+import "./CompleteJob.css"
 
 function CompleteJobModal({job}) {
 
@@ -46,8 +47,14 @@ function CompleteJobModal({job}) {
 				))}
 			</ul>
 			<h1 className="complete_job-title">Mark Job As Completed?</h1>
-			<button onClick={handleComplete} >Yes</button>
-			<button onClick={()=>closeModal()}>No</button>
+			<div className="complete_job-buttons" >
+				<button onClick={handleComplete} className="complete_job_modal-yes">
+					Yes
+				</button>
+				<button onClick={() => closeModal()} className="complete_job_modal-no">
+					No
+				</button>
+			</div>
 		</div>
 	);
 }
