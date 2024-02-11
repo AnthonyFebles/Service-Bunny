@@ -52,87 +52,113 @@ function SignupFormModal({manager}) {
 
 	return (
 		<>
-			<h1>Sign Up</h1>
+			<h1 className="new_tech_modal-name_title">New Technician</h1>
 			<form onSubmit={handleSubmit} className="create_tech_form">
 				<ul>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<li key={idx} className="signUp_errors">
+							{error}
+						</li>
 					))}
 				</ul>
-				<label className="createTechLabel">
-					First Name
-					<input
-						type="text"
-						value={first_name}
-						onChange={(e) => setFirst_Name(e.target.value)}
-						required
-					/>
-				</label>
-				<label className="createTechLabel">
-					Last Name
-					<input
-						type="text"
-						value={last_name}
-						onChange={(e) => setLast_Name(e.target.value)}
-						required
-					/>
-				</label>
-				<label className="createTechLabel">
-					Phone Number
-					<input
-						type="text"
-						value={phoneNumber}
-						onChange={(e) => setPhoneNumber(e.target.value)}
-						required
-					/>
-				</label>
-				<label className="createTechLabel">
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label className="createTechLabel">
-					Username
-					<input
-						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</label>
-				<select onChange={(e) => setScheduleColor(e.target.value)} className="create_tech_modal-select">
-					<option value="" selected disabled hidden>
-						Favorite Color
-					</option>
-					{color_options.map((color) => {
-						return (
-							<option key={color + "100"} value={color} label={color}></option>
-						);
-					})}
-				</select>
-				<label className="createTechLabel">
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<label className="createTechLabel">
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit">Sign Up</button>
+				<div className="form-row">
+					<label className="form-group">
+						First Name
+						<span> </span>
+						<input
+							type="text"
+							value={first_name}
+							onChange={(e) => setFirst_Name(e.target.value)}
+							required
+						/>
+					</label>
+					<label className="form-group">
+						Last Name
+						<span> </span>
+						<input
+							type="text"
+							value={last_name}
+							onChange={(e) => setLast_Name(e.target.value)}
+							required
+						/>
+					</label>
+				</div>
+				<div className="form-row">
+					<label className="form-group">
+						Phone Number
+						<span> </span>
+						<input
+							type="text"
+							value={phoneNumber}
+							onChange={(e) => setPhoneNumber(e.target.value)}
+							required
+						/>
+					</label>
+					<label className="form-group">
+						Email
+						<span> </span>
+						<input
+							type="text"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							required
+						/>
+					</label>
+				</div>
+				<div className="form-row">
+					<label className="form-group">
+						Username
+						<span> </span>
+						<input
+							type="text"
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+							required
+						/>
+					</label>
+					<select
+						onChange={(e) => setScheduleColor(e.target.value)}
+						className="create_tech_modal-select"
+					>
+						<option value="" selected disabled hidden>
+							Favorite Color
+						</option>
+						{color_options.map((color) => {
+							return (
+								<option
+									key={color + "100"}
+									value={color}
+									label={color}
+								></option>
+							);
+						})}
+					</select>
+				</div>
+				<div className="form-row">
+					<label className="form-group">
+						Password
+						<span> </span>
+						<input
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+					</label>
+					<label className="form-group">
+						Confirm
+						<span> </span>
+						<input
+							type="password"
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+							required
+						/>
+					</label>
+				</div>
+				<button type="submit" className={"form_new_tech-button"}>
+					Create
+				</button>
 			</form>
 		</>
 	);

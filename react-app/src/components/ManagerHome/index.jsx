@@ -12,6 +12,7 @@ import AcceptJobModal from "../AcceptJobModal";
 import TechInfoModal from "../TechInfoModal";
 import SignupFormModal from "../SignupFormModal";
 import CompleteJobModal from "../CompleteJob";
+import "./ManagerHome.css";
 
 const ManagerHome = () => {
 	const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const ManagerHome = () => {
 
 	function loadJobs(jobs) {
 		return (
-			<div className="jobs">
+			<div className="jobs_container">
 				{jobs.toReversed().map((job) => {
 					if (job) {
 						return (
@@ -68,7 +69,13 @@ const ManagerHome = () => {
 								<OpenModalButton
 									className={"assign_tech_button"}
 									buttonText={job.title}
-									modalComponent={<AcceptJobModal job={job} techs={manager} />}
+									modalComponent={
+										<AcceptJobModal
+											job={job}
+											techs={manager}
+											
+										/>
+									}
 								/>
 							</div>
 						);
@@ -80,7 +87,7 @@ const ManagerHome = () => {
 
 	function loadTechs(manager) {
 		return (
-			<div className="techs">
+			<div className="techs_container">
 				{manager.map((tech) => {
 					if (tech) {
 						return (
@@ -88,7 +95,8 @@ const ManagerHome = () => {
 								<OpenModalButton
 									className={"techs_button"}
 									buttonText={tech.first_name + " " + tech.last_name}
-									modalComponent={<TechInfoModal tech={tech} job={currJobs} />}
+									modalComponent={<TechInfoModal tech={tech} job={currJobs}
+									 />}
 								/>
 							</div>
 						);
@@ -101,9 +109,9 @@ const ManagerHome = () => {
 	return (
 		<div className="manager_container">
 			<div className="manager_schedule">Schedule</div>
-			<div className="jobs_container">
+			<div className="outer_jobs_container">
+				<h2 className="jobs_done-title">Ready For Billing</h2>
 				<div className="jobs_done">
-					Ready For Billing:
 					{currJobs.length > 0 &&
 						currJobs.toReversed().map((job) => {
 							if (job)
@@ -111,6 +119,7 @@ const ManagerHome = () => {
 									return (
 										<div>
 											<OpenModalButton
+												className={"done_job"}
 												buttonText={job.title}
 												modalComponent={<CompleteJobModal job={job} />}
 											></OpenModalButton>
@@ -118,22 +127,22 @@ const ManagerHome = () => {
 									);
 						})}
 				</div>
-				<div className="jobs_title">
-					Available Jobs :
+				<h2 className="jobs_title">Available Jobs</h2>
+				<div className="jobs">
 					{jobs.length > 0 ? (
 						loadJobs(jobs)
 					) : (
-						<div>No Available Jobs, Check Back Later</div>
+						<div>No Available Jobs, Check Back Later...</div>
 					)}
 				</div>
 			</div>
-			<div className="techs_container">
-				<div className="techs_title">
-					Your Technicians :{manager.length > 0 && loadTechs(manager)}
-				</div>
+			<div className="outer_techs_container">
+				<h2 className="techs_title">Your Technicians</h2>
+				<div className="techs">{manager.length > 0 && loadTechs(manager)}</div>
 			</div>
-			<div>
+			<div className="new_techs_container">
 				<OpenModalButton
+					className={"new_tech-button"}
 					buttonText={"Create A New Tech Account"}
 					modalComponent={<SignupFormModal manager={sessionUser.id} />}
 				/>

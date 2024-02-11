@@ -1,0 +1,179 @@
+.managers_tech_modal-container {
+    width: 100%;
+}
+
+.techs_name-modal,
+.techs_email-modal,
+.techs_number-modal,
+.techs_jobs-modal_title {
+	padding: 5px;
+	font-size: 20px;
+}
+
+.techs_info_button_container {
+	justify-content: center;
+	text-align: center;
+}
+
+.techs_edit_button-modal,
+.techs_delete_button-modal {
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	padding: 10px;
+	border-radius: 7px;
+	width: 40%;
+	margin: 8px;
+}
+
+.techs_edit_button-modal {
+	background-color: #d3ecf9;
+	border: 2px solid #a0bcce9b;
+}
+
+.form_edit_tech-button {
+    border: none;
+	background-color: transparent;
+	padding: 1px;
+	font-size: 16px;
+	padding: 5px;
+	border-radius: 7px;
+	width: 40%;
+	margin: 8px;
+    background-color: #d3ecf9;
+	border: 2px solid #a0bcce9b;
+    justify-content: center;
+    align-self: center;
+}
+
+.form_edit_tech-button:hover {
+	cursor: pointer;
+	background-color: #45a8cc7a;
+}
+
+
+.techs_edit_button-modal:hover {
+	cursor: pointer;
+	background-color: #45a8cc7a;
+}
+
+.techs_delete_button-modal {
+	background-color: #ffafaf;
+	border: 2px solid #cea0a09b;
+}
+
+.techs_delete_button-modal:hover {
+	cursor: pointer;
+	background-color: #cc45457a;
+}
+
+.techs_jobs-modal {
+	text-align: center;
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+.tech_job-modal {
+	margin-top: 5px ;
+    margin-bottom: 15px ;
+	box-shadow: 0px 0px 8px  #d3eef9;
+    border-radius: 5px;
+    background-color: rgba(183, 182, 212, 0.14);
+}
+
+.tech_job-title_link {
+	margin: 10px;
+	font-size: 20px;
+}
+
+.tech_job-title_link:hover {
+	color: #5dc3fa;
+}
+
+.tech_modal-unassign_button {
+	margin-top: 10px;
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	padding: 10px;
+	border-radius: 7px;
+	width: 80%;
+	margin: 8px;
+	background-color: #ffafaf;
+	border: 2px solid #cea0a09b;
+}
+
+.tech_modal-unassign_button:hover {
+	cursor: pointer;
+	background-color: #cc45457a;
+}
+
+.techs_edit_form-modal {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between; 
+}
+
+
+.form-row .form-group:first-child {
+    margin-left: 5px;
+}
+
+.form-row .form-group:last-child {
+    margin-right: 5px;
+}
+
+.form-row-2 {
+    display: flex;
+    justify-content: space-between; 
+}
+
+
+.form-row-2 .form-group-2:first-child {
+    margin-left: 5px;
+}
+
+.form-row-2 .form-group-2:last-child {
+    margin-right: 5px;
+}
+
+.form-row-3 {
+    display: flex;
+    justify-content: space-between; 
+}
+
+
+.form-row-3 .form-group-3:first-child {
+    margin-left: 5px;
+}
+
+.form-row-3 .form-group-3:last-child {
+    margin-right: 5px;
+}
+
+label input {
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+label input:focus {
+    outline: none
+}
+
+.edit_errors {
+    text-decoration: none;
+    color: red;
+    list-style-type: none;
+}
+
+.edit_tech_modal-name_title {
+    font-size: 20px;
+}

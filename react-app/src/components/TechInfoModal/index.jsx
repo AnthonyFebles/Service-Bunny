@@ -5,6 +5,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { getJobs, updateJob } from "../../store/jobs";
 import { getJob } from "../../store/job";
 import { deleteManager, getManagers, updateManager } from "../../store/manager";
+import "./TechInfoModal.css";
 
 function TechInfoModal({ tech, job }) {
 	const navigate = useNavigate();
@@ -17,6 +18,7 @@ function TechInfoModal({ tech, job }) {
 	const [last_name, setLastName] = useState(tech.last_name);
 	const [username, setUsername] = useState(tech.username);
 	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 
 	const { closeModal } = useModal();
 
@@ -71,41 +73,55 @@ function TechInfoModal({ tech, job }) {
 	};
 
 	const handleEditUser = async (techId) => {
-		try {
-			const data = await dispatch(updateManager(editPayload, techId));
-			dispatch(getManagers());
-			closeModal();
-		} catch (error) {
-			setErrors(error.errors);
-		} finally {
-			dispatch(getJobs()).then(() => dispatch(getJob));
+		if (password == confirmPassword) {
+			try {
+				const data = await dispatch(updateManager(editPayload, techId));
+				dispatch(getManagers());
+				closeModal();
+			} catch (error) {
+				setErrors(error.errors);
+			} finally {
+				dispatch(getJobs()).then(() => dispatch(getJob));
+			}
 		}
+		else setErrors(["Confirmed password does not match"])
 	};
 
 	return (
-		<>
+		<div className="managers_tech_modal-container">
 			<div className="techs_name-modal">
 				{tech.first_name} {tech.last_name}{" "}
 			</div>
-			<button className="techs_edit_button-modal" onClick={handleEditMenu}>
-				Edit
-			</button>
-			<button
-				className="techs_delete_button-modal"
-				onClick={(e) => (e.preventDefault(), handleDeleteUser(tech.id))}
-			>
-				{" "}
-				Delete Tech{" "}
-			</button>
+			<div className="techs_info_button_container">
+				<button className="techs_edit_button-modal" onClick={handleEditMenu}>
+					Edit Technician Details
+				</button>
+				<button
+					className="techs_delete_button-modal"
+					onClick={(e) => (e.preventDefault(), handleDeleteUser(tech.id))}
+				>
+					Permanently Delete This Tech
+				</button>
+			</div>
 			{showEdit && (
 				<form
 					onSubmit={(e) => (e.preventDefault(), handleEditUser(tech.id))}
 					className="techs_edit_form-modal"
 				>
-					Edit {tech.first_name}{" "}
+					<div className="edit_tech_modal-name_title">
+						Edit {tech.first_name}{" "}
+					</div>
+					<ul>
+						{errors.map((error, idx) => (
+							<li className={"edit_errors"} key={idx}>
+								{error}
+							</li>
+						))}
+					</ul>
 					<div className="form-row">
 						<label className="form-group">
-							First Name
+							First Name:
+							<span> </span>
 							<input
 								type="text"
 								value={first_name}
@@ -114,7 +130,8 @@ function TechInfoModal({ tech, job }) {
 						</label>
 
 						<label className="form-group">
-							Last Name
+							Last Name:
+							<span> </span>
 							<input
 								type="text"
 								value={last_name}
@@ -122,37 +139,59 @@ function TechInfoModal({ tech, job }) {
 							/>
 						</label>
 					</div>
-					<label>
-						Username
-						<input
-							type="text"
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
-						/>
-					</label>
-					<label>
-						Phone Number
-						<input
-							type="text"
-							value={phoneNumber}
-							onChange={(e) => setPhoneNumber(e.target.value)}
-						/>
-					</label>
-					<label>
-						New Password
-						<input
-							type="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-						/>
-					</label>
-					<button type="submit">Confirm</button>
+					<div className="form-row-2">
+						<label className="form-group-2">
+							Username:
+							<span> </span>
+							<input
+								type="text"
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
+							/>
+						</label>
+						<label className="form-group-2">
+							Contact:
+							<span> </span>
+							<input
+								type="text"
+								value={phoneNumber}
+								onChange={(e) => setPhoneNumber(e.target.value)}
+							/>
+						</label>
+					</div>
+					<div className="form-row-3">
+						<label className="form-group-3">
+							New Pass
+							<span> </span>
+							<input
+								type="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+						</label>
+						<label className="form-group-3">
+							Confirm
+							<span> </span>
+							<input
+								type="password"
+								value={confirmPassword}
+								onChange={(e) => setConfirmPassword(e.target.value)}
+							/>
+						</label>
+					</div>
+					<button className={"form_edit_tech-button"} type="submit">
+						Edit
+					</button>
 				</form>
 			)}
 			<div className="techs_email-modal">{tech.email}</div>
-			<div className="techs_number-modal">{tech.phone_number}</div>
+			<div className="techs_number-modal">{`(${tech.phone_number
+				.toString()
+				.slice(0, 3)})-${tech.phone_number
+				.toString()
+				.slice(3, 6)}-${tech.phone_number.toString().slice(6)}`}</div>
+			<div className="techs_jobs-modal_title">Assigned Jobs: </div>
 			<div className="techs_jobs-modal">
-				Assigned Jobs :
 				{job.map((job) => {
 					if (job) {
 						if (job.worker_id == tech.id) {
@@ -166,6 +205,7 @@ function TechInfoModal({ tech, job }) {
 									</NavLink>
 									<p>{errors}</p>
 									<button
+										className={"tech_modal-unassign_button"}
 										onClick={() =>
 											handleUnassign(
 												{
@@ -189,7 +229,7 @@ function TechInfoModal({ tech, job }) {
 					}
 				})}
 			</div>
-		</>
+		</div>
 	);
 }
 
