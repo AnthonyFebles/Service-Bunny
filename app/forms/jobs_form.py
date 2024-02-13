@@ -3,7 +3,7 @@ from wtforms import IntegerField, StringField, BooleanField
 from wtforms.validators import DataRequired, Length, ValidationError
 from app.models import Job
 
-categories = ["General", "Moving", "Plumbing", "Electrical", "Nurse Call", "Network", "Construction", "Demolition", "Automotive"]
+categories = ["General", "Moving", "Plumbing", "Electrical", "NurseCall", "Network", "Construction", "Demolition", "Automotive"]
 
 
 def price_range(form, field):

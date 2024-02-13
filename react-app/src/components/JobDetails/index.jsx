@@ -176,16 +176,22 @@ const JobDetails = () => {
 								</div>
 							</div>
 						</div>
-						{job.bookings && job.bookings[0] && (
-							<div className="job_details-schedule_container-tech">
-								<div className="job_details-scheduled_for">
-									Scheduled To Start On: {job.bookings[0].scheduled_start}
+						<div className="job_details-schedule_container-tech">
+							{job.bookings && job.bookings[0] && (
+								<div className="job_details-container">
+									<div className="job_details-scheduled_for">
+										Scheduled To Start On: {job.bookings[0].scheduled_start}
+									</div>
+									
+										<TechBookings
+											booking={job.bookings[0]}
+											job={job}
+											className="tech_booking-container"
+										/>
+									
 								</div>
-								<div className="tech_booking-container">
-									<TechBookings booking={job.bookings[0]} job={job} />
-								</div>
-							</div>
-						)}
+							)}
+						</div>
 					</>
 				) : (
 					<div className="no_job">No Job Details Here</div>

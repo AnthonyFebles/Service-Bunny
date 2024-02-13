@@ -18,7 +18,7 @@ def seed_jobs() :
         location_id=2, user_id=7, title="Packing.", worker_id=4, price=100, category="Moving", description="everything needs to be disassembled and packed inside boxes."
     )
     job6 = Job(
-        location_id=3, user_id=8, title="Call bell system is down on the 2nd floor.", price=500, description="North wing in the emerald unit no calls coming into the nurse console. No zone or dome lights lighting whole systems looks like it's powered off ", category="Nurse Call"
+        location_id=3, user_id=8, title="Call bell system is down on the 2nd floor.", price=500, description="North wing in the emerald unit no calls coming into the nurse console. No zone or dome lights lighting whole systems looks like it's powered off ", category="NurseCall"
     )
     
     db.session.add(job1)
