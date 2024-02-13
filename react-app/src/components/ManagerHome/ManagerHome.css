@@ -22,6 +22,8 @@
 	flex-wrap: wrap;
     background-color: rgba(183, 182, 212, 0.207);
     box-shadow: 0px 0px 10px  #d3eef9;
+	min-height: 50px;
+	
 }
 
 .jobs_container,
@@ -70,6 +72,7 @@
 	background-color: #d3eef9;
     box-shadow: 0px 0px 20px  #a4cad9;
 	border-radius: 7px;
+	min-height: 120px;
 }
 
 .done_job {
