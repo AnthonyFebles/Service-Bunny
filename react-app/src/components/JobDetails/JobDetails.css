@@ -24,13 +24,6 @@
     gap: 1vh;
 }
 
-.job_details-container-tech {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    gap: 1vh;
-}
 
 .job_details-details {
     max-width: 20vw;

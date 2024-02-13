@@ -10,6 +10,7 @@ import { getBooking } from "../../store/booking";
 import { getOne } from "../../store/jobDetails";
 import { getJobs, updateJob } from "../../store/jobs";
 import { getJob } from "../../store/job";
+import "./TechBookings.css"
 
 const TechBookings = ({ booking, job }) => {
 	const dispatch = useDispatch();
@@ -131,17 +132,34 @@ const TechBookings = ({ booking, job }) => {
 
 	return (
 		<div className="technician_container">
-			<div className="job_details-solution">
-				<input
-					type="textarea"
-					name="solution"
-					onChange={(e) => setSolution(e.target.value)}
-					value={solution}
-					disabled={isDone}
-				/>
+			<div className="job_details-scheduled_for">
+				<b>Scheduled To Start On:</b> {booking.scheduled_start}
 			</div>
-			<div>Actually Started On : {booking.started_at}</div>
-			<div>Completed On : {booking.stopped_at}</div>
+			<br></br>
+			<div className="job_details-solution">
+				<label>
+					{" "}
+					<b>Solution:</b> <div>{"  "}</div>
+					<textarea
+						className="tech_solution_textarea"
+						name="solution"
+						onChange={(e) => setSolution(e.target.value)}
+						value={solution}
+						disabled={isDone}
+						rows="7"
+						cols="40"
+					/>
+				</label>
+			</div>
+			<br></br>
+			<div>
+				<b>Actually Started On:</b> {booking.started_at}
+			</div>
+			<br></br>
+			<div>
+				<b>Completed On:</b> {booking.stopped_at}
+			</div>
+			<br></br>
 			<div className="job_details-button_container">
 				<button
 					className="job_details-start_button"

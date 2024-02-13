@@ -178,10 +178,8 @@ const JobDetails = () => {
 						</div>
 						<div className="job_details-schedule_container-tech">
 							{job.bookings && job.bookings[0] && (
-								<div className="job_details-container">
-									<div className="job_details-scheduled_for">
-										Scheduled To Start On: {job.bookings[0].scheduled_start}
-									</div>
+								<div className="job_schedules-container">
+									
 									
 										<TechBookings
 											booking={job.bookings[0]}
