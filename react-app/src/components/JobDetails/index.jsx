@@ -5,15 +5,18 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { getOne, updateJob } from "../../store/jobDetails";
 import TechBookings from "../TechBookings";
 import { getLocations } from "../../store/locations";
+import { useModal } from "../../context/Modal";
 import { getALocation } from "../../store/locationDetails";
 import OpenModalButton from "../OpenModalButton";
 import EditJobModal from "../EditJobModal";
 import { deleteJob } from "../../store/jobs";
 import { getOneWorker } from "../../store/worker";
+import "./JobDetails.css";
 
 const JobDetails = () => {
 	const dispatch = useDispatch();
-
+	const { closeModal } = useModal();
+	closeModal();
 	const { jobId } = useParams();
 
 	const job = useSelector((state) => state.jobDetails);
@@ -50,12 +53,6 @@ const JobDetails = () => {
 	if (!job.price) {
 		return <div>You are unauthorized to view this job</div>;
 	}
-
-	// if (job) {
-	// 	if (job.worker_id) {
-	// 		dispatch(getOneWorker(job.worker_id))
-	// 	}
-	// }
 
 	const handleDelete = async () => {
 		try {
@@ -96,27 +93,50 @@ const JobDetails = () => {
 		return (
 			<>
 				{job ? (
-					<>
+					<div className="job_details-outer_container">
 						<div className="job_details-container">
-							<div className="job_details-title">Title: {job.title}</div>
-							<div className="job_details-title">Category: {job.category}</div>
 							<div className="job_details-title">
-								Details: {job.description}
+								<b>{job.title}</b>
 							</div>
-							<div>Location: {locations.address}</div>
-							<div>Hourly Rate : ${job.price}</div>
-							<div className="job_details-title">Created: {job.created_at}</div>
+							<br></br>
+							<div className="job_details-category">
+								<b>Category:</b> {job.category}
+							</div>
+							<br></br>
+							<div className="job_details-details">
+								<b>Details:</b> {job.description}
+							</div>
+							<br></br>
+							<div className="job_details-address">
+								<b>Location:</b> {locations.address}
+							</div>
+							<br></br>
+							<div className="job_details-price">
+								<b>Hourly Rate:</b> ${job.price}
+							</div>
+							<br></br>
+							<div className="job_detail-created">
+								<b>Created:</b> {job.created_at.slice(0, 16)}
+							</div>
 						</div>
 						{job.bookings && job.bookings[0] && (
 							<div className="job_details-schedule_container">
 								<div className="job_details-scheduled_for">
-									Scheduled To Start On: {job.bookings[0].scheduled_start}
+									<b>Scheduled To Start On:</b>{" "}
+									{job.bookings[0].scheduled_start}
 								</div>
-								<div>Actually Started On : {job.bookings[0].actual_start}</div>
-								<div>Completed On : {job.bookings[0].stopped_at}</div>
+								<br></br>
+								<div>
+									<b>Actually Started On:</b> {job.bookings[0].actual_start}
+								</div>
+
+								<br></br>
+								<div>
+									<b>Completed On:</b> {job.bookings[0].stopped_at}
+								</div>
 							</div>
 						)}
-					</>
+					</div>
 				) : (
 					<div className="no_job">No Job Details Here</div>
 				)}
@@ -130,13 +150,31 @@ const JobDetails = () => {
 				{job ? (
 					<>
 						<div className="job_details-container-tech">
-							<div className="job_details-title">Title: {job.title}</div>
-							<div className="job_details-title">Category: {job.category}</div>
-							<div className="job_details-title">
-								Details: {job.description}
+							<div className="job_details-container">
+								<div className="job_details-title">
+									<b>{job.title}</b>
+								</div>
+								<br></br>
+								<div className="job_details-category">
+									<b>Category:</b> {job.category}
+								</div>
+								<br></br>
+								<div className="job_details-details">
+									<b>Details:</b> {job.description}
+								</div>
+								<br></br>
+								<div className="job_details-address">
+									<b>Location:</b> {locations.address}
+								</div>
+								<br></br>
+								<div className="job_details-price">
+									<b>Hourly Rate:</b> ${job.price}
+								</div>
+								<br></br>
+								<div className="job_detail-created">
+									<b>Created:</b> {job.created_at.slice(0, 16)}
+								</div>
 							</div>
-							<div>Location: {locations.address}</div>
-							<div className="job_details-title">Created: {job.created_at}</div>
 						</div>
 						{job.bookings && job.bookings[0] && (
 							<div className="job_details-schedule_container-tech">
@@ -185,8 +223,9 @@ const JobDetails = () => {
 									</>
 								)}
 								{job.employee_check && !job.customer_check && (
-									<><div>Technicians Solution: {job.solution}</div>
-									<button  onClick={handleComplete} >Mark As Completed</button>
+									<>
+										<div>Technicians Solution: {job.solution}</div>
+										<button onClick={handleComplete}>Mark As Completed</button>
 									</>
 								)}
 								{job.customer_check && (
@@ -202,20 +241,29 @@ const JobDetails = () => {
 								<button onClick={handleDelete}>Delete This Job</button>
 							</>
 						)}
-						<div className="job_details-container-customer">
-							<div className="job_details-title">Title: {job.title}</div>
+						<div className="job_details-container">
+							<div className="job_details-title">
+								<b>{job.title}</b>
+							</div>
+							<br></br>
 							<div className="job_details-category">
-								Category: {job.category}
+								<b>Category:</b> {job.category}
 							</div>
-							<div className="job_details-description">
-								Details: {job.description}
+							<br></br>
+							<div className="job_details-details">
+								<b>Details:</b> {job.description}
 							</div>
-							<div>Hourly Rate : ${job.price}</div>
+							<br></br>
 							<div className="job_details-address">
-								Location: {locations.address}
+								<b>Location:</b> {locations.address}
 							</div>
-							<div className="job_details-Created">
-								Created: {job.created_at}
+							<br></br>
+							<div className="job_details-price">
+								<b>Hourly Rate:</b> ${job.price}
+							</div>
+							<br></br>
+							<div className="job_detail-created">
+								<b>Created:</b> {job.created_at.slice(0, 16)}
 							</div>
 						</div>
 						{job.bookings && job.bookings[0] && (
