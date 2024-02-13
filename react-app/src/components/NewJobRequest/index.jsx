@@ -11,7 +11,7 @@ let categories = [
 	"Moving",
 	"Plumbing",
 	"Electrical",
-	"Nurse Call",
+	"NurseCall",
 	"Network",
 	"Construction",
 	"Demolition",
