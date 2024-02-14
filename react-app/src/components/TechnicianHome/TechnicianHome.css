@@ -34,13 +34,14 @@
     padding-left: 15px;
     padding-right: 15px;
     font-weight: bolder;
+    max-width: 240px;
 }
 
 .tech_a_job {
     border: solid transparent 2px;
 }
 .tech_a_job:hover {
- border: solid black 2px;
+ border: solid rgb(70, 70, 70) 2px;
 }
 
 .job_image {

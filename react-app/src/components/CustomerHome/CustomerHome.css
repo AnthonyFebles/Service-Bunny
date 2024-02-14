@@ -1,0 +1,84 @@
+.customer_homepage-location_container {
+    margin-top: 4vh;
+    align-content: center;
+    justify-content: center;
+}
+
+.customer_homepage-job_container {
+    margin-top: 8vh;
+    align-content: center;
+    justify-content: center;
+    
+}
+
+.location_image {
+    mix-blend-mode: multiply;
+}
+
+.customer_homepage-locations {
+    border: 1px solid rgba(183, 182, 212, 0.207) ;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-left: 8%;
+	margin-right: 8%;
+	border-radius: 5px;
+	display: flex;
+    flex-direction: row;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+    background-color: rgba(183, 182, 212, 0.207);
+    box-shadow: 0px 0px 10px  #d3eef9;
+    gap: 1vw;
+}
+
+
+.customer_homepage-location_header,.location_details-is_booked_header,.location_details-is_booked_header,.customer_homepage-job_header {
+    margin-left: 4vw;
+    margin-bottom: 4vh;
+}
+
+.location_details-is_booked_header,.location_details-is_booked_header,.customer_homepage-job_header {
+    margin-top: 4vh;
+}
+
+.customer_homepage-a-location {
+    border: solid transparent 2px;
+    box-shadow:  0px 0px 20px  #f64040;
+    border-radius: 10px;
+}
+
+.customer_homepage-location_header {
+    margin-top: 1vh;
+}
+
+.customer_homepage-a-location:hover {
+ border: solid rgb(173, 0, 0) 2px;
+}
+
+.location__title {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: bolder;
+}
+
+.create_new_location-button {
+    margin-top: 4vh;
+    margin-left: 4vw;
+    box-shadow: 0px 0px 8px  #a4d9a7;
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	border: 2px solid #a0cea89b;
+    padding: 10px;
+	background-color: #d3f9df;
+	border-radius: 7px;
+}
+
+.create_new_location-button:hover {
+	cursor: pointer;
+	background-color: #45cc607a;
+}

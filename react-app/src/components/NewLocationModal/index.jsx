@@ -8,6 +8,7 @@ import { getJob } from "../../store/job";
 import { createNewBooking } from "../../store/bookings";
 import { createNewLocation, getLocations } from "../../store/locations";
 import { setDefaults, fromLatLng } from "react-geocode";
+import "./NewLocationModal.css";
 
 function NewLocationModal() {
 	const navigate = useNavigate();
@@ -76,6 +77,7 @@ function NewLocationModal() {
 	return (
 		<div className="new_location-container">
 			<h2 className="new_location-header">Create A New Location</h2>
+			<br></br>
 			<form className="new_location-form" onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
@@ -86,56 +88,71 @@ function NewLocationModal() {
 					onClick={handleLocation}
 					className="new_location-current_location"
 				>
-					Use Current Location
+					<i class="fa-solid fa-location-crosshairs"></i> Use Current Location
 				</button>
-				<label className="new_location-address">
-					Name
-					<input
-						type="text"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						required
-					></input>
-				</label>
-				<label className="new_location-address">
-					Address
-					<input
-						type="text"
-						value={address}
-						onChange={(e) => setAddress(e.target.value)}
-						required
-					></input>
-				</label>
-				<label className="new_location-lat">
-					Latitude
-					<input
-						type="text"
-						value={lat}
-						onChange={(e) => setLat(e.target.value)}
-						required
-					></input>
-				</label>
-				<label className="new_location-lng">
-					Longitude
-					<input
-						type="text"
-						value={lng}
-						onChange={(e) => setLng(e.target.value)}
-						required
-					></input>
-				</label>
-				<label className="new_location-notes">
-					Notes
-					<input
-						type="textarea"
-						value={notes}
-						onChange={(e) => setNotes(e.target.value)}
-					></input>
-				</label>
-
-				<button type="submit" className="new_location-submit">
-					Create Location
-				</button>
+				<br></br>
+				<div className="form-row">
+					<label className="new_location-name form-group">
+						Name:<span>{"  "}</span>
+						<input
+							type="text"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+							required
+						></input>
+					</label>
+					<label className="new_location-notes form-group">
+						Notes:
+						<span>{"  "}</span>
+						<input
+							type="textarea"
+							value={notes}
+							onChange={(e) => setNotes(e.target.value)}
+						></input>
+					</label>
+				</div>
+				<br></br>
+				<div className="form-row">
+					<label className="new_location-lat form-group">
+						Latitude:
+						<span>{"  "}</span>
+						<input
+							type="text"
+							value={lat}
+							onChange={(e) => setLat(e.target.value)}
+							required
+						></input>
+					</label>
+					<label className="new_location-lng form-group">
+						Longitude:
+						<span>{"  "}</span>
+						<input
+							type="text"
+							value={lng}
+							onChange={(e) => setLng(e.target.value)}
+							required
+						></input>
+					</label>
+					<br></br>
+				</div>
+				<div>
+					<label className="new_location-address form-row">
+						Address:
+						<input
+							type="text"
+							value={address}
+							onChange={(e) => setAddress(e.target.value)}
+							className="long_input"
+							required
+						></input>
+					</label>
+				</div>
+				<br></br>
+				<div className="new_location-submit-container">
+					<button type="submit" className="new_location-submit">
+						Create Location
+					</button>
+				</div>
 			</form>
 		</div>
 	);

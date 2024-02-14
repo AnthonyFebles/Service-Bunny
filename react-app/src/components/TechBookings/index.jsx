@@ -55,7 +55,12 @@ const TechBookings = ({ booking, job }) => {
 
 	if (!sessionUser) return <>{navigate("/")}</>;
 
-	if (isLoading) return <>Loading...</>;
+	if (isLoading)
+		return (
+			<>
+				<img src="Images/running.gif" className="loading_bunny"></img>
+			</>
+		);
 
 	//! Psuedo Code for cancel button
 	// Update the job using the job_id from the booking

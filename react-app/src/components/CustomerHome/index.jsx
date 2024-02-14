@@ -8,6 +8,7 @@ import { getJob } from "../../store/job";
 import { getLocations } from "../../store/locations";
 import { getBookings } from "../../store/bookings";
 import NewLocationModal from "../NewLocationModal";
+import "./CustomerHome.css"
 
 const CustomerHome = () => {
 	const dispatch = useDispatch();
@@ -46,7 +47,12 @@ const CustomerHome = () => {
 
 	if (!sessionUser) return <>{navigate("/")}</>;
 
-	if (isLoading) return <>Loading...</>;
+	if (isLoading)
+		return (
+			<>
+				<img src="Images/running.gif" className="loading_bunny" ></img>
+			</>
+		);
 
 	if (!jobs) return <div>No Jobs Assigned To You Yet</div>;
 
@@ -57,28 +63,35 @@ const CustomerHome = () => {
 
 	return (
 		<>
+			<OpenModalButton
+				className={"create_new_location-button"}
+				buttonText={"Create A New Location"}
+				modalComponent={<NewLocationModal />
+				
+			}
+			></OpenModalButton>
 			<div className="customer_homepage-location_container">
 				<h1 className="customer_homepage-location_header">Your Locations</h1>
-				<OpenModalButton
-					buttonText={"Create A New Location"}
-					modalComponent={<NewLocationModal />}
-				></OpenModalButton>
-				<nav>
+				<nav className="customer_homepage-locations">
 					{locations.toReversed().map((location) => {
 						if (location)
 							return (
-								<div key={location.id} className="customer_homepage-locations">
-									<NavLink to={`/locations/${location.id}`}>
-										<div>
-											<img
-												src={`/Images/locations.jpg`}
-												alt="Location Link"
-												className="location_image"
-												title={`${location.name}`}
-											/>
-										</div>
+								<div key={location.id} className="customer_homepage-a-location">
+									<NavLink
+										to={`/locations/${location.id}`}
+										className="location_nav_image"
+									>
+										<img
+											src={`/Images/locations.jpg`}
+											alt="Location Link"
+											className="location_image"
+											title={`${location.name}`}
+											height={200}
+											width={250}
+										/>
+
+										<p className="location__title">{`${location.name}`}</p>
 									</NavLink>
-									<p className="location__title">{`${location.name}`}</p>
 								</div>
 							);
 					})}
@@ -86,74 +99,87 @@ const CustomerHome = () => {
 			</div>
 			<div className="customer_homepage-job_container">
 				<h1 className="customer_homepage-job_header">Your Jobs</h1>
-				<nav>
 					<h2 className="location_details-is_booked_header">
 						Waiting On Approval:
 					</h2>
+				<nav className="tech_homepage-jobs">
 					{jobs.toReversed().map((job) => {
 						if (job)
 							if (job.bookings[0])
 								if (job.employee_check)
 									if (!job.customer_check)
 										return (
-											<div key={job.id} className="tech_homepage-jobs">
+											<div
+												key={job.id}
+												className={`${job.category} tech_a_job`}
+											>
 												<NavLink to={`/jobs/${job.id}`}>
-													<div>
-														<img
-															src={`/Images/${job.category}.jpg`}
-															alt="Job Link"
-															className="job_image"
-															title={`${job.title}`}
-														/>
-													</div>
+													<img
+														src={`/Images/${job.category}.jpg`}
+														alt="Job Link"
+														className="job_image"
+														title={`${job.title}`}
+														height={200}
+														width={250}
+													/>
+
+													<p className="job__title">{`${job.title}`}</p>
 												</NavLink>
-												<p className="job__title">{`${job.title}`}</p>
 											</div>
 										);
 					})}
+				</nav>
 					<h2 className="location_details-is_booked_header">
 						Technician Assigned:
 					</h2>
+				<nav className="tech_homepage-jobs">
 					{jobs.toReversed().map((job) => {
 						if (job)
 							if (job.bookings[0])
 								if (!job.employee_check)
 									if (!job.customer_check)
 										return (
-											<div key={job.id} className="tech_homepage-jobs">
+											<div
+												key={job.id}
+												className={`${job.category} tech_a_job`}
+											>
 												<NavLink to={`/jobs/${job.id}`}>
-													<div>
-														<img
-															src={`/Images/${job.category}.jpg`}
-															alt="Job Link"
-															className="job_image"
-															title={`${job.title}`}
-														/>
-													</div>
+													<img
+														src={`/Images/${job.category}.jpg`}
+														alt="Job Link"
+														className="job_image"
+														title={`${job.title}`}
+														height={200}
+														width={250}
+													/>
+
+													<p className="job__title">{`${job.title}`}</p>
 												</NavLink>
-												<p className="job__title">{`${job.title}`}</p>
 											</div>
 										);
 					})}
+				</nav>
 					<h2 className="location_details-is_booked_header">
 						Not Booked Yet:{" "}
 					</h2>
+				<nav className="tech_homepage-jobs">
 					{jobs.toReversed().map((job) => {
 						if (job)
 							if (!job.bookings[0])
 								return (
-									<div key={job.id} className="tech_homepage-jobs">
+									<div key={job.id} className={`${job.category} tech_a_job`}>
 										<NavLink to={`/jobs/${job.id}`}>
-											<div>
-												<img
-													src={`/Images/${job.category}.jpg`}
-													alt="Job Link"
-													className="job_image"
-													title={`${job.title}`}
-												/>
-											</div>
+											<img
+												src={`/Images/${job.category}.jpg`}
+												alt="Job Link"
+												className="job_image"
+												title={`${job.title}`}
+												height={200}
+												width={250}
+											/>
+
+											<p className="job__title">{`${job.title}`}</p>
 										</NavLink>
-										<p className="job__title">{`${job.title}`}</p>
 									</div>
 								);
 					})}
