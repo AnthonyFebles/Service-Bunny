@@ -17,6 +17,9 @@ function Navigation({ isLoaded }) {
 					</div>
 				</NavLink>
 			</nav>
+			<img src="Images/running.gif"
+			height={150}
+			className="running_bunny"></img>
 			<div className="right_side_nav">
 				{isLoaded && <ProfileButton user={sessionUser} />}
 			</div>

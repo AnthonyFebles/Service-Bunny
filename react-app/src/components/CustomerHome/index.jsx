@@ -47,7 +47,12 @@ const CustomerHome = () => {
 
 	if (!sessionUser) return <>{navigate("/")}</>;
 
-	if (isLoading) return <>Loading...</>;
+	if (isLoading)
+		return (
+			<>
+				<img src="Images/running.gif" className="loading_bunny" ></img>
+			</>
+		);
 
 	if (!jobs) return <div>No Jobs Assigned To You Yet</div>;
 

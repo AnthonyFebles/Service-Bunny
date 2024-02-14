@@ -50,7 +50,12 @@ const LocationDetails = () => {
 
 	if (!sessionUser) return <>{navigate("/")}</>;
 
-	if (isLoading) return <>Loading...</>;
+	if (isLoading)
+		return (
+			<>
+				<img src="Images/running.gif" className="loading_bunny"></img>
+			</>
+		);
 
 	if (sessionUser.role == "Customer") {
 		return (
