@@ -59,8 +59,11 @@ const CustomerHome = () => {
 	return (
 		<>
 			<OpenModalButton
+				className={"create_new_location-button"}
 				buttonText={"Create A New Location"}
-				modalComponent={<NewLocationModal />}
+				modalComponent={<NewLocationModal />
+				
+			}
 			></OpenModalButton>
 			<div className="customer_homepage-location_container">
 				<h1 className="customer_homepage-location_header">Your Locations</h1>
@@ -101,7 +104,10 @@ const CustomerHome = () => {
 								if (job.employee_check)
 									if (!job.customer_check)
 										return (
-											<div key={job.id}>
+											<div
+												key={job.id}
+												className={`${job.category} tech_a_job`}
+											>
 												<NavLink to={`/jobs/${job.id}`}>
 													<img
 														src={`/Images/${job.category}.jpg`}
@@ -128,7 +134,10 @@ const CustomerHome = () => {
 								if (!job.employee_check)
 									if (!job.customer_check)
 										return (
-											<div key={job.id}>
+											<div
+												key={job.id}
+												className={`${job.category} tech_a_job`}
+											>
 												<NavLink to={`/jobs/${job.id}`}>
 													<img
 														src={`/Images/${job.category}.jpg`}
@@ -153,7 +162,7 @@ const CustomerHome = () => {
 						if (job)
 							if (!job.bookings[0])
 								return (
-									<div key={job.id}>
+									<div key={job.id} className={`${job.category} tech_a_job`}>
 										<NavLink to={`/jobs/${job.id}`}>
 											<img
 												src={`/Images/${job.category}.jpg`}

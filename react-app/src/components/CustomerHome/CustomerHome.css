@@ -1,5 +1,5 @@
 .customer_homepage-location_container {
-    margin-top: 8vh;
+    margin-top: 4vh;
     align-content: center;
     justify-content: center;
 }
@@ -32,15 +32,23 @@
 }
 
 
-.customer_homepage-location_header {
+.customer_homepage-location_header,.location_details-is_booked_header,.location_details-is_booked_header,.customer_homepage-job_header {
     margin-left: 4vw;
     margin-bottom: 4vh;
+}
+
+.location_details-is_booked_header,.location_details-is_booked_header,.customer_homepage-job_header {
+    margin-top: 4vh;
 }
 
 .customer_homepage-a-location {
     border: solid transparent 2px;
     box-shadow:  0px 0px 20px  #f64040;
     border-radius: 10px;
+}
+
+.customer_homepage-location_header {
+    margin-top: 1vh;
 }
 
 .customer_homepage-a-location:hover {
@@ -54,4 +62,23 @@
     padding-left: 15px;
     padding-right: 15px;
     font-weight: bolder;
+}
+
+.create_new_location-button {
+    margin-top: 4vh;
+    margin-left: 4vw;
+    box-shadow: 0px 0px 8px  #a4d9a7;
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	border: 2px solid #a0cea89b;
+    padding: 10px;
+	background-color: #d3f9df;
+	border-radius: 7px;
+}
+
+.create_new_location-button:hover {
+	cursor: pointer;
+	background-color: #45cc607a;
 }
