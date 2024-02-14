@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import Mermaid from "../Mermaid";
 import OpenModalButton from "../OpenModalButton";
 import { getManagers } from "../../store/manager";
 import { useNavigate } from "react-router-dom";
@@ -44,6 +45,8 @@ const ManagerHome = () => {
 		// .bookings.map((bookingId) => state.bookings[bookingId]);
 	});
 
+	console.log(manager, "manager")
+
 	useEffect(() => {
 		dispatch(getJobs())
 			.then(() => dispatch(getLocations()))
@@ -63,6 +66,44 @@ const ManagerHome = () => {
 				<img src="Images/running.gif" className="loading_bunny"></img>
 			</>
 		);
+
+	const createSchedule = (manager, currJobs) => {
+		if (manager.length > 0) {
+		let final = `\n`
+		for(let i =0; i < manager.length; i++) {
+			let technician = manager[i]
+			if (technician.bookings[0]) {
+				final += `section ${technician.first_name} ${technician.last_name}\n`
+				for(let j=0; j<technician.bookings.length; j++){
+					
+					let booking = technician.bookings[j]
+					//console.log(technician.bookings[j],"booking in loop");
+					let found = currJobs.find((el) => el.id == booking.id);
+					console.log(found, "found")
+					if(found){
+					 final += `${found.title} :${booking.scheduled_start.slice(-12, -7)}, 1h\n`;
+				}
+				}
+				
+			}
+		}
+		return final
+	}
+	};
+
+	
+
+	let chartDefinition =
+		`
+---
+displayMode: compact
+--- 
+gantt
+    
+    dateFormat HH:mm
+    axisFormat %H:%M\n` + createSchedule(manager, currJobs);
+
+	console.log(chartDefinition, "chart")
 
 	function loadJobs(jobs) {
 		return (
@@ -105,8 +146,11 @@ const ManagerHome = () => {
 	}
 
 	return (
+		
 		<div className="manager_container">
+			{manager.length > 0 && console.log(createSchedule(manager, currJobs), "create string")}
 			<div className="manager_schedule">Schedule</div>
+			<Mermaid chart={chartDefinition} />
 			<div className="outer_jobs_container">
 				<h2 className="jobs_done-title">Ready For Billing</h2>
 				<div className="jobs_done">
