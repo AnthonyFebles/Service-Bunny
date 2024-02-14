@@ -1,0 +1,68 @@
+.job_details-container-customer {
+    font-size: 20px;
+    border: 1px solid rgba(183, 182, 212, 0.207);
+	padding-top: 20px;
+	padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+	margin-left: 8%;
+	margin-right: 8%;
+	border-radius: 5px;
+    margin-top: 5%;
+	display: inline;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+    background-color: rgba(183, 182, 212, 0.207);
+    box-shadow: 0px 0px 10px  #d3eef9;
+}
+
+.job_details-outer-container-customer {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.delete_location {
+    border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	border: 2px solid #cea0a09b;
+    padding: 10px;
+	background-color: #ffafaf;
+	border-radius: 7px;
+    width: 40%;
+    margin: 8px
+    
+}
+
+.delete_location:hover {
+	cursor: pointer;
+	background-color: #cc45457a;
+}
+
+.edit_location-current_location {
+    border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	border: 2px solid #a2a0ce9b;
+    padding: 10px;
+	background-color: #b4afff;
+	border-radius: 7px;
+    width: 40%;
+    margin: 8px
+    
+}
+
+.edit_location-current_location:hover {
+	cursor: pointer;
+	background-color: #4550cc7a;
+}
+
+.location_details-button_container {
+    text-align: center;
+    max-width: 100%;
+}
