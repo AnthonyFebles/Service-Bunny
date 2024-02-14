@@ -8,6 +8,7 @@ import { getJob } from "../../store/job";
 import { getLocations } from "../../store/locations";
 import { getBookings } from "../../store/bookings";
 import NewLocationModal from "../NewLocationModal";
+import "./CustomerHome.css"
 
 const CustomerHome = () => {
 	const dispatch = useDispatch();
@@ -57,28 +58,32 @@ const CustomerHome = () => {
 
 	return (
 		<>
+			<OpenModalButton
+				buttonText={"Create A New Location"}
+				modalComponent={<NewLocationModal />}
+			></OpenModalButton>
 			<div className="customer_homepage-location_container">
-				<h1 className="customer_homepage-location_header">Your Locations</h1>
-				<OpenModalButton
-					buttonText={"Create A New Location"}
-					modalComponent={<NewLocationModal />}
-				></OpenModalButton>
-				<nav>
+			<h1 className="customer_homepage-location_header">Your Locations</h1>
+				<nav className="customer_homepage-locations">
 					{locations.toReversed().map((location) => {
 						if (location)
 							return (
-								<div key={location.id} className="customer_homepage-locations">
-									<NavLink to={`/locations/${location.id}`}>
-										<div>
-											<img
-												src={`/Images/locations.jpg`}
-												alt="Location Link"
-												className="location_image"
-												title={`${location.name}`}
-											/>
-										</div>
+								<div key={location.id} className="customer_homepage-a-location">
+									<NavLink
+										to={`/locations/${location.id}`}
+										className="location_nav_image"
+									>
+										<img
+											src={`/Images/locations.jpg`}
+											alt="Location Link"
+											className="location_image"
+											title={`${location.name}`}
+											height={200}
+											width={250}
+										/>
+
+										<p className="location__title">{`${location.name}`}</p>
 									</NavLink>
-									<p className="location__title">{`${location.name}`}</p>
 								</div>
 							);
 					})}
@@ -98,16 +103,18 @@ const CustomerHome = () => {
 										return (
 											<div key={job.id} className="tech_homepage-jobs">
 												<NavLink to={`/jobs/${job.id}`}>
-													<div>
+													
 														<img
 															src={`/Images/${job.category}.jpg`}
 															alt="Job Link"
 															className="job_image"
 															title={`${job.title}`}
+															height={200}
+															width={250}
 														/>
-													</div>
-												</NavLink>
+													
 												<p className="job__title">{`${job.title}`}</p>
+												</NavLink>
 											</div>
 										);
 					})}
@@ -122,16 +129,18 @@ const CustomerHome = () => {
 										return (
 											<div key={job.id} className="tech_homepage-jobs">
 												<NavLink to={`/jobs/${job.id}`}>
-													<div>
+													
 														<img
 															src={`/Images/${job.category}.jpg`}
 															alt="Job Link"
 															className="job_image"
 															title={`${job.title}`}
+															height={200}
+															width={250}
 														/>
-													</div>
-												</NavLink>
+													
 												<p className="job__title">{`${job.title}`}</p>
+												</NavLink>
 											</div>
 										);
 					})}
@@ -144,16 +153,18 @@ const CustomerHome = () => {
 								return (
 									<div key={job.id} className="tech_homepage-jobs">
 										<NavLink to={`/jobs/${job.id}`}>
-											<div>
+											
 												<img
 													src={`/Images/${job.category}.jpg`}
 													alt="Job Link"
 													className="job_image"
 													title={`${job.title}`}
+													height={200}
+													width={250}
 												/>
-											</div>
-										</NavLink>
+											
 										<p className="job__title">{`${job.title}`}</p>
+										</NavLink>
 									</div>
 								);
 					})}
