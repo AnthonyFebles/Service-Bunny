@@ -4,6 +4,13 @@
     justify-content: center;
 }
 
+.customer_homepage-job_container {
+    margin-top: 8vh;
+    align-content: center;
+    justify-content: center;
+    
+}
+
 .location_image {
     mix-blend-mode: multiply;
 }
