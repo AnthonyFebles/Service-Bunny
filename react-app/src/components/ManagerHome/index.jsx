@@ -130,7 +130,8 @@ const ManagerHome = () => {
 		<div className="manager_container">
 			
 			<div className="manager_schedule">Schedule</div>
-			<Mermaid chart={chart} />
+			{manager.length > 0 ? <Mermaid chart={chart} />: <h2 className="no_techs-title">Hire Some Techs On The Bottom Right..</h2>}
+			
 			<div className="outer_jobs_container">
 				<h2 className="jobs_done-title">Ready For Billing</h2>
 				<div className="jobs_done">
