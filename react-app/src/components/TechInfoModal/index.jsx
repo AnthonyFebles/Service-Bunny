@@ -61,6 +61,11 @@ function TechInfoModal({ tech, job }) {
 	};
 
 	const handleDeleteUser = async (techId) => {
+
+		if(techId == 4) {
+			setErrors(["Sorry you can't delete the demo account"])
+			return
+		}
 		try {
 			const data = await dispatch(deleteManager(techId));
 			dispatch(getManagers());
@@ -101,6 +106,13 @@ function TechInfoModal({ tech, job }) {
 				>
 					Permanently Delete This Tech
 				</button>
+				<ul>
+					{errors.map((error, idx) => (
+						<li className={"edit_errors"} key={idx}>
+							{error}
+						</li>
+					))}
+				</ul>
 			</div>
 			{showEdit && (
 				<form
@@ -110,13 +122,7 @@ function TechInfoModal({ tech, job }) {
 					<div className="edit_tech_modal-name_title">
 						Edit {tech.first_name}{" "}
 					</div>
-					<ul>
-						{errors.map((error, idx) => (
-							<li className={"edit_errors"} key={idx}>
-								{error}
-							</li>
-						))}
-					</ul>
+
 					<div className="form-row">
 						<label className="form-group">
 							First Name:
