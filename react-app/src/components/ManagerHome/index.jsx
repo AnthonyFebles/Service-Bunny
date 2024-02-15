@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import mermaid from "mermaid";
 import Mermaid from "../Mermaid";
 import OpenModalButton from "../OpenModalButton";
 import { getManagers } from "../../store/manager";
@@ -14,14 +14,31 @@ import TechInfoModal from "../TechInfoModal";
 import SignupFormModal from "../SignupFormModal";
 import CompleteJobModal from "../CompleteJob";
 import "./ManagerHome.css";
+import { getChart } from "../../store/chart";
+import {store} from "../../index"
 
 const ManagerHome = () => {
 	const dispatch = useDispatch();
 
 	const [isLoading, setIsLoading] = useState(true);
+	
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const navigate = useNavigate();
+
+
+
+	useEffect(() => {
+		dispatch(getJobs())
+			.then(() => dispatch(getLocations()))
+			.then(() => dispatch(getBookings()))
+			.then(() => dispatch(getManagers()))
+			.then(() => dispatch(getJob()))
+			.then(() =>
+				dispatch(getChart(store.getState().manager, store.getState().job))
+			)
+			.then(() => setIsLoading(false));
+	}, [dispatch]);
 
 	const jobs = useSelector((state) => {
 		return state.jobs.list.map((jobId) => state.jobs[jobId]);
@@ -34,30 +51,26 @@ const ManagerHome = () => {
 	const manager = useSelector((state) => {
 		return state.manager.list.map((id) => state.manager[id]);
 	});
-
-	const locations = useSelector((state) => {
-		return state.locations.locations.map(
-			(locationId) => state.locations[locationId]
-		);
-	});
-	const bookings = useSelector((state) => {
-		return state.bookings;
-		// .bookings.map((bookingId) => state.bookings[bookingId]);
+	//console.log(manager.length, "manager");
+	
+	const chart = useSelector((state) => {
+		return state.chart;
 	});
 
-	console.log(manager, "manager")
+	//console.log(chart, "chart")
 
-	useEffect(() => {
-		dispatch(getJobs())
-			.then(() => dispatch(getLocations()))
-			.then(() => dispatch(getBookings()))
-			.then(() => dispatch(getManagers()))
-			.then(() => dispatch(getJob()))
-			.then(() => setIsLoading(false));
-	}, [dispatch]);
+	// const locations = useSelector((state) => {
+	// 	return state.locations.locations.map(
+	// 		(locationId) => state.locations[locationId]
+	// 	);
+	// });
+	// const bookings = useSelector((state) => {
+	// 	return state.bookings;
+	// 	// .bookings.map((bookingId) => state.bookings[bookingId]);
+	// });
 
-	console.log(currJobs, "curr Jobs");
-
+	//console.log(currJobs, "curr Jobs");
+	
 	if (!sessionUser) return <>{navigate("/")}</>;
 
 	if (isLoading)
@@ -67,43 +80,10 @@ const ManagerHome = () => {
 			</>
 		);
 
-	const createSchedule = (manager, currJobs) => {
-		if (manager.length > 0) {
-		let final = `\n`
-		for(let i =0; i < manager.length; i++) {
-			let technician = manager[i]
-			if (technician.bookings[0]) {
-				final += `section ${technician.first_name} ${technician.last_name}\n`
-				for(let j=0; j<technician.bookings.length; j++){
-					
-					let booking = technician.bookings[j]
-					//console.log(technician.bookings[j],"booking in loop");
-					let found = currJobs.find((el) => el.id == booking.id);
-					console.log(found, "found")
-					if(found){
-					 final += `${found.title} :${booking.scheduled_start.slice(-12, -7)}, 1h\n`;
-				}
-				}
-				
-			}
-		}
-		return final
-	}
-	};
+	//console.log(chartDefinition, "chart");
 
 	
 
-	let chartDefinition =
-		`
----
-displayMode: compact
---- 
-gantt
-    
-    dateFormat HH:mm
-    axisFormat %H:%M\n` + createSchedule(manager, currJobs);
-
-	console.log(chartDefinition, "chart")
 
 	function loadJobs(jobs) {
 		return (
@@ -144,13 +124,13 @@ gantt
 			</div>
 		);
 	}
+	//console.log(chart, "chart state")
 
 	return (
-		
 		<div className="manager_container">
-			{manager.length > 0 && console.log(createSchedule(manager, currJobs), "create string")}
+			
 			<div className="manager_schedule">Schedule</div>
-			<Mermaid chart={chartDefinition} />
+			<Mermaid chart={chart} />
 			<div className="outer_jobs_container">
 				<h2 className="jobs_done-title">Ready For Billing</h2>
 				<div className="jobs_done">

@@ -10,7 +10,7 @@ import App from "./App";
 
 import "./index.css";
 
-const store = configureStore();
+export const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
 	window.store = store;
