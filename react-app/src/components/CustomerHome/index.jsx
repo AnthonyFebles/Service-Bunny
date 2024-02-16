@@ -63,13 +63,13 @@ const CustomerHome = () => {
 
 	return (
 		<>
-			<OpenModalButton
-				className={"create_new_location-button"}
-				buttonText={"Create A New Location"}
-				modalComponent={<NewLocationModal />
-				
-			}
-			></OpenModalButton>
+			
+				<OpenModalButton
+					className={"create_new_location-button"}
+					buttonText={"Create A New Location"}
+					modalComponent={<NewLocationModal />}
+				></OpenModalButton>
+			
 			<div className="customer_homepage-location_container">
 				<h1 className="customer_homepage-location_header">Your Locations</h1>
 				<nav className="customer_homepage-locations">
@@ -99,9 +99,9 @@ const CustomerHome = () => {
 			</div>
 			<div className="customer_homepage-job_container">
 				<h1 className="customer_homepage-job_header">Your Jobs</h1>
-					<h2 className="location_details-is_booked_header">
-						Waiting On Approval:
-					</h2>
+				<h2 className="location_details-is_booked_header">
+					Waiting On Approval:
+				</h2>
 				<nav className="tech_homepage-jobs">
 					{jobs.toReversed().map((job) => {
 						if (job)
@@ -129,9 +129,9 @@ const CustomerHome = () => {
 										);
 					})}
 				</nav>
-					<h2 className="location_details-is_booked_header">
-						Technician Assigned:
-					</h2>
+				<h2 className="location_details-is_booked_header">
+					Technician Assigned:
+				</h2>
 				<nav className="tech_homepage-jobs">
 					{jobs.toReversed().map((job) => {
 						if (job)
@@ -159,9 +159,7 @@ const CustomerHome = () => {
 										);
 					})}
 				</nav>
-					<h2 className="location_details-is_booked_header">
-						Not Booked Yet:{" "}
-					</h2>
+				<h2 className="location_details-is_booked_header">Not Booked Yet: </h2>
 				<nav className="tech_homepage-jobs">
 					{jobs.toReversed().map((job) => {
 						if (job)

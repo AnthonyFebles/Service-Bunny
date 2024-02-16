@@ -183,14 +183,11 @@ const JobDetails = () => {
 						<div className="job_details-schedule_container-tech">
 							{job.bookings && job.bookings[0] && (
 								<div className="job_schedules-container">
-									
-									
-										<TechBookings
-											booking={job.bookings[0]}
-											job={job}
-											className="tech_booking-container"
-										/>
-									
+									<TechBookings
+										booking={job.bookings[0]}
+										job={job}
+										className="tech_booking-container"
+									/>
 								</div>
 							)}
 						</div>
@@ -209,36 +206,56 @@ const JobDetails = () => {
 					<>
 						{job.bookings.length ? (
 							<>
-								<div>
-									This Job Has A Current Booking And Can Not Be Edited Or
-									Deleted
-								</div>
-								<button disabled={true}>Edit This Job</button>
-								<button disabled={true}>Delete This Job</button>
-								{worker && worker.phone_number && (
-									<>
-										<div>Contact The Assigned Technician</div>
+								<div className="job_details-container-tech">
+									<div className="job_details-container">
 										<div>
-											{worker.first_name} {worker.last_name}
+											<b>
+												This Job Has A Current Booking And Can Not Be Edited Or
+												Deleted
+											</b>
 										</div>
-										<div>{`(${worker.phone_number
-											.toString()
-											.slice(0, 3)})-${worker.phone_number
-											.toString()
-											.slice(3, 6)}-${worker.phone_number
-											.toString()
-											.slice(6)}`}</div>
-									</>
-								)}
-								{job.employee_check && !job.customer_check && (
-									<>
-										<div>Technicians Solution: {job.solution}</div>
-										<button onClick={handleComplete}>Mark As Completed</button>
-									</>
-								)}
-								{job.customer_check && (
-									<div>Awaiting Manager Acknowledgement</div>
-								)}
+										<div className="customer_job_details-disable_buttons">
+											<button
+												disabled={true}
+												className="edit_location-current_location"
+											>
+												Edit This Job
+											</button>
+											<button disabled={true} className="delete_location">
+												Delete This Job
+											</button>
+										</div>
+										{worker && worker.phone_number && (
+											<>
+												<br></br>
+												<div>
+													<b>Contact The Assigned Technician</b>
+												</div>
+												<div>
+													{worker.first_name} {worker.last_name}
+												</div>
+												<div>{`(${worker.phone_number
+													.toString()
+													.slice(0, 3)})-${worker.phone_number
+													.toString()
+													.slice(3, 6)}-${worker.phone_number
+													.toString()
+													.slice(6)}`}</div>
+											</>
+										)}
+										{job.employee_check && !job.customer_check && (
+											<>
+												<div>Technicians Solution: {job.solution}</div>
+												<button onClick={handleComplete}>
+													Mark As Completed
+												</button>
+											</>
+										)}
+										{job.customer_check && (
+											<div>Awaiting Manager Acknowledgement</div>
+										)}
+									</div>
+								</div>
 							</>
 						) : (
 							<>
@@ -249,39 +266,69 @@ const JobDetails = () => {
 								<button onClick={handleDelete}>Delete This Job</button>
 							</>
 						)}
-						<div className="job_details-container">
-							<div className="job_details-title">
-								<b>{job.title}</b>
-							</div>
-							<br></br>
-							<div className="job_details-category">
-								<b>Category:</b> {job.category}
-							</div>
-							<br></br>
-							<div className="job_details-details">
-								<b>Details:</b> {job.description}
-							</div>
-							<br></br>
-							<div className="job_details-address">
-								<b>Location:</b> {locations.address}
-							</div>
-							<br></br>
-							<div className="job_details-price">
-								<b>Hourly Rate:</b> ${job.price}
-							</div>
-							<br></br>
-							<div className="job_detail-created">
-								<b>Created:</b> {job.created_at.slice(0, 16)}
+						<div className="job_details-container-tech">
+							<div className="job_details-container">
+								<div className="job_details-title">
+									<b>{job.title}</b>
+								</div>
+								<br></br>
+								<div className="job_details-category">
+									<b>Category:</b> {job.category}
+								</div>
+								<br></br>
+								<div className="job_details-details">
+									<b>Details:</b> {job.description}
+								</div>
+								<br></br>
+								<div className="job_details-address">
+									<b>Location:</b> {locations.address}
+								</div>
+								<br></br>
+								<div className="job_details-price">
+									<b>Hourly Rate:</b> ${job.price}
+								</div>
+								<br></br>
+								<div className="job_detail-created">
+									<b>Created:</b> {job.created_at.slice(0, 16)}
+								</div>
+								<br></br>
+								{job.bookings && job.bookings[0] && (
+									<>
+										<div className="job_detail-created">
+											<b>Scheduled To Start On:</b>{" "}
+											{job.bookings[0].scheduled_start.slice(
+												0,
+												job.bookings[0].scheduled_start.length - 7
+											)}
+										</div>
+										<br></br>
+										<div className="customer_booking-container">
+											<b>Actually Started On:</b>{" "}
+											{job.bookings[0].started_at && (
+												<>
+													{job.bookings[0].started_at.slice(
+														0,
+														job.bookings[0].scheduled_start.length - 7
+													)}
+												</>
+											)}
+										</div>
+										<br></br>
+										<div className="customer_booking-container">
+											<b>Completed On:</b>{" "}
+											{job.bookings[0].stopped_at && (
+												<>
+													{job.bookings[0].stopped_at.slice(
+														0,
+														job.bookings[0].scheduled_start.length - 7
+													)}
+												</>
+											)}
+										</div>
+									</>
+								)}
 							</div>
 						</div>
-						{job.bookings && job.bookings[0] && (
-							<div className="job_details-schedule_container-customer">
-								<div className="job_details-scheduled_for">
-									Scheduled To Start On: {job.bookings[0].scheduled_start}
-								</div>
-								<div className="customer_booking-container"></div>
-							</div>
-						)}
 					</>
 				) : (
 					<div className="no_job">No Job Details Here</div>

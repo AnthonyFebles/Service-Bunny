@@ -133,20 +133,7 @@ a {
 	display: none;
 }
 
-.search-container {
-	position: relative;
-}
 
-.search-container input {
-	width: 200px;
-	height: 32px;
-	border-radius: 5px;
-	border: 1px solid #e6e6fa71;
-	padding: 0 10px;
-	background-color: #431e3800;
-	color: #e6e6fa;
-	padding-left: 10px;
-}
 
 .search-container input:focus {
 	outline: none;
