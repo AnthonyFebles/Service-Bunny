@@ -69,7 +69,7 @@ function NewJobRequest({ currLocation }) {
 				</ul>
 				<div className="form-row">
 					<label className="new_job-title form-group">
-						What's the job?
+						What's the job? <span>{` `}</span>
 						<input
 							type="text"
 							value={title}
@@ -78,7 +78,7 @@ function NewJobRequest({ currLocation }) {
 						></input>
 					</label>
 					<label className="new_job-price form-group">
-						What's the hourly rate you're willing to pay?
+						What's the hourly rate you're willing to pay? <span>{` `}</span>
 						<input
 							type="text"
 							value={price}

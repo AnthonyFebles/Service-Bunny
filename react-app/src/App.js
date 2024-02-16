@@ -26,10 +26,9 @@ function App() {
 				<Routes>
 					<Route path="/login" element={<LoginFormPage />}></Route>
 					<Route path="/signup" element={<SignupFormPage />}></Route>
-					<Route path="/stores" element={<AllStores />}></Route>
-					<Route path="/home" element={<HomePage />}></Route>
 					<Route path="/jobs/:jobId" element={<JobDetails />}></Route>
 					<Route path="locations/:locationId" element={<LocationDetails/>}></Route>
+					<Route path="/home" element={<HomePage />}></Route>
 					<Route path="*" element={<NotFound />}></Route>
 				</Routes>
 			)}

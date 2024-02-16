@@ -16,7 +16,7 @@ import "./JobDetails.css";
 const JobDetails = () => {
 	const dispatch = useDispatch();
 	const { closeModal } = useModal();
-	closeModal();
+	
 	const { jobId } = useParams();
 
 	const job = useSelector((state) => state.jobDetails);
@@ -53,6 +53,8 @@ const JobDetails = () => {
 	if (!job.price) {
 		return <div>You are unauthorized to view this job</div>;
 	}
+
+	console.log(errors, "errors deatils")
 
 	const handleDelete = async () => {
 		try {
@@ -259,11 +261,23 @@ const JobDetails = () => {
 							</>
 						) : (
 							<>
-								<OpenModalButton
-									buttonText={"Edit This Job"}
-									modalComponent={<EditJobModal currJob={job} />}
-								></OpenModalButton>
-								<button onClick={handleDelete}>Delete This Job</button>
+								<div className="job_details-container-tech">
+									<div className="job_details-container">
+										<div className="jobs_details-buttons">
+											<OpenModalButton
+												className={"edit_location-current_location"}
+												buttonText={"Edit This Job"}
+												modalComponent={<EditJobModal currJob={job} />}
+											></OpenModalButton>
+											<button
+												onClick={handleDelete}
+												className="delete_location"
+											>
+												Delete This Job
+											</button>
+										</div>
+									</div>
+								</div>
 							</>
 						)}
 						<div className="job_details-container-tech">

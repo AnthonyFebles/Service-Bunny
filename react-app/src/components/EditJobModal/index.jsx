@@ -41,7 +41,7 @@ function EditJobModal({ currJob }) {
 	};
 
 	// console.log(worker_id, "worker Id")
-	console.log(payload);
+	console.log(payload, "payloas");
 
 	const handleEdit = async (e) => {
 		e.preventDefault();
@@ -55,62 +55,72 @@ function EditJobModal({ currJob }) {
 		}
 	};
 
-	// console.log(errors, "errors")
+	console.log(errors, "errors")
+
+	
 
 	return (
 		<div className="new_job-container">
-			<h2 className="new_job-header">Create A New Job For This Location</h2>
+			<h2 className="new_job-header">Edit This Job</h2>
 			<form className="new_job-form" onSubmit={handleEdit}>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label className="new_job-title">
-					Change The Title
-					<input
-						type="text"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						required
-					></input>
-				</label>
-				<label className="new_job-price">
-					Change the hourly rate
-					<input
-						type="text"
-						value={price}
-						onChange={(e) => setPrice(e.target.value)}
-						required
-					></input>
-				</label>
-				<select
-					onChange={(e) => setCategory(e.target.value)}
-					className="new_job-select"
-				>
-					Change the category
-					<option value="" selected disabled hidden>
-						Select A Category
-					</option>
-					{categories.map((category, index) => {
-						return (
-							<option key={index} value={category} label={category}></option>
-						);
-					})}
-				</select>
-
-				<label className="new_job-description">
-					Give some more details on what you need done
-					<input
-						type="textarea"
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-					></input>
-				</label>
-
-				<button type="submit" className="new_job-submit">
-					Edit This Job
-				</button>
+				<div className="form-row">
+					<label className="new_job-title form-group">
+						What's the job?<span>{` `}</span>
+						<input
+							type="text"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							required
+						></input>
+					</label>
+					<label className="new_job-price form-group">
+						What's the hourly rate you're willing to pay? <span>{` `}</span>
+						<input
+							type="text"
+							value={price}
+							onChange={(e) => setPrice(e.target.value)}
+							required
+						></input>
+					</label>
+				</div>
+				<div className="form-row">
+					<select
+						onChange={(e) => setCategory(e.target.value)}
+						className="new_job-select form-group"
+					>
+						Categories
+						<option value="" selected disabled hidden>
+							Select A Category
+						</option>
+						{categories.map((category, index) => {
+							return (
+								<option key={index} value={category} label={category}></option>
+							);
+						})}
+					</select>
+				</div>
+				<div className="form-row">
+					<label className="new_job-description form-group">
+						Give some more details on what you need done
+						<div>
+							<textarea
+								className="tech_solution_textarea"
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+							></textarea>
+						</div>
+					</label>
+				</div>
+				<div>
+					<button type="submit" className="new_job-submit">
+						Edit Job
+					</button>
+				</div>
 			</form>
 		</div>
 	);

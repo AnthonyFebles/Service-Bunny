@@ -83,6 +83,10 @@
     
 }
 
+.jobs_details-buttons {
+	text-align: center;
+}
+
 .edit_location-current_location:disabled, .delete_location:disabled, .edit_location-current_location:disabled:hover, .delete_location:disabled:hover  {
 	background-color: rgb(182, 180, 180);
 	border: 2px solid #cccccc9b;;
