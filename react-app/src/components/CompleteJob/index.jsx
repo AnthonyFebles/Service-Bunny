@@ -7,6 +7,10 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { getJob, deleteJob } from "../../store/job";
 import { createNewBooking } from "../../store/bookings";
+import { getBookings } from "../../store/bookings";
+import { getManagers } from "../../store/manager";
+import { getChart } from "../../store/chart";
+import { store } from "../../index";
 import "./CompleteJob.css";
 
 function CompleteJobModal({ job }) {
@@ -19,10 +23,26 @@ function CompleteJobModal({ job }) {
 
 	const handleComplete = async () => {
 		try {
-			await dispatch(deleteJob(job.id)).then(() => dispatch(getJob()));
+			await dispatch(deleteJob(job.id))
+				.then(() => dispatch(getJob()))
+				.then(() => {
+					dispatch(getBookings());
+				});
 			closeModal();
 		} catch (error) {
 			setErrors(error.errors);
+		} finally {
+			window.location.reload(false);
+			await dispatch(getJobs())
+				.then(() => {
+					dispatch(getBookings());
+				})
+				.then(() => dispatch(getManagers()))
+				.then(() => dispatch(getJob()))
+				.then(() => {
+					closeModal();
+				});
+			dispatch(getChart(store.getState().manager, store.getState().job));
 		}
 	};
 

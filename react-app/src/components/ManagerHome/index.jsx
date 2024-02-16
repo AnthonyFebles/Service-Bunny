@@ -128,10 +128,17 @@ const ManagerHome = () => {
 
 	return (
 		<div className="manager_container">
-			
-			<div className="manager_schedule">Schedule</div>
-			{manager.length > 0 ? <Mermaid chart={chart} />: <h2 className="no_techs-title">Hire Some Techs On The Bottom Right..</h2>}
-			
+			<h1 className="manager_schedule">Schedule</h1>
+			{manager.length > 0 && manager.some((el) => el.bookings.length > 0) && (
+				<Mermaid chart={chart} />
+			)}
+			{manager.length > 0 &&
+				!manager.some((el) => el.bookings.length > 0) && (
+					<h2 className="no_techs-title">
+						You Don't Have Any Jobs Booked Yet...
+					</h2>
+				)}
+			{manager.length == 0 && (<h2 className="no_techs-title">Hire Some Techs On The Bottom Right..</h2>)}
 			<div className="outer_jobs_container">
 				<h2 className="jobs_done-title">Ready For Billing</h2>
 				<div className="jobs_done">
