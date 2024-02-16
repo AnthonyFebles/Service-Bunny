@@ -8,12 +8,38 @@
 	margin-left: 8%;
 	margin-right: 8%;
 	border-radius: 5px;
-    margin-top: 5%;
+    margin-top: 2.5%;
+	margin-bottom: 2.5%;
 	display: inline;
 	justify-content: space-evenly;
 	flex-wrap: wrap;
     background-color: rgba(183, 182, 212, 0.207);
     box-shadow: 0px 0px 10px  #d3eef9;
+}
+
+.create_a_job-button_container{
+	margin-top: 5vh;
+	text-align: center;
+}
+.create_job-button {
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	border: 2px solid #8782e49b;
+    padding: 10px;
+	background-color: #c2bff7;
+	border-radius: 7px;
+    width: 40%;
+    margin: 8px
+    
+}
+
+.create_job-button:hover {
+	cursor: pointer;
+	background-color: #4550cc7a;
+	box-shadow: 0px 0px 20px #180cc3;
+	color: white;
 }
 
 .job_details-outer-container-customer {
@@ -55,6 +81,19 @@
     width: 40%;
     margin: 8px
     
+}
+
+.jobs_details-buttons {
+	text-align: center;
+}
+
+.edit_location-current_location:disabled, .delete_location:disabled, .edit_location-current_location:disabled:hover, .delete_location:disabled:hover  {
+	background-color: rgb(182, 180, 180);
+	border: 2px solid #cccccc9b;;
+}
+
+.edit_location-current_location:disabled:hover, .delete_location:disabled:hover {
+	cursor: not-allowed;
 }
 
 .edit_location-current_location:hover {

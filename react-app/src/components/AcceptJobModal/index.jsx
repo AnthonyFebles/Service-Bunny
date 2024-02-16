@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import Mermaid from "../Mermaid";
 import { updateJob } from "../../store/jobs";
 import { getJobs } from "../../store/jobs";
 import { useDispatch } from "react-redux";
@@ -7,7 +7,12 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { getJob } from "../../store/job";
 import { createNewBooking } from "../../store/bookings";
+import { getBookings } from "../../store/bookings";
 import "./AcceptJobModal.css";
+import { getManagers } from "../../store/manager";
+import mermaid from "mermaid";
+import { getChart } from "../../store/chart";
+import { store } from "../../index";
 
 function AcceptJobModal({ job, techs }) {
 	const AMPM = (hour) => {
@@ -27,7 +32,9 @@ function AcceptJobModal({ job, techs }) {
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
-	console.log(currDate, "date");
+	
+
+	//console.log(currDate, "date");
 
 	let payload = {
 		location_id,
@@ -47,7 +54,7 @@ function AcceptJobModal({ job, techs }) {
 		job_id: job.id,
 	};
 
-	console.log(schedulePayload, "scheduled");
+	//console.log(schedulePayload, "scheduled");
 
 	const futureHours = [];
 
@@ -61,13 +68,26 @@ function AcceptJobModal({ job, techs }) {
 			const data = await dispatch(updateJob(payload, job.id)).then(() =>
 				dispatch(createNewBooking(schedulePayload))
 			);
-			navigate("/home");
-			dispatch(getJob());
-			closeModal();
+			navigate("/home")
+			await dispatch(getJob()).then(()=>{dispatch(getBookings())})
+			
+			
 		} catch (data) {
+			console.log(data, "errors");
 			setErrors(data.errors);
 		} finally {
-			dispatch(getJobs()).then(() => dispatch(getJob));
+			window.location.reload(false);
+			await dispatch(getJobs())
+				.then(() => {
+					dispatch(getBookings());
+				})
+				.then(() => dispatch(getManagers()))
+				.then(() => dispatch(getJob()))
+				.then(() => {
+					closeModal();
+					;
+				});
+			dispatch(getChart(store.getState().manager, store.getState().job));
 		}
 	};
 

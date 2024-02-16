@@ -5,6 +5,7 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { createNewLocation, getLocations } from "../../store/locations";
 import { getALocation } from "../../store/locationDetails";
+import "./NewJobRequest.css"
 
 let categories = [
 	"General",
@@ -66,51 +67,59 @@ function NewJobRequest({ currLocation }) {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label className="new_job-title">
-					What's the job?
-					<input
-						type="text"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						required
-					></input>
-				</label>
-				<label className="new_job-price">
-					What's the hourly rate you're willing to pay?
-					<input
-						type="text"
-						value={price}
-						onChange={(e) => setPrice(e.target.value)}
-						required
-					></input>
-				</label>
-				<select
-					onChange={(e) => setCategory(e.target.value)}
-					className="new_job-select"
-				>
-					Categories
-					<option value="" selected disabled hidden>
-						Select A Category
-					</option>
-					{categories.map((category, index) => {
-						return (
-							<option key={index} value={category} label={category}></option>
-						);
-					})}
-				</select>
-
-				<label className="new_job-description">
-					Give some more details on what you need done
-					<input
-						type="textarea"
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-					></input>
-				</label>
-
-				<button type="submit" className="new_job-submit">
-					Request Job
-				</button>
+				<div className="form-row">
+					<label className="new_job-title form-group">
+						What's the job? <span>{` `}</span>
+						<input
+							type="text"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							required
+						></input>
+					</label>
+					<label className="new_job-price form-group">
+						What's the hourly rate you're willing to pay? <span>{` `}</span>
+						<input
+							type="text"
+							value={price}
+							onChange={(e) => setPrice(e.target.value)}
+							required
+						></input>
+					</label>
+				</div>
+				<div className="form-row">
+					<select
+						onChange={(e) => setCategory(e.target.value)}
+						className="new_job-select form-group"
+					>
+						Categories
+						<option value="" selected disabled hidden>
+							Select A Category
+						</option>
+						{categories.map((category, index) => {
+							return (
+								<option key={index} value={category} label={category}></option>
+							);
+						})}
+					</select>
+				</div>
+				<div className="form-row">
+					<label className="new_job-description form-group">
+						Give some more details on what you need done
+						<div>
+							<textarea
+								className="tech_solution_textarea"
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+							></textarea>
+						</div>
+					</label>
+				</div>
+				<div>
+					<button type="submit" className="new_job-submit">
+						Request Job
+					</button>
+				</div>
 			</form>
 		</div>
 	);

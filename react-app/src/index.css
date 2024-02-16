@@ -15,3 +15,8 @@ html {
     background-attachment: absolute;
 	background-size: cover;
 }
+
+.taskText {
+    font-size: 16px;
+}
+

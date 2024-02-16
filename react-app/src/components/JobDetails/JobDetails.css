@@ -33,3 +33,8 @@
     font-size: 25px;
     text-decoration: underline;
 }
+
+.customer_job_details-disable_buttons{
+    text-align: center;
+    justify-content: space-evenly;
+}

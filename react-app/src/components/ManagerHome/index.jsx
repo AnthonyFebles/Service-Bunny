@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import mermaid from "mermaid";
+import Mermaid from "../Mermaid";
 import OpenModalButton from "../OpenModalButton";
 import { getManagers } from "../../store/manager";
 import { useNavigate } from "react-router-dom";
@@ -13,14 +14,31 @@ import TechInfoModal from "../TechInfoModal";
 import SignupFormModal from "../SignupFormModal";
 import CompleteJobModal from "../CompleteJob";
 import "./ManagerHome.css";
+import { getChart } from "../../store/chart";
+import {store} from "../../index"
 
 const ManagerHome = () => {
 	const dispatch = useDispatch();
 
 	const [isLoading, setIsLoading] = useState(true);
+	
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const navigate = useNavigate();
+
+
+
+	useEffect(() => {
+		dispatch(getJobs())
+			.then(() => dispatch(getLocations()))
+			.then(() => dispatch(getBookings()))
+			.then(() => dispatch(getManagers()))
+			.then(() => dispatch(getJob()))
+			.then(() =>
+				dispatch(getChart(store.getState().manager, store.getState().job))
+			)
+			.then(() => setIsLoading(false));
+	}, [dispatch]);
 
 	const jobs = useSelector((state) => {
 		return state.jobs.list.map((jobId) => state.jobs[jobId]);
@@ -33,28 +51,26 @@ const ManagerHome = () => {
 	const manager = useSelector((state) => {
 		return state.manager.list.map((id) => state.manager[id]);
 	});
-
-	const locations = useSelector((state) => {
-		return state.locations.locations.map(
-			(locationId) => state.locations[locationId]
-		);
-	});
-	const bookings = useSelector((state) => {
-		return state.bookings;
-		// .bookings.map((bookingId) => state.bookings[bookingId]);
+	//console.log(manager.length, "manager");
+	
+	const chart = useSelector((state) => {
+		return state.chart;
 	});
 
-	useEffect(() => {
-		dispatch(getJobs())
-			.then(() => dispatch(getLocations()))
-			.then(() => dispatch(getBookings()))
-			.then(() => dispatch(getManagers()))
-			.then(() => dispatch(getJob()))
-			.then(() => setIsLoading(false));
-	}, [dispatch]);
+	//console.log(chart, "chart")
 
-	console.log(currJobs, "curr Jobs");
+	// const locations = useSelector((state) => {
+	// 	return state.locations.locations.map(
+	// 		(locationId) => state.locations[locationId]
+	// 	);
+	// });
+	// const bookings = useSelector((state) => {
+	// 	return state.bookings;
+	// 	// .bookings.map((bookingId) => state.bookings[bookingId]);
+	// });
 
+	//console.log(currJobs, "curr Jobs");
+	
 	if (!sessionUser) return <>{navigate("/")}</>;
 
 	if (isLoading)
@@ -63,6 +79,11 @@ const ManagerHome = () => {
 				<img src="Images/running.gif" className="loading_bunny"></img>
 			</>
 		);
+
+	//console.log(chartDefinition, "chart");
+
+	
+
 
 	function loadJobs(jobs) {
 		return (
@@ -103,10 +124,14 @@ const ManagerHome = () => {
 			</div>
 		);
 	}
+	//console.log(chart, "chart state")
 
 	return (
 		<div className="manager_container">
+			
 			<div className="manager_schedule">Schedule</div>
+			{manager.length > 0 ? <Mermaid chart={chart} />: <h2 className="no_techs-title">Hire Some Techs On The Bottom Right..</h2>}
+			
 			<div className="outer_jobs_container">
 				<h2 className="jobs_done-title">Ready For Billing</h2>
 				<div className="jobs_done">

@@ -60,10 +60,13 @@ const LocationDetails = () => {
 	if (sessionUser.role == "Customer") {
 		return (
 			<>
-				<OpenModalButton
-					buttonText={"Create A Job For This Location"}
-					modalComponent={<NewJobRequest currLocation={location} />}
-				></OpenModalButton>
+				<div className="create_a_job-button_container">
+					<OpenModalButton
+					className={"create_job-button"}
+						buttonText={"Create A Job For This Location"}
+						modalComponent={<NewJobRequest currLocation={location} />}
+					></OpenModalButton>
+				</div>
 				{location ? (
 					<>
 						<div className="job_details-outer-container-customer">

@@ -1,0 +1,22 @@
+.new_job-select {
+    font-size: 18px;
+}
+
+.new_job-submit {
+    border: none;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 17px;
+	border: 2px solid #87e4829b;
+    padding: 10px;
+	background-color: #bff7d0;
+	border-radius: 7px;
+    width: 40%;
+    margin: 8px
+}
+
+.new_job-submit:hover {
+	cursor: pointer;
+	background-color: #45cc5b7a;
+	box-shadow: 0px 0px 5px #0cc34f;
+}

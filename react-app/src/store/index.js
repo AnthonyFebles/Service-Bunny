@@ -10,6 +10,7 @@ import jobDetails from './jobDetails';
 import booking from './booking'
 import locationDetails from './locationDetails'
 import worker from './worker'
+import chart from './chart'
 
 const rootReducer = combineReducers({
   session,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   jobDetails,
   booking,
   locationDetails,
-  worker
+  worker,
+  chart
 });
 
 
