@@ -30,28 +30,36 @@ function LoginFormModal() {
 			<form onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<li className={"edit_errors"} key={idx}>
+							{error}
+						</li>
 					))}
 				</ul>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit">Log In</button>
+				<div className="form-row">
+					<label className="form-group">
+						<b>Email</b> <span>{` `}</span>
+						<input
+							className="log_in-input"
+							type="text"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							required
+						/>
+					</label>
+					<label className="form-group">
+						<b>Password</b> <span>{` `}</span>
+						<input
+							className="log_in-input"
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+					</label>
+				</div>
+				<button type="submit" className="edit_location-current_location">
+					Log In
+				</button>
 			</form>
 		</>
 	);

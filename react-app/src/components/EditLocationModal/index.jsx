@@ -89,7 +89,9 @@ function EditLocationModal({ currLocation }) {
 			<form className="new_location-form" onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<li className={"edit_errors"} key={idx}>
+							{error}
+						</li>
 					))}
 				</ul>
 				<button

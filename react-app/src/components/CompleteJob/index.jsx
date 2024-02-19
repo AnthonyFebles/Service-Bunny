@@ -52,7 +52,9 @@ function CompleteJobModal({ job }) {
 		<div className="complete_job_modal-container">
 			<ul>
 				{errors.map((error, idx) => (
-					<li key={idx}>{error}</li>
+					<li className={"edit_errors"} key={idx}>
+						{error}
+					</li>
 				))}
 			</ul>
 			<h1 className="complete_job-title">Mark Job As Completed?</h1>

@@ -116,28 +116,31 @@ function ProfileButton({ user }) {
 					</>
 				) : (
 					<>
-						<OpenModalButton
-							buttonText="Log In"
-							onItemClick={closeMenu}
-							modalComponent={<LoginFormModal />}
-						/>
-
-						<OpenModalButton
-							buttonText="Sign Up"
-							onItemClick={closeMenu}
-							modalComponent={<SignupFormModal />}
-						/>
-						<div className="manager-login">
-							<button onClick={handleManagerLogin}>Manager-Demo-Login</button>
-						</div>
-						<div className="technician-login">
-							<button onClick={handleTechnicianLogin}>
-								Technician-Demo-Login
-							</button>
-						</div>
-						<div className="customer-login">
-							<button onClick={handleCustomerLogin}>Customer-Demo-Login</button>
-						</div>
+						<li className="neutral-button">
+							<OpenModalButton
+								className={"neutral-login"}
+								buttonText="Log In"
+								onItemClick={closeMenu}
+								modalComponent={<LoginFormModal />}
+							/>
+						</li>
+						<li className="neutral-button">
+							<OpenModalButton
+								className={"neutral-signup"}
+								buttonText="Sign Up"
+								onItemClick={closeMenu}
+								modalComponent={<SignupFormModal />}
+							/>
+						</li>
+						<li className="manager-login" onClick={handleManagerLogin}>
+							Manager Demo Login
+						</li>
+						<li className="technician-login" onClick={handleTechnicianLogin}>
+							Technician Demo Login
+						</li>
+						<li className="customer-login" onClick={handleCustomerLogin}>
+							Customer Demo Login
+						</li>
 					</>
 				)}
 			</ul>

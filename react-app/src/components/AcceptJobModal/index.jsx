@@ -114,7 +114,9 @@ function AcceptJobModal({ job, techs }) {
 			<form onSubmit={handleSubmit} className="assign_tech_form">
 				<ul>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<li className={"edit_errors"} key={idx}>
+							{error}
+						</li>
 					))}
 				</ul>
 				<select
