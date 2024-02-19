@@ -16,11 +16,12 @@ function LoginFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = await dispatch(login(email, password));
-		navigate("/home");
+		
 		if (data) {
 			setErrors(data);
 		} else {
 			closeModal();
+			navigate("/home");
 		}
 	};
 
