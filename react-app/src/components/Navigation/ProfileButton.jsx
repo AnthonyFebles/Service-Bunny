@@ -4,8 +4,8 @@ import { login } from "../../store/session";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
 import { useNavigate } from "react-router-dom";
+import SignupFormPage from "../SignupFormPage";
 
 function ProfileButton({ user }) {
 	const dispatch = useDispatch();
@@ -129,7 +129,7 @@ function ProfileButton({ user }) {
 								className={"neutral-signup"}
 								buttonText="Sign Up"
 								onItemClick={closeMenu}
-								modalComponent={<SignupFormModal />}
+								modalComponent={<SignupFormPage />}
 							/>
 						</li>
 						<li className="manager-login" onClick={handleManagerLogin}>
