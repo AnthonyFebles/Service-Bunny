@@ -1,15 +1,93 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 import { useInView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/session";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormPage from "../SignupFormPage";
 import "./LandingPage.css";
 
 function LandingPage() {
 	const sessionUser = useSelector((state) => state.session.user);
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const { ref: sectionOne, inView: oneInView } = useInView();
 	const { ref: sectionTwo, inView: twoInView } = useInView();
 	const { ref: sectionThree, inView: threeInView } = useInView();
 	const { ref: sectionFour, inView: fourInView } = useInView();
+
+	const handleManagerLogin = () => {
+		const demoCredentials = {
+			email: "demo@aa.io",
+			password: "password",
+		};
+
+		dispatch(login(demoCredentials.email, demoCredentials.password)).then(
+			() => {
+				navigate("/home");
+			}
+		);
+	};
+	const handleTechnicianLogin = () => {
+		const demoCredentials = {
+			email: "steve@aa.io",
+			password: "password",
+		};
+
+		dispatch(login(demoCredentials.email, demoCredentials.password)).then(
+			() => {
+				navigate("/home");
+			}
+		);
+	};
+	const handleCustomerLogin = () => {
+		const demoCredentials = {
+			email: "marnie@aa.io",
+			password: "password",
+		};
+
+		dispatch(login(demoCredentials.email, demoCredentials.password)).then(
+			() => {
+				navigate("/home");
+			}
+		);
+	};
+
+	useEffect(() => {
+		const magnetic = document.querySelectorAll(".landing_button");
+
+		function moveMouse(e) {
+			let x = e.offsetX;
+			let y = e.offsetY;
+			let btnWidth = this.clientWidth; // 'this' refers to the button
+			let btnHeight = this.clientHeight;
+			let transX = x - btnWidth / 2;
+			let transY = y - btnHeight / 2;
+			this.style.transform = `translateX(${transX}px) translateY(${transY}px)`;
+		}
+
+		function removeMouse(e) {
+			this.style.transform = ""; // 'this' refers to the button
+		}
+
+		magnetic.forEach((btn) => {
+			btn.addEventListener("mousemove", moveMouse);
+			btn.addEventListener("mouseout", removeMouse);
+		});
+
+		return () => {
+			magnetic.forEach((btn) => {
+				btn.removeEventListener("mousemove", moveMouse);
+				btn.removeEventListener("mouseout", removeMouse);
+			});
+		};
+	}, []);
 
 	return (
 		<div className="landing_page-container">
@@ -122,6 +200,56 @@ function LandingPage() {
 					finding the perfect solution for your tasks, all in one place. Service
 					Bunny – where convenience meets reliability.
 				</p>
+				<ul className="landing-demo_buttons_container">
+					<li
+						className={`hidden-landing landing_button login-landing_button ${
+							fourInView ? "show-landing" : ""
+						} `}
+					>
+						<OpenModalButton
+							className={"neutral-login landing-session"}
+							buttonText="Log In"
+							modalComponent={<LoginFormModal />}
+						/>
+					</li>
+					<li
+						className={`hidden-landing  landing_button signUp-landing_button ${
+							fourInView ? "show-landing" : ""
+						}`}
+					>
+						<OpenModalButton
+							className={"neutral-signup landing-session"}
+							buttonText="Sign Up"
+							modalComponent={<SignupFormPage />}
+						/>
+					</li>
+				</ul>
+				<ul className="landing-demo_buttons_container">
+					<li
+						className={`hidden-landing landing_button manager-landing_button ${
+							fourInView ? "show-landing" : ""
+						} `}
+						onClick={handleManagerLogin}
+					>
+						<span>Manager Demo</span>
+					</li>
+					<li
+						className={`hidden-landing landing_button technician-landing_button ${
+							fourInView ? "show-landing" : ""
+						} `}
+						onClick={handleTechnicianLogin}
+					>
+						<span>Technician Demo</span>
+					</li>
+					<li
+						className={`hidden-landing landing_button customer-landing_button ${
+							fourInView ? "show-landing" : ""
+						} `}
+						onClick={handleCustomerLogin}
+					>
+						<span>Customer Demo</span>
+					</li>
+				</ul>
 			</section>
 		</div>
 	);
