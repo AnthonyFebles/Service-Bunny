@@ -65,7 +65,9 @@ function EditJobModal({ currJob }) {
 			<form className="new_job-form" onSubmit={handleEdit}>
 				<ul>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<li className={"edit_errors"} key={idx}>
+							{error}
+						</li>
 					))}
 				</ul>
 				<div className="form-row">

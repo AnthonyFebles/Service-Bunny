@@ -10,16 +10,35 @@ function Navigation({ isLoaded }) {
 	return (
 		<header>
 			<nav>
-				<NavLink exact to="/home">
-					<div className="logo-name">
-						<img src="https://i.imgur.com/6H6dkkv.png" width="70" height="70" />
-						<p>Service Bunny</p>
-					</div>
-				</NavLink>
+				{sessionUser ? (
+					<NavLink exact to="/home">
+						<div className="logo-name">
+							<img
+								src="https://i.imgur.com/6H6dkkv.png"
+								width="70"
+								height="70"
+							/>
+							<p>Service Bunny</p>
+						</div>
+					</NavLink>
+				) : (
+					<NavLink exact to="/">
+						<div className="logo-name">
+							<img
+								src="https://i.imgur.com/6H6dkkv.png"
+								width="70"
+								height="70"
+							/>
+							<p>Service Bunny</p>
+						</div>
+					</NavLink>
+				)}
 			</nav>
-			<img src="Images/running.gif"
-			height={150}
-			className="running_bunny"></img>
+			<img
+				src="Images/running.gif"
+				height={150}
+				className="running_bunny"
+			></img>
 			<div className="right_side_nav">
 				{isLoaded && <ProfileButton user={sessionUser} />}
 			</div>
