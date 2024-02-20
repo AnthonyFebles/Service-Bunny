@@ -17,8 +17,6 @@
 	transform: translateX(0);
 }
 
-.technician-image {
-}
 
 .technician-image:nth-child() {
 	transition-delay: 200ms;
@@ -33,10 +31,9 @@
 	gap: 1%;
 }
 .landing-demo_buttons_container {
-   
 	margin-top: 10vh;
 	display: flex;
-    justify-content: space-around;
+	justify-content: space-around;
 	flex-direction: row;
 	gap: 15%;
 	width: 80%;
@@ -51,33 +48,33 @@
 	font-size: 30px;
 	padding: 20px;
 	width: 100%;
-    position: relative;
-    transition: all 1s;
-    max-width: 30%;
+	position: relative;
+	transition: all 1s;
+	max-width: 30%;
 }
 .landing_button:hover {
 	cursor: pointer;
-    scale: 1.2;
+	scale: 1.2;
 }
 
 .manager-landing_button {
-    border: solid rgb(252, 198, 198) 2px;
-   box-shadow: 0px 0px 20px #ff0000 
+	border: solid rgb(252, 198, 198) 2px;
+	box-shadow: 0px 0px 20px #ff0000;
 }
 
-.technician-landing_button{
-    border: solid rgb(200, 198, 252) 2px;
-    box-shadow: 0px 0px 20px #0400ff 
+.technician-landing_button {
+	border: solid rgb(200, 198, 252) 2px;
+	box-shadow: 0px 0px 20px #0400ff;
 }
 
 .customer-landing_button {
-    border: solid rgb(198, 252, 212) 2px;
-    box-shadow: 0px 0px 20px #00ff2f 
+	border: solid rgb(198, 252, 212) 2px;
+	box-shadow: 0px 0px 20px #00ff2f;
 }
 
 .landing-session {
-    font-size: 30px;
-    color: #d3eef9
+	font-size: 30px;
+	color: #d3eef9;
 }
 
 .category-image {
