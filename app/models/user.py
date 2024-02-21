@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(20), nullable=False)
     schedule_color = db.Column(db.String(15), nullable=False)
     manager = db.Column(db.Integer, nullable=True)
-    phone_number = db.Column(db.Integer, nullable=True)
+    phone_number = db.Column(db.BigInteger, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(
         db.DateTime, default=datetime.now, onupdate=datetime.now)
