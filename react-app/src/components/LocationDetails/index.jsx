@@ -40,6 +40,10 @@ const LocationDetails = () => {
 
 	// console.log(currJobs, "curr Jobs")
 	const handleDelete = async () => {
+		if(location.jobs.length > 0) {
+			alert("You Can't Delete a Location with Active Jobs!")
+			return
+		}
 		try {
 			await dispatch(deleteLocation(location.id));
 			navigate("/home");

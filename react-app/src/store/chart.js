@@ -22,7 +22,7 @@ const createSchedule = (manager, currJobs) => {
 					let booking = technician.bookings[j];
 					console.log(technician.bookings[j], "booking in loop");
 					let found = b.find((el) => el.id == booking.id);
-					//console.log(found, "found");
+					console.log(found, "found");
 					if (found) {
 						final += `${found.title} :${booking.scheduled_start.slice(
 							-12,
@@ -32,9 +32,9 @@ const createSchedule = (manager, currJobs) => {
 				}
 			}
 		}
-		//console.log(JSON.stringify(final), "finals");
+		console.log(JSON.stringify(final), "finals");
 		final = final.replace(/^\s+|\s+$/g, "");
-		//console.log(JSON.stringify(final), "finals pt 2");
+		console.log(JSON.stringify(final), "finals pt 2");
 		return final;
 	}
 	return "failed";
