@@ -72,6 +72,11 @@ export const updateManager = (managerPayLoad, id) => async (dispatch) => {
 			body: JSON.stringify(managerPayLoad),
 		});
 
+		if (!response.ok) {
+			//console.log("res not ok");
+			throw response
+		}
+
 		if (response.ok) {
 			//console.log("res is ok?")
 			const updatedManager = await response.json();
@@ -80,7 +85,7 @@ export const updateManager = (managerPayLoad, id) => async (dispatch) => {
 		}
 	} catch (error) {
 		const res = await error.json();
-		//console.log(res, "error")
+		console.log(res, "error in store")
 		throw res;
 	}
 };
@@ -90,6 +95,8 @@ export const deleteManager = (managerId) => async (dispatch) => {
 		const res = await csrfFetch(`api/manager/${managerId}`, {
 			method: "DELETE",
 		});
+
+		
 
 		if (res.ok) {
 			const manager = await res.json();

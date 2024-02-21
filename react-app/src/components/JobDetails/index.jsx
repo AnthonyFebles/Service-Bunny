@@ -212,7 +212,7 @@ const JobDetails = () => {
 									<div className="job_details-container">
 										<div>
 											<b>
-												This Job Has A Current Booking And Can Not Be Edited Or
+												This Job Is Currently Booked And Can Not Be Edited Or
 												Deleted
 											</b>
 										</div>

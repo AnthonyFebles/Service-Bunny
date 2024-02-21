@@ -70,13 +70,13 @@ function AcceptJobModal({ job, techs }) {
 			);
 			navigate("/home")
 			await dispatch(getJob()).then(()=>{dispatch(getBookings())})
-			
-			
+			window.location.reload(false);
+			closeModal();
 		} catch (data) {
 			console.log(data, "errors");
 			setErrors(data.errors);
 		} finally {
-			window.location.reload(false);
+			;
 			await dispatch(getJobs())
 				.then(() => {
 					dispatch(getBookings());
@@ -84,7 +84,7 @@ function AcceptJobModal({ job, techs }) {
 				.then(() => dispatch(getManagers()))
 				.then(() => dispatch(getJob()))
 				.then(() => {
-					closeModal();
+					;
 					;
 				});
 			dispatch(getChart(store.getState().manager, store.getState().job));

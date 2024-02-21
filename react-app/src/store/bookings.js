@@ -71,6 +71,10 @@ export const updateBooking = (bookingPayLoad) => async (dispatch) => {
 			},
 			body: JSON.stringify(bookingPayLoad),
 		});
+		if (!response.ok) {
+			//console.log("res not ok");
+			throw response;
+		}
 
 		if (response.ok) {
 			//console.log("res is ok?")
@@ -96,9 +100,13 @@ export const deleteBooking = (bookingId) => async (dispatch) => {
 			dispatch(remove(bookingId));
 			return booking;
 		}
+
+		if (!res.ok) {
+			console.log("res not ok")
+		}
 		return res;
 	} catch (error) {
-		// console.log(error,"ERROR ")
+		console.log(error,"ERROR ")
 		const res = await error.json();
 		// console.log(res)
 		throw res;

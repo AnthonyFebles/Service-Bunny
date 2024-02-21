@@ -15,6 +15,7 @@ import "./TechBookings.css"
 const TechBookings = ({ booking, job }) => {
 	const dispatch = useDispatch();
 
+	const [errors, setErrors] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isStarted, setIsStarted] = useState(false);
 	const [isDone, setIsDone] = useState(false);
@@ -97,11 +98,14 @@ const TechBookings = ({ booking, job }) => {
 				.then(() => dispatch(getOne(booking.job_id)));
 			setIsStarted(true);
 		} catch (error) {
+			setErrors(error.errors);
 			console.log(error);
 		}
 	};
 
 	const handleEnd = async () => {
+
+		
 		const currDate = new Date();
 		const payload = {
 			id: booking.id,
@@ -123,16 +127,20 @@ const TechBookings = ({ booking, job }) => {
 		};
 
 		try {
-			await dispatch(updateBooking(payload))
-				.then(() => dispatch(getBooking(booking.id)))
+			
+			await 
+				dispatch(getBooking(booking.id))
 				.then(() => dispatch(getOne(booking.job_id)))
 				.then(() => dispatch(updateJob(jobPayload, job.id)));
 			dispatch(getJob());
+			dispatch(updateBooking(payload))
 			setIsDone(true);
 			setCustomerApproval("Awaiting Customer Approval");
+			setErrors([])
 		} catch (error) {
+			setErrors(error.errors);
 			console.log(error);
-		}
+		} 
 	};
 
 	return (
@@ -156,6 +164,13 @@ const TechBookings = ({ booking, job }) => {
 					/>
 				</label>
 			</div>
+			<ul>
+				{errors.map((error, idx) => (
+					<li className={"edit_errors"} key={idx}>
+						{error}
+					</li>
+				))}
+			</ul>
 			<br></br>
 			<div>
 				<b>Actually Started On:</b> {booking.started_at}

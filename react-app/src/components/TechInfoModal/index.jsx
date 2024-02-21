@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal";
 import { useNavigate, NavLink } from "react-router-dom";
 import { getJobs, updateJob } from "../../store/jobs";
 import { getJob } from "../../store/job";
+import { deleteBooking, getBookings } from "../../store/bookings";
 import { deleteManager, getManagers, updateManager } from "../../store/manager";
 import "./TechInfoModal.css";
 
@@ -47,12 +48,17 @@ function TechInfoModal({ tech, job }) {
 		} else setShowEdit(true);
 	};
 
-	const handleUnassign = async (custom, jobId) => {
+	const handleUnassign = async (custom, jobId, bookingId) => {
+		console.log(bookingId)
+		
 		try {
 			const data = await dispatch(updateJob(custom, jobId));
+			dispatch(deleteBooking(bookingId))
 			navigate("/home");
 			dispatch(getJob());
 			closeModal();
+			dispatch(getBookings());
+			window.location.reload(false);
 		} catch (data) {
 			setErrors(data.errors);
 		} finally {
@@ -63,7 +69,7 @@ function TechInfoModal({ tech, job }) {
 	const handleDeleteUser = async (techId) => {
 
 		if(techId == 4) {
-			setErrors(["Sorry you can't delete the demo account"])
+			setErrors(["Sorry you can't delete this demo account"])
 			return
 		}
 		try {
@@ -72,6 +78,7 @@ function TechInfoModal({ tech, job }) {
 			closeModal();
 		} catch (error) {
 			setErrors(error.errors);
+			
 		} finally {
 			dispatch(getJobs()).then(() => dispatch(getJob));
 		}
@@ -85,8 +92,10 @@ function TechInfoModal({ tech, job }) {
 				closeModal();
 			} catch (error) {
 				setErrors(error.errors);
+				console.log("error", error);
 			} finally {
 				dispatch(getJobs()).then(() => dispatch(getJob));
+				
 			}
 		} else setErrors(["Confirmed password does not match"]);
 	};
@@ -208,7 +217,7 @@ function TechInfoModal({ tech, job }) {
 									>
 										{job.title}
 									</NavLink>
-									<p>{errors}</p>
+									
 									<button
 										className={"tech_modal-unassign_button"}
 										onClick={() =>
@@ -222,7 +231,8 @@ function TechInfoModal({ tech, job }) {
 													price: job.price,
 													category: job.category,
 												},
-												job.id
+												job.id,
+												job.bookings[0].id
 											)
 										}
 									>

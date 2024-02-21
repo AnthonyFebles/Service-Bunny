@@ -8,6 +8,18 @@
 	padding-bottom: 20px;
 }
 
+.manager_schedule {
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 3vh;
+}
+
+.no_techs-title {
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 3vh;
+}
+
 .jobs_done,
 .jobs,
 .techs {
@@ -23,6 +35,7 @@
     background-color: rgba(183, 182, 212, 0.207);
     box-shadow: 0px 0px 10px  #d3eef9;
 	min-height: 50px;
+	
 	
 }
 
@@ -73,6 +86,7 @@
     box-shadow: 0px 0px 20px  #a4cad9;
 	border-radius: 7px;
 	min-height: 120px;
+	min-width: 200px;
 }
 
 .done_job {
@@ -88,6 +102,8 @@
 	background-color: #ffafaf;
     box-shadow: 0px 0px 20px  #d9a4a4;
 	border-radius: 7px;
+	min-height: 120px;
+	min-width: 200px;
 }
 
 .done_job:hover {

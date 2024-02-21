@@ -72,6 +72,12 @@ export const updateLocation = (locationPayLoad, id) => async (dispatch) => {
 			body: JSON.stringify(locationPayLoad),
 		});
 
+		if (!response.ok) {
+			//console.log("res not ok");
+			throw response;
+		}
+
+
 		if (response.ok) {
 			//console.log("res is ok?")
 			const updatedLocation = await response.json();
