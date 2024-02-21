@@ -111,14 +111,44 @@ function LandingPage() {
 							oneInView ? "show-landing" : ""
 						}`}
 					>
-						<img src="https://i.imgur.com/Wt8HmsN.jpeg" height={400} />
+						<img
+							src="https://i.imgur.com/Wt8HmsN.jpeg"
+							className="technician-image"
+							height={350}
+						/>
 					</div>
 					<div
 						className={`technician-image hidden-landing ${
 							oneInView ? "show-landing" : ""
 						}`}
 					>
-						<img src="https://i.imgur.com/atVCnup.jpeg" height={400} />
+						<img
+							src="https://i.imgur.com/atVCnup.jpeg"
+							className="technician-image"
+							height={350}
+						/>
+					</div>
+					<div
+						className={`technician-image hidden-landing ${
+							oneInView ? "show-landing" : ""
+						}`}
+					>
+						<img
+							src="https://i.imgur.com/D9FeD3D.jpeg"
+							className="technician-image"
+							height={350}
+						/>
+					</div>
+					<div
+						className={`technician-image hidden-landing ${
+							oneInView ? "show-landing" : ""
+						}`}
+					>
+						<img
+							src="https://i.imgur.com/qLtrsOQ.jpeg"
+							className="technician-image"
+							height={350}
+						/>
 					</div>
 				</div>
 			</section>
@@ -144,8 +174,8 @@ function LandingPage() {
 						<img
 							src="Images/Automotive.jpg"
 							className="landing-image"
-							width={400}
-							height={350}
+							width={300}
+							height={250}
 						/>
 					</div>
 					<div
@@ -156,8 +186,8 @@ function LandingPage() {
 						<img
 							src="Images/Electrical.jpg"
 							className="landing-image"
-							width={400}
-							height={350}
+							width={300}
+							height={250}
 						/>
 					</div>
 					<div
@@ -168,8 +198,8 @@ function LandingPage() {
 						<img
 							src="Images/NurseCall.jpg"
 							className="landing-image"
-							width={400}
-							height={350}
+							width={300}
+							height={250}
 						/>
 					</div>
 					<div
@@ -180,8 +210,8 @@ function LandingPage() {
 						<img
 							src="Images/General.jpg"
 							className="landing-image"
-							width={400}
-							height={350}
+							width={300}
+							height={250}
 						/>
 					</div>
 				</div>

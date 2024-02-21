@@ -162,7 +162,7 @@ const ManagerHome = () => {
 					{jobs.length > 0 ? (
 						loadJobs(jobs)
 					) : (
-						<div>No Available Jobs, Check Back Later...</div>
+						<div>No Customers Requesting Jobs, Check Back Later...</div>
 					)}
 				</div>
 			</div>
