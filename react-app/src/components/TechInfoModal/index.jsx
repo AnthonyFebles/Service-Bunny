@@ -63,7 +63,7 @@ function TechInfoModal({ tech, job }) {
 	const handleDeleteUser = async (techId) => {
 
 		if(techId == 4) {
-			setErrors(["Sorry you can't delete the demo account"])
+			setErrors(["Sorry you can't delete this demo account"])
 			return
 		}
 		try {
@@ -72,6 +72,7 @@ function TechInfoModal({ tech, job }) {
 			closeModal();
 		} catch (error) {
 			setErrors(error.errors);
+			
 		} finally {
 			dispatch(getJobs()).then(() => dispatch(getJob));
 		}
@@ -85,8 +86,10 @@ function TechInfoModal({ tech, job }) {
 				closeModal();
 			} catch (error) {
 				setErrors(error.errors);
+				console.log("error", error);
 			} finally {
 				dispatch(getJobs()).then(() => dispatch(getJob));
+				
 			}
 		} else setErrors(["Confirmed password does not match"]);
 	};
@@ -208,7 +211,7 @@ function TechInfoModal({ tech, job }) {
 									>
 										{job.title}
 									</NavLink>
-									<p>{errors}</p>
+									
 									<button
 										className={"tech_modal-unassign_button"}
 										onClick={() =>

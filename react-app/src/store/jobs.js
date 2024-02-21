@@ -79,6 +79,11 @@ export const updateJob = (jobPayLoad, id) => async (dispatch) => {
 			dispatch(update(jobPayLoad));
 			return updatedJob;
 		}
+
+		if (!response.ok) {
+			//console.log("res not ok");
+			throw response;
+		}
 	} catch (error) {
 		const res = await error.json();
 		//console.log(res, "error")

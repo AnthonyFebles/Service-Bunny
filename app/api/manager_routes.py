@@ -80,17 +80,17 @@ def edit_user(userId):
             schedule_color=form.data['schedule_color']
             phone_number=form.data['phone_number']
             
-            user.first_name = first_name or user.first_name
-            user.last_name = last_name or user.last_name
-            user.username = username or user.username
-            user.password = password or user.password
+            user.first_name = first_name 
+            user.last_name = last_name 
+            user.username = username 
+            user.password = password 
             # user.schedule_color = user.schedule_color
-            user.phone_number = phone_number or user.phone_number
+            user.phone_number = phone_number 
             
             db.session.commit()
             return jsonify(user.to_dict()), 200
         
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 

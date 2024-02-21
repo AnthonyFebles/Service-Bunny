@@ -71,6 +71,10 @@ export const updateBooking = (bookingPayLoad) => async (dispatch) => {
 			},
 			body: JSON.stringify(bookingPayLoad),
 		});
+		if (!response.ok) {
+			//console.log("res not ok");
+			throw response;
+		}
 
 		if (response.ok) {
 			//console.log("res is ok?")
