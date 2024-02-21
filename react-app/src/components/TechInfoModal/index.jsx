@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal";
 import { useNavigate, NavLink } from "react-router-dom";
 import { getJobs, updateJob } from "../../store/jobs";
 import { getJob } from "../../store/job";
+import { getBookings } from "../../store/bookings";
 import { deleteManager, getManagers, updateManager } from "../../store/manager";
 import "./TechInfoModal.css";
 
@@ -53,6 +54,10 @@ function TechInfoModal({ tech, job }) {
 			navigate("/home");
 			dispatch(getJob());
 			closeModal();
+			await dispatch(getJob()).then(() => {
+				dispatch(getBookings());
+			});
+			window.location.reload(false);
 		} catch (data) {
 			setErrors(data.errors);
 		} finally {
