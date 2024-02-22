@@ -1,18 +1,7 @@
 import React from "react";
 import mermaid from "mermaid";
 
-mermaid.initialize({
-	startOnLoad: true,
-	securityLevel: "loose",
-	gantt: {
-		barHeight: 40,
-		barGap: 15,
-		sectionFontSize: 20,
-		leftPadding: 200,
-		numberSectionStyles: 2,
-		fontSize: 15,
-	}
-});
+
 
 
 export default class Mermaid extends React.Component {
@@ -21,7 +10,20 @@ export default class Mermaid extends React.Component {
 		this.state = {
 			chart: props.chart,
 		};
+		mermaid.initialize({
+			startOnLoad: true,
+			securityLevel: "loose",
+			gantt: {
+				barHeight: 40,
+				barGap: 15,
+				sectionFontSize: 20,
+				leftPadding: 200,
+				numberSectionStyles: 2,
+				fontSize: 15,
+			},
+		});
 	}
+	
 
 	componentDidMount() {
         //console.log("comp mounted")
@@ -36,6 +38,18 @@ export default class Mermaid extends React.Component {
 			document
 				.getElementById("mermaid-chart")
 				.removeAttribute("data-processed");
+			mermaid.initialize({
+				startOnLoad: true,
+				securityLevel: "loose",
+				gantt: {
+					barHeight: 40,
+					barGap: 15,
+					sectionFontSize: 20,
+					leftPadding: 200,
+					numberSectionStyles: 2,
+					fontSize: 15,
+				},
+			});
 			mermaid.contentLoaded();
 		}
 	}

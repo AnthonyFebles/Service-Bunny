@@ -21,7 +21,7 @@ const createSchedule = (manager, currJobs) => {
 				for (let j = 0; j < technician.bookings.length; j++) {
 					let booking = technician.bookings[j];
 					console.log(technician.bookings[j], "booking in loop");
-					let found = b.find((el) => el.id == booking.id);
+					let found = b.find((el) => el.id == booking.job_id);
 					console.log(found, "found");
 					if (found) {
 						final += `${found.title} :${booking.scheduled_start.slice(
