@@ -54,8 +54,8 @@ const TechnicianHome = () => {
 
 	if (!jobs) return <div>No Jobs Assigned To You Yet</div>;
 
-	console.log(bookings, "bookings");
-	console.log(jobs, "jobs");
+	//console.log(bookings, "bookings");
+	//console.log(jobs, "jobs");
 
 	return (
 		<div className="tech_homepage-job_container">

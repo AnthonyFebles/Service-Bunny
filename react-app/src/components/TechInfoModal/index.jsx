@@ -32,7 +32,7 @@ function TechInfoModal({ tech, job }) {
 	};
 
 	// console.log(job[0].worker_id, "worker-id");
-	console.log(tech.id, "tech-id");
+	//console.log(tech.id, "tech-id");
 
 	useEffect(() => {
 		dispatch(getJobs()).then(() => dispatch(getJob()));
@@ -49,7 +49,7 @@ function TechInfoModal({ tech, job }) {
 	};
 
 	const handleUnassign = async (custom, jobId, bookingId) => {
-		console.log(bookingId)
+		//console.log(bookingId)
 		
 		try {
 			const data = await dispatch(updateJob(custom, jobId));
@@ -92,7 +92,7 @@ function TechInfoModal({ tech, job }) {
 				closeModal();
 			} catch (error) {
 				setErrors(error.errors);
-				console.log("error", error);
+				//console.log("error", error);
 			} finally {
 				dispatch(getJobs()).then(() => dispatch(getJob));
 				

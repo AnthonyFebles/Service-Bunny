@@ -58,8 +58,8 @@ const CustomerHome = () => {
 
 	if (!locations) return <div>You Have No Locations Yet.</div>;
 
-	console.log(locations, "locations");
-	console.log(jobs, "jobs");
+	//console.log(locations, "locations");
+	//console.log(jobs, "jobs");
 
 	return (
 		<>

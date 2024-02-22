@@ -7,7 +7,7 @@ const loadOne = (chart) => ({
 	chart,
 });
 const createSchedule = (manager, currJobs) => {
-	console.log(currJobs, "props for func");
+	//console.log(currJobs, "props for func");
 	let a = manager.list.map((id) => manager[id]);
 	let b = currJobs.list.map((jobId) => currJobs[jobId]);
 
@@ -20,9 +20,9 @@ const createSchedule = (manager, currJobs) => {
 				final += `section ${technician.first_name} ${technician.last_name}\n`;
 				for (let j = 0; j < technician.bookings.length; j++) {
 					let booking = technician.bookings[j];
-					console.log(technician.bookings[j], "booking in loop");
-					let found = b.find((el) => el.id == booking.id);
-					console.log(found, "found");
+					//console.log(technician.bookings[j], "booking in loop");
+					let found = b.find((el) => el.id == booking.job_id);
+					//console.log(found, "found");
 					if (found) {
 						final += `${found.title} :${booking.scheduled_start.slice(
 							-12,
@@ -32,9 +32,9 @@ const createSchedule = (manager, currJobs) => {
 				}
 			}
 		}
-		console.log(JSON.stringify(final), "finals");
+		//console.log(JSON.stringify(final), "finals");
 		final = final.replace(/^\s+|\s+$/g, "");
-		console.log(JSON.stringify(final), "finals pt 2");
+		//console.log(JSON.stringify(final), "finals pt 2");
 		return final;
 	}
 	return "failed";
@@ -46,7 +46,7 @@ dateFormat HH:mm
 axisFormat %H:%M
 `;
 	chartDefinition += createSchedule(man, curr);
-	console.log(chartDefinition, "chart")
+	//console.log(chartDefinition, "chart")
 	await dispatch(loadOne(chartDefinition));
 
 	return chartDefinition;
@@ -58,9 +58,9 @@ const ChartReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case LOAD_ONE:
 			const allCharts = {};
-			console.log(action, "actions");
+			//console.log(action, "actions");
 			if (action.chart) {
-				console.log("actions_woork", action);
+				//console.log("actions_woork", action);
 				return action.chart;
 			} else
 				return {

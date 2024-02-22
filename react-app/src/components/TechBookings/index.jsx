@@ -34,8 +34,8 @@ const TechBookings = ({ booking, job }) => {
 		return state.booking;
 	});
 
-	console.log(thisBooking, "this booking");
-	console.log(booking.id, "booking prop");
+	//console.log(thisBooking, "this booking");
+	//console.log(booking.id, "booking prop");
 
 	useEffect(() => {
 		dispatch(getBookings());
@@ -99,7 +99,7 @@ const TechBookings = ({ booking, job }) => {
 			setIsStarted(true);
 		} catch (error) {
 			setErrors(error.errors);
-			console.log(error);
+			//console.log(error);
 		}
 	};
 
@@ -139,7 +139,7 @@ const TechBookings = ({ booking, job }) => {
 			setErrors([])
 		} catch (error) {
 			setErrors(error.errors);
-			console.log(error);
+			//console.log(error);
 		} 
 	};
 

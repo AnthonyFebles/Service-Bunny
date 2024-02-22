@@ -37,7 +37,7 @@ function NewLocationModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			dispatch(createNewLocation(payload)).then(() => dispatch(getLocations()));
+			await dispatch(createNewLocation(payload)).then(() => dispatch(getLocations()));
 			closeModal();
 		} catch (data) {
 			setErrors(data.errors);
@@ -55,7 +55,7 @@ function NewLocationModal() {
 			await navigator.geolocation.getCurrentPosition((position) => {
 				setLat(position.coords.latitude);
 				setLng(position.coords.longitude);
-				console.log(lat, lng);
+				//console.log(lat, lng);
 				fromLatLng(
 					position.coords.latitude.toString(),
 					position.coords.longitude.toString()
@@ -67,7 +67,7 @@ function NewLocationModal() {
 					.catch(console.error);
 			});
 		} catch (error) {
-			console.log(error);
+			//console.log(error);
 			setErrors(["Couldn't automatically retrieve your location"]);
 		}
 	};

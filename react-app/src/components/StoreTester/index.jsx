@@ -33,11 +33,11 @@ const AllStores = () => {
 		// .bookings.map((bookingId) => state.bookings[bookingId]);
 	});
 
-	console.log(jobs, "jobs");
-	console.log(sessionUser, "user");
-	console.log(locations, "locations");
-	console.log(bookings, "bookings");
-	console.log(manager, "manager");
+	//console.log(jobs, "jobs");
+	//console.log(sessionUser, "user");
+	//console.log(locations, "locations");
+	//console.log(bookings, "bookings");
+	//console.log(manager, "manager");
 
 	useEffect(() => {
 		dispatch(getJobs())
