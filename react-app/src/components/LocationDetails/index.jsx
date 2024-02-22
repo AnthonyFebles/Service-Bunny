@@ -21,7 +21,7 @@ const LocationDetails = () => {
 
 	const location = useSelector((state) => state.locationDetails);
 
-	console.log(location, "location");
+	//console.log(location, "location");
 
 	useEffect(() => {
 		const fetchAssets = async () => {

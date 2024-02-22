@@ -73,7 +73,7 @@ function AcceptJobModal({ job, techs }) {
 			window.location.reload(false);
 			closeModal();
 		} catch (data) {
-			console.log(data, "errors");
+			//console.log(data, "errors");
 			setErrors(data.errors);
 		} finally {
 			;

@@ -30,9 +30,9 @@ const JobDetails = () => {
 	const locations = useSelector((state) => state.locationDetails);
 	const worker = useSelector((state) => state.worker);
 
-	console.log(job, "job");
-	console.log(locations, "location");
-	console.log(worker, "worker");
+	//console.log(job, "job");
+	//console.log(locations, "location");
+	//console.log(worker, "worker");
 
 	useEffect(() => {
 		const fetchAssets = async () => {
@@ -54,7 +54,7 @@ const JobDetails = () => {
 		return <div>You are unauthorized to view this job</div>;
 	}
 
-	console.log(errors, "errors deatils")
+	//console.log(errors, "errors deatils")
 
 	const handleDelete = async () => {
 		try {

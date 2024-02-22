@@ -85,7 +85,7 @@ export const updateManager = (managerPayLoad, id) => async (dispatch) => {
 		}
 	} catch (error) {
 		const res = await error.json();
-		console.log(res, "error in store")
+		//console.log(res, "error in store")
 		throw res;
 	}
 };

@@ -41,7 +41,7 @@ function EditJobModal({ currJob }) {
 	};
 
 	// console.log(worker_id, "worker Id")
-	console.log(payload, "payloas");
+	//console.log(payload, "payloas");
 
 	const handleEdit = async (e) => {
 		e.preventDefault();
@@ -55,7 +55,7 @@ function EditJobModal({ currJob }) {
 		}
 	};
 
-	console.log(errors, "errors")
+	//console.log(errors, "errors")
 
 	
 

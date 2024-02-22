@@ -42,7 +42,7 @@ function NewJobRequest({ currLocation }) {
 	};
 
 	// console.log(worker_id, "worker Id")
-	console.log(payload);
+	//console.log(payload);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

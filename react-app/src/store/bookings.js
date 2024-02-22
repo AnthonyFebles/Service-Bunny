@@ -83,7 +83,7 @@ export const updateBooking = (bookingPayLoad) => async (dispatch) => {
 			return updatedBooking;
 		}
 	} catch (error) {
-		console.log(error, "error");
+		//console.log(error, "error");
 		const res = await error.json();
 		throw res;
 	}
@@ -102,11 +102,11 @@ export const deleteBooking = (bookingId) => async (dispatch) => {
 		}
 
 		if (!res.ok) {
-			console.log("res not ok")
+			//console.log("res not ok")
 		}
 		return res;
 	} catch (error) {
-		console.log(error,"ERROR ")
+		//console.log(error,"ERROR ")
 		const res = await error.json();
 		// console.log(res)
 		throw res;
