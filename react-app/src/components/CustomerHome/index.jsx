@@ -8,7 +8,7 @@ import { getJob } from "../../store/job";
 import { getLocations } from "../../store/locations";
 import { getBookings } from "../../store/bookings";
 import NewLocationModal from "../NewLocationModal";
-import "./CustomerHome.css"
+import "./CustomerHome.css";
 
 const CustomerHome = () => {
 	const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const CustomerHome = () => {
 	if (isLoading)
 		return (
 			<>
-				<img src="Images/running.gif" className="loading_bunny" ></img>
+				<img src="Images/running.gif" className="loading_bunny"></img>
 			</>
 		);
 
@@ -63,13 +63,12 @@ const CustomerHome = () => {
 
 	return (
 		<>
-			
-				<OpenModalButton
-					className={"create_new_location-button"}
-					buttonText={"Create A New Location"}
-					modalComponent={<NewLocationModal />}
-				></OpenModalButton>
-			
+			<OpenModalButton
+				className={"create_new_location-button"}
+				buttonText={"Create A New Location"}
+				modalComponent={<NewLocationModal />}
+			></OpenModalButton>
+
 			<div className="customer_homepage-location_container">
 				<h1 className="customer_homepage-location_header">Your Locations</h1>
 				<nav className="customer_homepage-locations">

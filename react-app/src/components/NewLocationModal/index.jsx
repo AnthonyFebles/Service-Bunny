@@ -37,7 +37,9 @@ function NewLocationModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await dispatch(createNewLocation(payload)).then(() => dispatch(getLocations()));
+			await dispatch(createNewLocation(payload)).then(() =>
+				dispatch(getLocations())
+			);
 			closeModal();
 		} catch (data) {
 			setErrors(data.errors);

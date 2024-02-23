@@ -59,7 +59,6 @@
 	position: relative;
 	transition: all 1s;
 	max-width: 30%;
-	
 }
 .landing_button:hover {
 	cursor: pointer;
@@ -95,7 +94,6 @@
 	mix-blend-mode: multiply;
 	border-radius: 10px;
 }
-
 
 .category-image:nth-child(1) {
 	transition-delay: 1800ms;

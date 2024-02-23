@@ -6,7 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllStores from "./components/StoreTester";
-import HomePage from "./components/HomePage"
+import HomePage from "./components/HomePage";
 import TechInfoModal from "./components/TechInfoModal";
 import JobDetails from "./components/JobDetails";
 import NotFound from "./components/NotFound";
@@ -14,16 +14,16 @@ import LocationDetails from "./components/LocationDetails";
 import LandingPage from "./components/LandingPage";
 
 function App() {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+	const dispatch = useDispatch();
+	const location = useLocation();
+	const [isLoaded, setIsLoaded] = useState(false);
+	useEffect(() => {
+		dispatch(authenticate()).then(() => setIsLoaded(true));
+	}, [dispatch]);
 
-  const showNavbar = !["/", "/signup"].includes(location.pathname);
+	const showNavbar = !["/", "/signup"].includes(location.pathname);
 
-  return (
+	return (
 		<>
 			{showNavbar && <Navigation isLoaded={isLoaded} />}
 			{isLoaded && (

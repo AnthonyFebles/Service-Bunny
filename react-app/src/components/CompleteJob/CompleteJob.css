@@ -1,15 +1,14 @@
 .complete_job_modal-no {
-    border: none;
+	border: none;
 	background-color: transparent;
 	padding: 5px;
 	font-size: 17px;
 	border: 2px solid #cea0a09b;
-    padding: 10px;
+	padding: 10px;
 	background-color: #ffafaf;
 	border-radius: 7px;
-    width: 40%;
-    margin: 8px
-    
+	width: 40%;
+	margin: 8px;
 }
 
 .complete_job_modal-no:hover {
@@ -18,16 +17,16 @@
 }
 
 .complete_job_modal-yes {
-    border: none;
+	border: none;
 	background-color: transparent;
 	padding: 5px;
 	font-size: 17px;
 	border: 2px solid #a0cea89b;
-    padding: 10px;
+	padding: 10px;
 	background-color: #d3f9df;
 	border-radius: 7px;
-    width: 40%;
-    margin: 8px
+	width: 40%;
+	margin: 8px;
 }
 
 .complete_job_modal-yes:hover {
@@ -36,5 +35,5 @@
 }
 
 .complete_job-buttons {
-    text-align: center;
+	text-align: center;
 }

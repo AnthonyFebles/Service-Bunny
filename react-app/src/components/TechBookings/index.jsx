@@ -10,7 +10,7 @@ import { getBooking } from "../../store/booking";
 import { getOne } from "../../store/jobDetails";
 import { getJobs, updateJob } from "../../store/jobs";
 import { getJob } from "../../store/job";
-import "./TechBookings.css"
+import "./TechBookings.css";
 
 const TechBookings = ({ booking, job }) => {
 	const dispatch = useDispatch();
@@ -104,8 +104,6 @@ const TechBookings = ({ booking, job }) => {
 	};
 
 	const handleEnd = async () => {
-
-		
 		const currDate = new Date();
 		const payload = {
 			id: booking.id,
@@ -127,20 +125,18 @@ const TechBookings = ({ booking, job }) => {
 		};
 
 		try {
-			
-			await 
-				dispatch(getBooking(booking.id))
+			await dispatch(getBooking(booking.id))
 				.then(() => dispatch(getOne(booking.job_id)))
 				.then(() => dispatch(updateJob(jobPayload, job.id)));
 			dispatch(getJob());
-			dispatch(updateBooking(payload))
+			dispatch(updateBooking(payload));
 			setIsDone(true);
 			setCustomerApproval("Awaiting Customer Approval");
-			setErrors([])
+			setErrors([]);
 		} catch (error) {
 			setErrors(error.errors);
 			//console.log(error);
-		} 
+		}
 	};
 
 	return (

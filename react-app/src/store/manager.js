@@ -74,7 +74,7 @@ export const updateManager = (managerPayLoad, id) => async (dispatch) => {
 
 		if (!response.ok) {
 			//console.log("res not ok");
-			throw response
+			throw response;
 		}
 
 		if (response.ok) {
@@ -95,8 +95,6 @@ export const deleteManager = (managerId) => async (dispatch) => {
 		const res = await csrfFetch(`api/manager/${managerId}`, {
 			method: "DELETE",
 		});
-
-		
 
 		if (res.ok) {
 			const manager = await res.json();

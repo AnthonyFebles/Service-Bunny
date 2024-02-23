@@ -63,7 +63,7 @@ function SignupFormModal({ manager }) {
 			<form onSubmit={handleSubmit} className="create_tech_form">
 				<ul>
 					{errors.map((error, idx) => (
-						<li className={"edit_errors"} key={idx} >
+						<li className={"edit_errors"} key={idx}>
 							{error}
 						</li>
 					))}

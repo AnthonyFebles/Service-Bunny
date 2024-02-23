@@ -50,10 +50,10 @@ function TechInfoModal({ tech, job }) {
 
 	const handleUnassign = async (custom, jobId, bookingId) => {
 		//console.log(bookingId)
-		
+
 		try {
 			const data = await dispatch(updateJob(custom, jobId));
-			dispatch(deleteBooking(bookingId))
+			dispatch(deleteBooking(bookingId));
 			navigate("/home");
 			dispatch(getJob());
 			closeModal();
@@ -67,10 +67,9 @@ function TechInfoModal({ tech, job }) {
 	};
 
 	const handleDeleteUser = async (techId) => {
-
-		if(techId == 4) {
-			setErrors(["Sorry you can't delete this demo account"])
-			return
+		if (techId == 4) {
+			setErrors(["Sorry you can't delete this demo account"]);
+			return;
 		}
 		try {
 			const data = await dispatch(deleteManager(techId));
@@ -78,7 +77,6 @@ function TechInfoModal({ tech, job }) {
 			closeModal();
 		} catch (error) {
 			setErrors(error.errors);
-			
 		} finally {
 			dispatch(getJobs()).then(() => dispatch(getJob));
 		}
@@ -95,7 +93,6 @@ function TechInfoModal({ tech, job }) {
 				//console.log("error", error);
 			} finally {
 				dispatch(getJobs()).then(() => dispatch(getJob));
-				
 			}
 		} else setErrors(["Confirmed password does not match"]);
 	};
@@ -217,7 +214,7 @@ function TechInfoModal({ tech, job }) {
 									>
 										{job.title}
 									</NavLink>
-									
+
 									<button
 										className={"tech_modal-unassign_button"}
 										onClick={() =>

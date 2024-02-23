@@ -1,4 +1,3 @@
-
 .job_schedules-container {
 	font-size: 20px;
 	border: 1px solid rgba(183, 182, 212, 0.207);
@@ -34,7 +33,7 @@
 
 .tech_solution_textarea {
 	width: 100%;
-    font-size: 19px;
+	font-size: 19px;
 }
 
 .job_details-start_button {
@@ -43,11 +42,11 @@
 	padding: 5px;
 	font-size: 17px;
 	border: 2px solid #a0cea29b;
-    padding: 10px;
+	padding: 10px;
 	background-color: #afffb8;
 	border-radius: 7px;
-    width: 40%;
-    margin: 8px
+	width: 40%;
+	margin: 8px;
 }
 
 .job_details-start_button:hover {
@@ -57,98 +56,97 @@
 }
 
 .job_details-cancel_button {
-    border: none;
+	border: none;
 	background-color: transparent;
 	padding: 5px;
 	font-size: 17px;
 	border: 2px solid #cea0a09b;
-    padding: 10px;
+	padding: 10px;
 	background-color: #ffafaf;
 	border-radius: 7px;
-    width: 40%;
-    margin: 8px
-    
+	width: 40%;
+	margin: 8px;
 }
 
 .job_details-cancel_button:hover {
-    cursor: pointer;
+	cursor: pointer;
 	background-color: #cc45457a;
 }
 
 .job_details-end_button {
-    border: none;
+	border: none;
 	background-color: transparent;
 	padding: 5px;
 	font-size: 17px;
 	border: 2px solid #a1a0ce9b;
-    padding: 10px;
+	padding: 10px;
 	background-color: #b7afff;
 	border-radius: 7px;
-    width: 40%;
-    margin: 8px
+	width: 40%;
+	margin: 8px;
 }
 
 .job_details-end_button:hover {
-    cursor: pointer;
+	cursor: pointer;
 	background-color: #5a5cd8;
-    box-shadow: 0px 0px 10px  #877ddee3;
-    color: white;
+	box-shadow: 0px 0px 10px #877ddee3;
+	color: white;
 }
 
 .job_details-end_button:disabled {
-    border: none;
+	border: none;
 	background-color: transparent;
 	padding: 5px;
 	font-size: 17px;
 	border: 2px solid #8c8c8d9b;
-    padding: 10px;
+	padding: 10px;
 	background-color: #c8c8c8;
 	border-radius: 7px;
-    width: 40%;
-    margin: 8px
+	width: 40%;
+	margin: 8px;
 }
 
 .job_details-end_button:disabled:hover {
-    cursor: not-allowed;
+	cursor: not-allowed;
 	background-color: #9090937a;
-    box-shadow: 0px 0px 10px  #000000;
-    color: gray;
+	box-shadow: 0px 0px 10px #000000;
+	color: gray;
 }
 
 .job_details-start_button:disabled {
-    border: none;
+	border: none;
 	background-color: transparent;
 	padding: 5px;
 	font-size: 17px;
 	border: 2px solid #8c8c8d9b;
-    padding: 10px;
+	padding: 10px;
 	background-color: #c8c8c8;
 	border-radius: 7px;
-    width: 40%;
-    margin: 8px
+	width: 40%;
+	margin: 8px;
 }
 
 .job_details-start_button:disabled:hover {
-    cursor: not-allowed;
+	cursor: not-allowed;
 	background-color: #9090937a;
-    box-shadow: 0px 0px 10px  #000000;
+	box-shadow: 0px 0px 10px #000000;
 }
 
 .job_details-cancel_button:disabled {
-    border: none;
+	border: none;
 	background-color: transparent;
 	padding: 5px;
 	font-size: 17px;
 	border: 2px solid #8c8c8d9b;
-    padding: 10px;
+	padding: 10px;
 	background-color: #c8c8c8;
 	border-radius: 7px;
-    width: 40%;
-    margin: 8px
+	width: 40%;
+	margin: 8px;
 }
 
 .job_details-cancel_button:disabled:hover {
-    cursor: not-allowed;
+	cursor: not-allowed;
 	background-color: #9090937a;
-    box-shadow: 0px 0px 10px  #000000;
+	box-shadow: 0px 0px 10px #000000;
 }

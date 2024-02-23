@@ -6,7 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import EditLocationModal from "../EditLocationModal";
 import NewJobRequest from "../NewJobRequest";
 import { deleteLocation } from "../../store/locations";
-import "./LocationDetails.css"
+import "./LocationDetails.css";
 
 const LocationDetails = () => {
 	const dispatch = useDispatch();
@@ -40,9 +40,9 @@ const LocationDetails = () => {
 
 	// console.log(currJobs, "curr Jobs")
 	const handleDelete = async () => {
-		if(location.jobs.length > 0) {
-			alert("You Can't Delete a Location with Active Jobs!")
-			return
+		if (location.jobs.length > 0) {
+			alert("You Can't Delete a Location with Active Jobs!");
+			return;
 		}
 		try {
 			await dispatch(deleteLocation(location.id));
@@ -66,7 +66,7 @@ const LocationDetails = () => {
 			<>
 				<div className="create_a_job-button_container">
 					<OpenModalButton
-					className={"create_job-button"}
+						className={"create_job-button"}
 						buttonText={"Create A Job For This Location"}
 						modalComponent={<NewJobRequest currLocation={location} />}
 					></OpenModalButton>

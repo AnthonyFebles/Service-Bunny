@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { createNewLocation, getLocations } from "../../store/locations";
 import { getALocation } from "../../store/locationDetails";
-import "./NewJobRequest.css"
+import "./NewJobRequest.css";
 
 let categories = [
 	"General",

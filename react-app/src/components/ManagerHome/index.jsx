@@ -15,18 +15,15 @@ import SignupFormModal from "../SignupFormModal";
 import CompleteJobModal from "../CompleteJob";
 import "./ManagerHome.css";
 import { getChart } from "../../store/chart";
-import {store} from "../../index"
+import { store } from "../../index";
 
 const ManagerHome = () => {
 	const dispatch = useDispatch();
 
 	const [isLoading, setIsLoading] = useState(true);
-	
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const navigate = useNavigate();
-
-
 
 	useEffect(() => {
 		dispatch(getJobs())
@@ -52,7 +49,7 @@ const ManagerHome = () => {
 		return state.manager.list.map((id) => state.manager[id]);
 	});
 	//console.log(manager.length, "manager");
-	
+
 	const chart = useSelector((state) => {
 		return state.chart;
 	});
@@ -70,7 +67,7 @@ const ManagerHome = () => {
 	// });
 
 	//console.log(currJobs, "curr Jobs");
-	
+
 	if (!sessionUser) return <>{navigate("/")}</>;
 
 	if (isLoading)
@@ -81,9 +78,6 @@ const ManagerHome = () => {
 		);
 
 	//console.log(chartDefinition, "chart");
-
-	
-
 
 	function loadJobs(jobs) {
 		return (
@@ -132,13 +126,16 @@ const ManagerHome = () => {
 			{manager.length > 0 && manager.some((el) => el.bookings.length > 0) && (
 				<Mermaid chart={chart} />
 			)}
-			{manager.length > 0 &&
-				!manager.some((el) => el.bookings.length > 0) && (
-					<h2 className="no_techs-title">
-						You Don't Have Any Jobs Booked Yet. Check Under Available Jobs...
-					</h2>
-				)}
-			{manager.length == 0 && (<h2 className="no_techs-title">Start by Hiring Some Techs On The Bottom Right...</h2>)}
+			{manager.length > 0 && !manager.some((el) => el.bookings.length > 0) && (
+				<h2 className="no_techs-title">
+					You Don't Have Any Jobs Booked Yet. Check Under Available Jobs...
+				</h2>
+			)}
+			{manager.length == 0 && (
+				<h2 className="no_techs-title">
+					Start by Hiring Some Techs On The Bottom Right...
+				</h2>
+			)}
 			<div className="outer_jobs_container">
 				<h2 className="jobs_done-title">Ready For Billing</h2>
 				<div className="jobs_done">
@@ -162,7 +159,9 @@ const ManagerHome = () => {
 					{jobs.length > 0 ? (
 						loadJobs(jobs)
 					) : (
-						<div>No Customers Are Requesting Jobs Right Now, Check Back Later...</div>
+						<div>
+							No Customers Are Requesting Jobs Right Now, Check Back Later...
+						</div>
 					)}
 				</div>
 			</div>
