@@ -7,7 +7,7 @@ import { getJobs } from "../../store/jobs";
 import { getJob } from "../../store/job";
 import { getLocations } from "../../store/locations";
 import { getBookings } from "../../store/bookings";
-import "./TechnicianHome.css"
+import "./TechnicianHome.css";
 const TechnicianHome = () => {
 	const dispatch = useDispatch();
 
@@ -65,7 +65,6 @@ const TechnicianHome = () => {
 					if (job)
 						return (
 							<div key={job.id} className={`${job.category} tech_a_job`}>
-								
 								<NavLink to={`/jobs/${job.id}`}>
 									<img
 										src={`/Images/${job.category}.jpg`}

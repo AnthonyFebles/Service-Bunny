@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { createNewLocation, getLocations } from "../../store/locations";
 import { getALocation } from "../../store/locationDetails";
-import "./NewJobRequest.css"
+import "./NewJobRequest.css";
 
 let categories = [
 	"General",
@@ -80,9 +80,10 @@ function NewJobRequest({ currLocation }) {
 						></input>
 					</label>
 					<label className="new_job-price form-group">
-						What's the hourly rate you're willing to pay? <span>{` `}</span>
+						How much will you pay per hour? <span>{` `}</span>
 						<input
-							type="text"
+							type="number"
+							min="15"
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 							required

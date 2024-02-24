@@ -1,47 +1,44 @@
 .techs_new_form-modal {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: space-evenly;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: space-evenly;
 }
 
 .form-row {
-    display: flex;
-    justify-content: space-between; 
-    padding:9px;
-    font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	padding: 9px;
+	font-size: 20px;
 }
 
-
 .form-row .form-group:first-child {
-    margin-left: 5px;
+	margin-left: 5px;
 }
 
 .form-row .form-group:last-child {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
-
-
 .signUp_errors {
-    text-decoration: none;
-    color: red;
-    list-style-type: none;
+	text-decoration: none;
+	color: red;
+	list-style-type: none;
 }
 
 .new_tech_modal-name_title {
-    margin-left: 8px;
-    padding-bottom: 5px;
+	margin-left: 8px;
+	padding-bottom: 5px;
 }
 
 .create_tech_modal-select {
-     display: flex;
-    justify-content: space-between; 
-    font-size: 17px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 17px;
 }
 
 .form_new_tech-button {
-    border: none;
+	border: none;
 	background-color: transparent;
 	padding: 1px;
 	font-size: 16px;
@@ -49,15 +46,15 @@
 	border-radius: 7px;
 	width: 40%;
 	margin: 8px;
-    background-color: #d3f9eb;
+	background-color: #d3f9eb;
 	border: 2px solid #a0ceac9b;
-    
-    justify-content: center;
-    align-self: center;
+
+	justify-content: center;
+	align-self: center;
 }
 
 .form_new_tech-button:hover {
 	cursor: pointer;
 	background-color: #45cc647a;
-    box-shadow: 0px 0px 8px  #a4d9a7;
+	box-shadow: 0px 0px 8px #a4d9a7;
 }

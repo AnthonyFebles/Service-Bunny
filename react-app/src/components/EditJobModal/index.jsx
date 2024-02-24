@@ -57,8 +57,6 @@ function EditJobModal({ currJob }) {
 
 	//console.log(errors, "errors")
 
-	
-
 	return (
 		<div className="new_job-container">
 			<h2 className="new_job-header">Edit This Job</h2>

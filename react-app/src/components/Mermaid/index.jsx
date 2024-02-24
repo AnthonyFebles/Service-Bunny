@@ -1,9 +1,6 @@
 import React from "react";
 import mermaid from "mermaid";
 
-
-
-
 export default class Mermaid extends React.Component {
 	constructor(props) {
 		super(props);
@@ -23,18 +20,17 @@ export default class Mermaid extends React.Component {
 			},
 		});
 	}
-	
 
 	componentDidMount() {
-        //console.log("comp mounted")
+		//console.log("comp mounted")
 		mermaid.contentLoaded();
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-         //console.log("the state has not changed comp", prevProps.chart);
+		//console.log("the state has not changed comp", prevProps.chart);
 		// console.log("the current state has not changed comp", this.props.chart);
 		if (prevProps.chart !== this.props.chart) {
-            //console.log("the state has changed comp")
+			//console.log("the state has changed comp")
 			document
 				.getElementById("mermaid-chart")
 				.removeAttribute("data-processed");
@@ -54,6 +50,10 @@ export default class Mermaid extends React.Component {
 		}
 	}
 	render() {
-		return <div className="mermaid" id="mermaid-chart">{this.state.chart}</div>;
+		return (
+			<div className="mermaid" id="mermaid-chart">
+				{this.state.chart}
+			</div>
+		);
 	}
 }

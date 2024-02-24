@@ -16,7 +16,7 @@ import "./JobDetails.css";
 const JobDetails = () => {
 	const dispatch = useDispatch();
 	const { closeModal } = useModal();
-	
+
 	const { jobId } = useParams();
 
 	const job = useSelector((state) => state.jobDetails);

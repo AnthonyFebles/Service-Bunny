@@ -32,8 +32,6 @@ function AcceptJobModal({ job, techs }) {
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
-	
-
 	//console.log(currDate, "date");
 
 	let payload = {
@@ -68,25 +66,23 @@ function AcceptJobModal({ job, techs }) {
 			const data = await dispatch(updateJob(payload, job.id)).then(() =>
 				dispatch(createNewBooking(schedulePayload))
 			);
-			navigate("/home")
-			await dispatch(getJob()).then(()=>{dispatch(getBookings())})
+			navigate("/home");
+			await dispatch(getJob()).then(() => {
+				dispatch(getBookings());
+			});
 			window.location.reload(false);
 			closeModal();
 		} catch (data) {
 			//console.log(data, "errors");
 			setErrors(data.errors);
 		} finally {
-			;
 			await dispatch(getJobs())
 				.then(() => {
 					dispatch(getBookings());
 				})
 				.then(() => dispatch(getManagers()))
 				.then(() => dispatch(getJob()))
-				.then(() => {
-					;
-					;
-				});
+				.then(() => {});
 			dispatch(getChart(store.getState().manager, store.getState().job));
 		}
 	};

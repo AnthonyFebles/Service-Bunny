@@ -1,5 +1,5 @@
 .managers_tech_modal-container {
-    width: 100%;
+	width: 100%;
 	overflow-y: auto;
 	max-height: 70vh;
 }
@@ -35,7 +35,7 @@
 }
 
 .form_edit_tech-button {
-    border: none;
+	border: none;
 	background-color: transparent;
 	padding: 1px;
 	font-size: 16px;
@@ -43,17 +43,16 @@
 	border-radius: 7px;
 	width: 40%;
 	margin: 8px;
-    background-color: #d3ecf9;
+	background-color: #d3ecf9;
 	border: 2px solid #a0bcce9b;
-    justify-content: center;
-    align-self: center;
+	justify-content: center;
+	align-self: center;
 }
 
 .form_edit_tech-button:hover {
 	cursor: pointer;
 	background-color: #45a8cc7a;
 }
-
 
 .techs_edit_button-modal:hover {
 	cursor: pointer;
@@ -77,11 +76,11 @@
 }
 
 .tech_job-modal {
-	margin-top: 5px ;
-    margin-bottom: 15px ;
-	box-shadow: 0px 0px 8px  #d3eef9;
-    border-radius: 5px;
-    background-color: rgba(183, 182, 212, 0.14);
+	margin-top: 5px;
+	margin-bottom: 15px;
+	box-shadow: 0px 0px 8px #d3eef9;
+	border-radius: 5px;
+	background-color: rgba(183, 182, 212, 0.14);
 }
 
 .tech_job-title_link {
@@ -113,69 +112,66 @@
 }
 
 .techs_edit_form-modal {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: space-evenly;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: space-evenly;
 }
 
 .form-row {
-    display: flex;
-    justify-content: space-between; 
+	display: flex;
+	justify-content: space-between;
 }
 
-
 .form-row .form-group:first-child {
-    margin-left: 5px;
+	margin-left: 5px;
 }
 
 .form-row .form-group:last-child {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 .form-row-2 {
-    display: flex;
-    justify-content: space-between; 
+	display: flex;
+	justify-content: space-between;
 }
 
-
 .form-row-2 .form-group-2:first-child {
-    margin-left: 5px;
+	margin-left: 5px;
 }
 
 .form-row-2 .form-group-2:last-child {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 .form-row-3 {
-    display: flex;
-    justify-content: space-between; 
+	display: flex;
+	justify-content: space-between;
 }
 
-
 .form-row-3 .form-group-3:first-child {
-    margin-left: 5px;
+	margin-left: 5px;
 }
 
 .form-row-3 .form-group-3:last-child {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 label input {
-    border: none;
-    border-bottom: 1px solid gray;
+	border: none;
+	border-bottom: 1px solid gray;
 }
 
 label input:focus {
-    outline: none
+	outline: none;
 }
 
 .edit_errors {
-    text-decoration: none;
-    color: red;
-    list-style-type: none;
+	text-decoration: none;
+	color: red;
+	list-style-type: none;
 }
 
 .edit_tech_modal-name_title {
-    font-size: 20px;
+	font-size: 20px;
 }
