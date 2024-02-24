@@ -80,9 +80,10 @@ function NewJobRequest({ currLocation }) {
 						></input>
 					</label>
 					<label className="new_job-price form-group">
-						What's the hourly rate you're willing to pay? <span>{` `}</span>
+						How much will you pay per hour? <span>{` `}</span>
 						<input
-							type="text"
+							type="number"
+							min="15"
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 							required

@@ -33,7 +33,9 @@
 
 .tech_solution_textarea {
 	width: 100%;
+	max-width: 100%;
 	font-size: 19px;
+	resize: vertical;
 }
 
 .job_details-start_button {

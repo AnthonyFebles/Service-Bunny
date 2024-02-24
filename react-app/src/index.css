@@ -24,3 +24,7 @@ html {
 .taskText {
 	font-size: 16px;
 }
+
+input {
+    font-size: 20px;
+}
