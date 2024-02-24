@@ -20,6 +20,18 @@ def seed_jobs() :
     job6 = Job(
         location_id=3, user_id=8, title="Nurse Call system is down on the 2nd floor.", price=500, description="North wing in the emerald unit no calls coming into the nurse console. No zone or dome lights lighting whole systems looks like it's powered off ", category="NurseCall"
     )
+    job7 = Job(
+        location_id=1, user_id=2, title="Need My Laundry Done.",  price=15, category="General", description="Maybe about 30lbs of laundry. Please no bleach."
+    )
+    job8 = Job(
+        location_id=1, user_id=2, title="Whole power is down on my second floor.",  price=38, category="Electrical", description="Breaker box was smoking than thirty minutes later everything was down."
+    )
+    job9 = Job(
+        location_id=1, user_id=2, title="Need to set up my new office's network.",  price=37, category="Network", description="One floor. 13 Computers, 5 Cameras, 7 Printers all need to be set-up and connected."
+    )
+    job10 = Job(
+        location_id=1, user_id=2, title="Car making a weird clicking sound.",  price=80, category="Automotive", description="ONly happens sometimes after 7pm on the highway whenever I go above 50mph."
+    )
     
     db.session.add(job1)
     db.session.add(job2)
@@ -27,6 +39,10 @@ def seed_jobs() :
     db.session.add(job4)
     db.session.add(job5)
     db.session.add(job6)
+    db.session.add(job7)
+    db.session.add(job8)
+    db.session.add(job9)
+    db.session.add(job10)
     
     db.session.commit()
     
