@@ -114,7 +114,8 @@ function LandingPage() {
 						<img
 							src="https://i.imgur.com/Wt8HmsN.jpeg"
 							className="technician-image"
-							height={350}
+							width={300}
+							height={300}
 						/>
 					</div>
 					<div
@@ -125,7 +126,8 @@ function LandingPage() {
 						<img
 							src="https://i.imgur.com/atVCnup.jpeg"
 							className="technician-image"
-							height={350}
+							width={300}
+							height={300}
 						/>
 					</div>
 					<div
@@ -136,7 +138,8 @@ function LandingPage() {
 						<img
 							src="https://i.imgur.com/D9FeD3D.jpeg"
 							className="technician-image"
-							height={350}
+							width={300}
+							height={300}
 						/>
 					</div>
 					<div
@@ -147,7 +150,8 @@ function LandingPage() {
 						<img
 							src="https://i.imgur.com/qLtrsOQ.jpeg"
 							className="technician-image"
-							height={350}
+							width={300}
+							height={300}
 						/>
 					</div>
 				</div>
