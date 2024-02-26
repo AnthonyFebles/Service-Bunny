@@ -51,7 +51,7 @@ function EditJobModal({ currJob }) {
 				dispatch(getALocation(currJob.location_id));
 			closeModal();
 		} catch (error) {
-			console.log("catch", error)
+			//console.log("catch", error)
 			setErrors(error.errors);
 		}
 	};
@@ -60,7 +60,7 @@ function EditJobModal({ currJob }) {
 
 	return (
 		<div className="new_job-container">
-			{console.log(errors)}
+			
 			<h2 className="new_job-header">Edit This Job</h2>
 			<form className="new_job-form" onSubmit={handleEdit}>
 				<ul>

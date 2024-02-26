@@ -60,7 +60,7 @@ export const updateJob = (job, jobId) => async (dispatch) => {
 	});
 
 	if (!response.ok) {
-		console.log("res not ok");
+		//console.log("res not ok");
 		throw response;
 	}
 
@@ -71,7 +71,7 @@ export const updateJob = (job, jobId) => async (dispatch) => {
 	}
 	}catch(error) {
 		const res = await error.json();
-		console.log(res, "error");
+		//console.log(res, "error");
 		throw res;
 	}
 
