@@ -50,7 +50,8 @@ export const createNewJob = (job) => async (dispatch) => {
 };
 
 export const updateJob = (job, jobId) => async (dispatch) => {
-	const response = await csrfFetch(`/api/jobs/${jobId}`, {
+	
+	try{const response = await csrfFetch(`/api/jobs/${jobId}`, {
 		method: "PUT",
 		body: JSON.stringify(job),
 		headers: {
@@ -58,10 +59,20 @@ export const updateJob = (job, jobId) => async (dispatch) => {
 		},
 	});
 
+	if (!response.ok) {
+		console.log("res not ok");
+		throw response;
+	}
+
 	if (response.ok) {
 		const Job = await response.json();
 		dispatch(createJob(job));
 		return Job;
+	}
+	}catch(error) {
+		const res = await error.json();
+		console.log(res, "error");
+		throw res;
 	}
 
 	return new Error("Failed to Update");
