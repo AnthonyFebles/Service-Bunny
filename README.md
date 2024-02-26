@@ -17,3 +17,9 @@ Service Bunny is a WIP app hoping to solve staffing issues for service calls, as
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" width="50" />
 </div>
 <br>
+
+# Index
+* [MVP List](https://github.com/AnthonyFebles/Service-Bunny/wiki/MVP-List)
+* [API Backend Routes](https://github.com/AnthonyFebles/Service-Bunny/wiki/API-Routes)
+* [Schema](https://github.com/AnthonyFebles/Service-Bunny/wiki/Schema)
+* [Run The App Locally](https://github.com/AnthonyFebles/Service-Bunny/wiki/Run-The-App-Locally)
