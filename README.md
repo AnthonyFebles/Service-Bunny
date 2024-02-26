@@ -23,3 +23,4 @@ Service Bunny is a WIP app hoping to solve staffing issues for service calls, as
 * [API Backend Routes](https://github.com/AnthonyFebles/Service-Bunny/wiki/API-Routes)
 * [Schema](https://github.com/AnthonyFebles/Service-Bunny/wiki/Schema)
 * [Run The App Locally](https://github.com/AnthonyFebles/Service-Bunny/wiki/Run-The-App-Locally)
+* [Screen Shots](https://github.com/AnthonyFebles/Service-Bunny/wiki/ScreenShots)
