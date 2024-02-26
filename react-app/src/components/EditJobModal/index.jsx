@@ -46,11 +46,12 @@ function EditJobModal({ currJob }) {
 	const handleEdit = async (e) => {
 		e.preventDefault();
 		try {
-			await dispatch(updateJob(payload, currJob.id))
-				.then(() => dispatch(getOne(currJob.id)))
-				.then(() => dispatch(getALocation(currJob.location_id)));
+			const data  = await dispatch(updateJob(payload, currJob.id))
+				 dispatch(getOne(currJob.id))
+				dispatch(getALocation(currJob.location_id));
 			closeModal();
 		} catch (error) {
+			//console.log("catch", error)
 			setErrors(error.errors);
 		}
 	};
@@ -59,6 +60,7 @@ function EditJobModal({ currJob }) {
 
 	return (
 		<div className="new_job-container">
+			
 			<h2 className="new_job-header">Edit This Job</h2>
 			<form className="new_job-form" onSubmit={handleEdit}>
 				<ul>
@@ -79,9 +81,10 @@ function EditJobModal({ currJob }) {
 						></input>
 					</label>
 					<label className="new_job-price form-group">
-						What's the hourly rate you're willing to pay? <span>{` `}</span>
+						How much will you pay per hour? <span>{` `}</span>
 						<input
-							type="text"
+							type="number"
+							min="15"
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 							required

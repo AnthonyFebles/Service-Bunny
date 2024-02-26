@@ -65,7 +65,7 @@ export const createNewJob = (jobPayload) => async (dispatch) => {
 
 export const updateJob = (jobPayLoad, id) => async (dispatch) => {
 	try {
-		const response = await csrfFetch(`/api/jobs/${id}`, {
+		const response = await fetch(`/api/jobs/${id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -73,6 +73,10 @@ export const updateJob = (jobPayLoad, id) => async (dispatch) => {
 			body: JSON.stringify(jobPayLoad),
 		});
 
+		if (!response.ok) {
+			//console.log("res not ok");
+			throw response;
+		}
 		if (response.ok) {
 			//console.log("res is ok?")
 			const updatedJob = await response.json();
@@ -80,10 +84,6 @@ export const updateJob = (jobPayLoad, id) => async (dispatch) => {
 			return updatedJob;
 		}
 
-		if (!response.ok) {
-			//console.log("res not ok");
-			throw response;
-		}
 	} catch (error) {
 		const res = await error.json();
 		//console.log(res, "error")
