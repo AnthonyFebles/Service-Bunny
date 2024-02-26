@@ -92,7 +92,7 @@ const JobDetails = () => {
 	if (isLoading)
 		return (
 			<>
-				<img src="Images/running.gif" className="loading_bunny"></img>
+				<img src="/Images/running.gif" className="loading_bunny"></img>
 			</>
 		);
 	if (sessionUser.role == "Manager") {
@@ -100,6 +100,7 @@ const JobDetails = () => {
 			<>
 				{job ? (
 					<div className="job_details-outer_container">
+						
 						<div className="job_details-container">
 							<div className="job_details-title">
 								<b>{job.title}</b>
@@ -156,6 +157,7 @@ const JobDetails = () => {
 				{job ? (
 					<>
 						<div className="job_details-container-tech">
+							
 							<div className="job_details-container">
 								<div className="job_details-title">
 									<b>{job.title}</b>

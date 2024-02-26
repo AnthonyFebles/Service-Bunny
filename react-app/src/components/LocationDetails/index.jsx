@@ -57,7 +57,7 @@ const LocationDetails = () => {
 	if (isLoading)
 		return (
 			<>
-				<img src="Images/running.gif" className="loading_bunny"></img>
+				<img src="/Images/running.gif" className="loading_bunny"></img>
 			</>
 		);
 
