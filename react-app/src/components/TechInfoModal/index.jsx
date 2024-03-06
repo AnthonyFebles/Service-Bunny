@@ -6,6 +6,8 @@ import { getJobs, updateJob } from "../../store/jobs";
 import { getJob } from "../../store/job";
 import { deleteBooking, getBookings } from "../../store/bookings";
 import { deleteManager, getManagers, updateManager } from "../../store/manager";
+import { getChart } from "../../store/chart";
+import { store } from "../../index";
 import "./TechInfoModal.css";
 
 function TechInfoModal({ tech, job }) {
@@ -58,11 +60,18 @@ function TechInfoModal({ tech, job }) {
 			dispatch(getJob());
 			closeModal();
 			dispatch(getBookings());
-			window.location.reload(false);
+			// window.location.reload(false);
 		} catch (data) {
 			setErrors(data.errors);
 		} finally {
-			dispatch(getJobs()).then(() => dispatch(getJob));
+			await dispatch(getJobs())
+				.then(() => {
+					dispatch(getBookings());
+				})
+				.then(() => dispatch(getManagers()))
+				.then(() => dispatch(getJob()))
+				.then(() => {});
+			dispatch(getChart(store.getState().manager, store.getState().job));
 		}
 	};
 

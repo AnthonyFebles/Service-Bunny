@@ -123,9 +123,11 @@ const ManagerHome = () => {
 	return (
 		<div className="manager_container">
 			<h1 className="manager_schedule">Schedule</h1>
-			{manager.length > 0 && manager.some((el) => el.bookings.length > 0) && (
-				<Mermaid chart={chart} />
-			)}
+			<div id="mermaid-container">
+				{manager.length > 0 && manager.some((el) => el.bookings.length > 0) && (
+					<Mermaid chart={chart} />
+				)}
+			</div>
 			{manager.length > 0 && !manager.some((el) => el.bookings.length > 0) && (
 				<h2 className="no_techs-title">
 					You Don't Have Any Jobs Booked Yet. Check Under Available Jobs...
