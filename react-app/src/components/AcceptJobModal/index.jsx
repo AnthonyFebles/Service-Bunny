@@ -70,7 +70,7 @@ function AcceptJobModal({ job, techs }) {
 			await dispatch(getJob()).then(() => {
 				dispatch(getBookings());
 			});
-			window.location.reload(false);
+			// window.location.reload(false);
 			closeModal();
 		} catch (data) {
 			//console.log(data, "errors");
@@ -120,6 +120,9 @@ function AcceptJobModal({ job, techs }) {
 					className="assign_job_modal-select"
 				>
 					Schedule
+					<option value="" selected disabled hidden>
+						Select A Time
+					</option>
 					{futureHours.map((hour) => {
 						return (
 							<option key={hour + 100} value={hour} label={AMPM(hour)}></option>

@@ -46,7 +46,7 @@ function EditJobModal({ currJob }) {
 	const handleEdit = async (e) => {
 		e.preventDefault();
 		try {
-			const data  = await dispatch(updateJob(payload, currJob.id))
+			 await dispatch(updateJob(payload, currJob.id))
 				 dispatch(getOne(currJob.id))
 				dispatch(getALocation(currJob.location_id));
 			closeModal();
