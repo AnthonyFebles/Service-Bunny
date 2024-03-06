@@ -60,18 +60,19 @@ export const updateJob = (job, jobId) => async (dispatch) => {
 	});
 
 	if (!response.ok) {
-		//console.log("res not ok");
+		console.log("res not ok");
 		throw response;
 	}
 
 	if (response.ok) {
 		const Job = await response.json();
+		console.log(Job, "Job in updateJob")
 		dispatch(createJob(job));
 		return Job;
 	}
 	}catch(error) {
 		const res = await error.json();
-		//console.log(res, "error");
+		console.log(res, "error");
 		throw res;
 	}
 

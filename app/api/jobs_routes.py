@@ -81,7 +81,9 @@ def update_job(jobId):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-
+        
+        category = form.category.data
+        title = form.title.data
         worker_id = form.worker_id.data
         description = form.description.data
         solution = form.solution.data
@@ -94,10 +96,14 @@ def update_job(jobId):
 
         job.location_id = job.location_id
         job.worker_id = worker_id
-        job.description = description or job.description
-        job.solution = solution or job.solution
+        job.description = description 
+        job.solution = solution 
         job.customer_check = customer_check
         job.employee_check = employee_check
+        job.location_id = location_id
+        job.price = price
+        job.title = title
+        job.category = category or job.category
 
         db.session.commit()
 
