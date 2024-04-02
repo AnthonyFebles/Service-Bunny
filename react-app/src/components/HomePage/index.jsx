@@ -1,19 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getJobs } from "../../store/jobs";
-import { getLocations } from "../../store/locations";
-import { NavLink } from "react-router-dom";
-import OpenModalButton from "../OpenModalButton";
-import { getBookings } from "../../store/bookings";
-import { getManagers } from "../../store/manager";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ManagerHome from "../ManagerHome";
 import TechnicianHome from "../TechnicianHome";
 import CustomerHome from "../CustomerHome";
 
 const HomePage = () => {
-	const dispatch = useDispatch();
-
+	
 	const sessionUser = useSelector((state) => state.session.user);
 	const navigate = useNavigate();
 
